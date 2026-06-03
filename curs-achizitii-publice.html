@@ -1,0 +1,2066 @@
+<!doctype html>
+<html lang="ro">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Curs Achiziții Publice · Harrison Consulting</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300;9..144,400;9..144,500;9..144,600;9..144,700&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+<style>
+  :root{
+    --navy:#0A1628;
+    --navy-2:#1B3A6B;
+    --paper:#FAFAF8;
+    --gray:#f3efe6;
+    --ink:#1A1A1A;
+    --ink-2:#3a3a3a;
+    --rule:#e4e2dc;
+    --rule-strong:#cdcac1;
+    --terracotta:#4E8FCC;
+    --terracotta-2:#3372AD;
+    --mute-dark:rgba(255,255,255,.62);
+    --mute-dark-2:rgba(255,255,255,.42);
+    --max:1240px;
+    --gutter:32px;
+  }
+  *{box-sizing:border-box}
+  html,body{margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{
+    font-family:'Inter',-apple-system,BlinkMacSystemFont,sans-serif;
+    background:var(--paper);
+    color:var(--ink);
+    -webkit-font-smoothing:antialiased;
+    text-rendering:optimizeLegibility;
+    font-size:16px;
+    line-height:1.55;
+  }
+  .serif{font-family:'Fraunces',Georgia,serif;font-optical-sizing:auto;letter-spacing:-.01em}
+  .mono{font-family:'JetBrains Mono',ui-monospace,monospace}
+  .container{max-width:var(--max);margin:0 auto;padding:0 var(--gutter)}
+  .label{font-size:11px;letter-spacing:.18em;text-transform:uppercase;font-weight:500;color:var(--ink-2)}
+  .label--light{color:var(--mute-dark)}
+  a{color:inherit}
+  button{font:inherit;cursor:pointer;border:0;background:none;color:inherit}
+  .ph{color:#9a958a;font-style:italic}
+
+  /* ---------- NAV ---------- */
+  .nav{
+    position:sticky;top:0;z-index:50;
+    background:var(--navy);color:#fff;
+    border-bottom:1px solid rgba(255,255,255,.08);
+    transition:background .25s ease, color .25s ease, border-color .25s ease;
+  }
+  .nav.is-light{
+    background:rgba(250,250,248,.92);
+    backdrop-filter:saturate(1.1) blur(10px);
+    color:var(--ink);
+    border-bottom:1px solid var(--rule);
+  }
+  .nav__inner{display:flex;align-items:center;justify-content:space-between;height:64px}
+  .brand{display:flex;align-items:center;gap:10px;text-decoration:none;color:inherit}
+  .brand__mark{
+    width:26px;height:26px;border-radius:3px;background:var(--terracotta);
+    display:grid;place-items:center;color:#fff;
+    font-family:'Fraunces',serif;font-weight:600;font-size:16px;
+  }
+  .brand__name{font-family:'Fraunces',serif;font-weight:500;font-size:18px;letter-spacing:-.01em}
+  .brand__name span{opacity:.55;font-weight:400}
+  .nav__links{display:flex;align-items:center;gap:26px;font-size:13.5px}
+  .nav__links a{text-decoration:none;opacity:.78;transition:opacity .15s}
+  .nav__links a:hover{opacity:1}
+  .nav__cta{
+    padding:8px 14px;border-radius:2px;background:var(--terracotta);color:#fff;
+    font-size:13px;font-weight:500;text-decoration:none;transition:background .15s;
+  }
+  .nav__cta:hover{background:var(--terracotta-2)}
+  .nav__progress{position:absolute;left:0;right:0;bottom:-1px;height:1px;background:transparent}
+  .nav__progress::after{content:"";display:block;height:100%;width:var(--p,0%);background:var(--terracotta);transition:width .08s linear}
+  @media (max-width:880px){.nav__links a:not(.nav__cta){display:none}}
+
+  /* ---------- HERO ---------- */
+  .hero{background:var(--navy);color:#fff;position:relative;overflow:hidden;min-height:calc(100vh - 64px - 100px)}
+  @media (max-width:900px){.hero{min-height:auto}}
+  .hero::before{
+    content:"";position:absolute;inset:0;pointer-events:none;
+    background:
+      radial-gradient(1000px 600px at 85% -10%, rgba(78,143,204,.10), transparent 60%),
+      radial-gradient(800px 500px at 0% 100%, rgba(27,58,107,.55), transparent 60%);
+  }
+  .hero__grid{
+    position:relative;display:grid;grid-template-columns:1fr 1fr;gap:48px;
+    padding:80px var(--gutter) 140px;align-items:center;
+    max-width:var(--max);margin:0 auto;
+    min-height:calc(100vh - 64px - 100px);
+  }
+  @media (max-width:900px){.hero__grid{grid-template-columns:1fr;gap:32px;padding:64px var(--gutter) 100px;min-height:auto}}
+  .hero__eyebrow{display:flex;align-items:center;gap:14px;margin-bottom:36px}
+  .hero__eyebrow::before{content:"";width:24px;height:1px;background:var(--terracotta);display:block}
+  .hero__title{
+    font-family:'Fraunces',serif;font-weight:400;font-variation-settings:"opsz" 144;
+    font-size:clamp(40px,5.2vw,76px);
+    line-height:1.04;letter-spacing:-.025em;
+    margin:0 0 28px;color:#fff;text-wrap:balance;
+  }
+  .hero__title em{font-style:italic;font-weight:400;color:#b9d0e8}
+  .hero__sub{font-size:19px;line-height:1.55;max-width:560px;color:rgba(255,255,255,.78);font-weight:300;margin:0 0 40px}
+  .hero__cta-row{display:flex;align-items:center;gap:22px;flex-wrap:wrap}
+
+  /* ---------- HERO ART (SVG) ---------- */
+  .hero__art{
+    position:relative;
+    display:flex;align-items:center;justify-content:center;
+    align-self:stretch;
+  }
+  .hero__art svg{
+    width:100%;max-width:680px;height:auto;display:block;
+    overflow:visible;
+  }
+  @media (max-width:560px){.hero__art{margin-top:8px}}
+
+  .hero__art .h-line{stroke:rgba(255,255,255,.22);stroke-width:1;fill:none}
+  .hero__art .h-line-strong{stroke:rgba(255,255,255,.36);stroke-width:1;fill:none}
+  .hero__art .h-line-dash{stroke:rgba(255,255,255,.35);stroke-width:1;fill:none;stroke-dasharray:3 5}
+  .hero__art .h-acc{stroke:var(--terracotta);stroke-width:1.4;fill:none}
+  .hero__art .h-acc-thin{stroke:var(--terracotta);stroke-width:1;fill:none}
+  .hero__art .h-acc-fill{fill:var(--terracotta)}
+  .hero__art .h-sheet-fill{fill:#0A1628}
+  .hero__art .h-stamp-bg{fill:#0A1628}
+
+  @keyframes heroFloat{
+    0%,100%{transform:translateY(0)}
+    50%{transform:translateY(-5px)}
+  }
+  .hero__art .h-floater{transform-origin:center;animation:heroFloat 5.5s ease-in-out infinite}
+  .btn{
+    display:inline-flex;align-items:center;gap:10px;
+    padding:16px 26px;font-size:15px;font-weight:500;
+    background:var(--terracotta);color:#fff;text-decoration:none;
+    border-radius:2px;transition:background .15s, transform .15s;
+    border:1px solid var(--terracotta);
+  }
+  .btn:hover{background:var(--terracotta-2);border-color:var(--terracotta-2)}
+  .btn:active{transform:translateY(1px)}
+  .btn__arrow{transition:transform .2s}
+  .btn:hover .btn__arrow{transform:translateX(3px)}
+  .btn--ghost{background:transparent;color:#fff;border:1px solid rgba(255,255,255,.22)}
+  .btn--ghost:hover{background:rgba(255,255,255,.06);border-color:rgba(255,255,255,.35)}
+  .btn--outline{background:transparent;color:var(--ink);border:1px solid var(--ink)}
+  .btn--outline:hover{background:var(--ink);color:#fff}
+  .btn--dark{background:var(--ink);border-color:var(--ink);color:#fff}
+  .btn--dark:hover{background:#000;border-color:#000}
+
+  .hero__meta{border-left:1px solid rgba(255,255,255,.12);padding-left:32px;display:grid;gap:26px}
+  @media (max-width:900px){.hero__meta{border-left:0;border-top:1px solid rgba(255,255,255,.12);padding-left:0;padding-top:32px}}
+  .hero__meta-row{display:grid;grid-template-columns:auto 1fr;gap:14px 24px;align-items:baseline}
+  .hero__meta-k{font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--mute-dark-2);min-width:78px}
+  .hero__meta-v{font-size:15.5px;color:#fff;font-weight:400}
+  .hero__meta-v.serif{font-size:21px;letter-spacing:-.01em}
+  .hero__meta-v .ph{color:rgba(255,255,255,.5)}
+
+  /* ---------- HERO SUMMARY STRIPE ---------- */
+  .summary{
+    background:var(--navy);
+    padding:0 0 0;position:relative;
+    margin-top:-40px;
+  }
+  .summary .container{position:relative;z-index:2}
+  .summary__card{
+    background:#fff;border:1px solid var(--rule);
+    display:grid;grid-template-columns:repeat(5,1fr);
+    box-shadow:0 30px 80px -40px rgba(0,0,0,.45), 0 2px 0 0 var(--rule);
+    transform:translateY(-30px);
+    position:relative;z-index:2;
+  }
+  @media (max-width:1080px){.summary__card{grid-template-columns:repeat(3,1fr)}}
+  @media (max-width:720px){.summary__card{grid-template-columns:repeat(2,1fr)}}
+  @media (max-width:480px){.summary__card{grid-template-columns:1fr}}
+  .summary__col{
+    padding:24px 22px 22px;
+    display:flex;flex-direction:column;gap:6px;
+    text-decoration:none;color:inherit;
+    border-right:1px solid var(--rule);
+    transition:background .15s;
+    position:relative;
+  }
+  .summary__col:last-child{border-right:0}
+  @media (max-width:1080px){
+    .summary__col:nth-child(3n){border-right:0}
+    .summary__col:nth-child(n+4){border-top:1px solid var(--rule)}
+  }
+  @media (max-width:720px){
+    .summary__col{border-right:1px solid var(--rule)!important}
+    .summary__col:nth-child(2n){border-right:0!important}
+    .summary__col:nth-child(n+3){border-top:1px solid var(--rule)}
+  }
+  @media (max-width:480px){
+    .summary__col{border-right:0!important;border-top:1px solid var(--rule)!important}
+    .summary__col:first-child{border-top:0!important}
+  }
+  .summary__col:hover{background:#fbf8f1}
+  .summary__k{
+    font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.1em;
+    color:var(--ink-2);text-transform:uppercase;font-weight:500;
+  }
+  .summary__v{
+    font-family:'Fraunces',serif;font-weight:500;font-size:20px;line-height:1.2;
+    letter-spacing:-.012em;color:var(--ink);
+  }
+  .summary__v small{font-family:'Inter',sans-serif;font-size:13px;color:var(--ink-2);font-weight:400;letter-spacing:0;margin-left:2px}
+  .summary__link{
+    margin-top:auto;padding-top:14px;
+    font-size:12px;font-weight:500;color:var(--terracotta);
+    letter-spacing:.01em;
+    display:inline-flex;align-items:center;gap:6px;
+    opacity:.85;transition:opacity .15s, gap .15s;
+  }
+  .summary__col:hover .summary__link{opacity:1;gap:9px}
+
+  /* ---------- SECTION FRAMEWORK ---------- */
+  .section{padding:120px 0;position:relative}
+  .section--tight{padding:90px 0}
+  .section--dark{background:var(--navy);color:#fff}
+  .section--paper{background:var(--paper)}
+  .section--white{background:#fff}
+  .section--gray{background:var(--gray)}
+  .section__head{display:grid;grid-template-columns:200px 1fr;gap:48px;margin-bottom:64px;align-items:start}
+  @media (max-width:780px){.section__head{grid-template-columns:1fr;gap:18px;margin-bottom:44px}}
+  .section__num{
+    font-family:'JetBrains Mono',monospace;font-size:12px;
+    color:var(--ink-2);letter-spacing:.05em;
+    border-top:1px solid var(--ink);padding-top:14px;
+    display:inline-block;min-width:90px;
+  }
+  .section--dark .section__num{color:var(--mute-dark);border-top-color:rgba(255,255,255,.4)}
+  .section__h{
+    font-family:'Fraunces',serif;font-weight:400;
+    font-size:clamp(32px,3.6vw,52px);line-height:1.08;letter-spacing:-.02em;
+    margin:0;max-width:820px;text-wrap:balance;
+  }
+  .section__lede{font-size:18px;line-height:1.55;max-width:660px;margin:20px 0 0;color:var(--ink-2);font-weight:300}
+  .section--dark .section__lede{color:rgba(255,255,255,.72)}
+
+  /* ---------- PROBLEM ---------- */
+  .problem{background:var(--navy);color:#fff}
+  .problem__inner{
+    display:grid;grid-template-columns:200px 1fr;gap:48px;
+    padding:120px var(--gutter);max-width:var(--max);margin:0 auto;
+  }
+  @media (max-width:780px){.problem__inner{grid-template-columns:1fr;gap:24px;padding:80px var(--gutter)}}
+  .problem__label{
+    font-family:'JetBrains Mono',monospace;font-size:12px;color:var(--mute-dark);
+    border-top:1px solid rgba(255,255,255,.4);padding-top:14px;
+    align-self:start;letter-spacing:.05em;
+  }
+  .problem__body{
+    font-family:'Fraunces',serif;font-weight:300;
+    font-size:clamp(22px,2.1vw,30px);line-height:1.36;letter-spacing:-.012em;
+    color:#fff;max-width:880px;text-wrap:pretty;
+  }
+  .problem__body p{margin:0 0 22px}
+  .problem__body p:first-child{font-size:1.08em}
+  .problem__body p:first-child strong{font-weight:500;color:#fff;background:linear-gradient(transparent 62%, rgba(78,143,204,.42) 62%)}
+  .problem__body p:last-child{margin-bottom:0;color:rgba(255,255,255,.82)}
+
+  /* ---------- OUTCOMES ---------- */
+  .outcomes{display:grid;grid-template-columns:repeat(4,1fr);gap:0;border-top:1px solid var(--rule);border-left:1px solid var(--rule)}
+  @media (max-width:900px){.outcomes{grid-template-columns:repeat(2,1fr)}}
+  @media (max-width:560px){.outcomes{grid-template-columns:1fr}}
+  .outcome{
+    padding:36px 30px 40px;
+    border-right:1px solid var(--rule);border-bottom:1px solid var(--rule);
+    background:#fff;display:flex;flex-direction:column;gap:18px;min-height:300px;
+    transition:background .2s;
+  }
+  .outcome:hover{background:#fbfaf6}
+  .outcome__num{
+    font-family:'Fraunces',serif;font-weight:300;font-size:42px;line-height:1;letter-spacing:-.02em;
+    color:var(--terracotta);
+  }
+  .outcome__h{
+    font-family:'Fraunces',serif;font-weight:500;font-size:21px;line-height:1.25;
+    letter-spacing:-.005em;margin:0;color:var(--ink);text-wrap:balance;
+  }
+  .outcome__b{font-size:14px;line-height:1.6;color:var(--ink-2);margin:auto 0 0;font-weight:400}
+
+  /* ---------- FRAMEWORK (04) ---------- */
+  .framework{display:grid;grid-template-columns:1.15fr .85fr;gap:48px;align-items:start}
+  @media (max-width:900px){.framework{grid-template-columns:1fr;gap:36px}}
+  .framework__col{display:grid;gap:28px;min-width:0}
+  .framework__intro{font-size:17px;line-height:1.6;color:var(--ink-2);font-weight:300;margin:0;max-width:720px}
+  .framework__diagram{
+    background:#fff;border:1px solid var(--rule);
+    aspect-ratio:1/1;position:relative;overflow:hidden;
+    display:grid;place-items:center;cursor:zoom-in;
+    transition:border-color .2s, transform .2s;
+  }
+  .framework__diagram:hover{border-color:var(--ink-2)}
+  .framework__diagram img{
+    width:90%;height:auto;display:block;
+    transition:transform .3s ease;
+  }
+  .framework__diagram:hover img{transform:scale(1.02)}
+  .framework__diagram-zoom{
+    position:absolute;bottom:14px;right:14px;
+    display:flex;align-items:center;gap:8px;
+    font-family:'JetBrains Mono',monospace;font-size:10.5px;
+    color:var(--ink-2);letter-spacing:.08em;text-transform:uppercase;
+    background:rgba(255,255,255,.92);padding:6px 10px;
+    border:1px solid var(--rule);pointer-events:none;
+  }
+  .framework__diagram-zoom svg{width:11px;height:11px}
+  .framework__diagram-meta-row{
+    display:flex;justify-content:space-between;align-items:center;gap:14px;
+    padding-top:10px;font-family:'JetBrains Mono',monospace;font-size:11px;
+    letter-spacing:.08em;color:var(--ink-2);text-transform:uppercase;
+  }
+
+  /* ---------- DIAGRAM MODAL ---------- */
+  .diag-overlay{
+    position:fixed;inset:0;background:rgba(10,22,40,.86);
+    opacity:0;pointer-events:none;transition:opacity .25s ease;z-index:200;
+    backdrop-filter:blur(4px);
+    display:flex;align-items:center;justify-content:center;padding:48px;
+  }
+  .diag-overlay.open{opacity:1;pointer-events:auto}
+  .diag-modal{
+    position:relative;max-width:min(1100px, 96vw);max-height:90vh;
+    display:flex;flex-direction:column;gap:14px;
+    transform:scale(.96);transition:transform .3s cubic-bezier(.22,.61,.36,1);
+  }
+  .diag-overlay.open .diag-modal{transform:scale(1)}
+  .diag-modal__head{
+    display:flex;justify-content:space-between;align-items:center;gap:24px;color:#fff;
+  }
+  .diag-modal__title{
+    font-family:'Fraunces',serif;font-weight:400;font-size:22px;
+    letter-spacing:-.01em;margin:0;color:#fff;
+  }
+  .diag-modal__close{
+    width:40px;height:40px;border-radius:50%;
+    background:rgba(255,255,255,.10);position:relative;
+    transition:background .15s;cursor:pointer;
+  }
+  .diag-modal__close:hover{background:rgba(255,255,255,.22)}
+  .diag-modal__close::before,.diag-modal__close::after{
+    content:"";position:absolute;left:50%;top:50%;width:16px;height:1px;background:#fff;
+  }
+  .diag-modal__close::before{transform:translate(-50%,-50%) rotate(45deg)}
+  .diag-modal__close::after{transform:translate(-50%,-50%) rotate(-45deg)}
+  .diag-modal__frame{
+    background:#fff;border:1px solid rgba(255,255,255,.12);
+    padding:32px;flex:1;min-height:0;
+    display:flex;align-items:center;justify-content:center;overflow:hidden;
+  }
+  .diag-modal__frame img{
+    max-width:100%;max-height:calc(90vh - 80px);
+    height:auto;display:block;
+  }
+  body.diag-open{overflow:hidden}
+  .framework__more{
+    margin-top:4px;font-size:14px;color:var(--navy);text-decoration:none;
+    display:inline-flex;align-items:center;gap:8px;
+    border-bottom:1px solid transparent;padding-bottom:2px;
+    transition:border-color .15s, color .15s;
+    align-self:start;
+  }
+  .framework__more:hover{border-color:var(--terracotta);color:var(--terracotta)}
+  .framework__more::after{content:"→";transition:transform .2s}
+  .framework__more:hover::after{transform:translateX(3px)}
+  /* ---------- FRAMEWORK ACCORDION ---------- */
+  .fw-acc{
+    background:#fff;border:1px solid var(--rule);
+    display:grid;gap:0;
+  }
+  .fw-acc__head{
+    display:grid;grid-template-columns:90px 1fr 36px 80px;gap:0;
+    padding:14px 22px;background:#fbf8f1;border-bottom:1px solid var(--rule);
+    font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.1em;
+    text-transform:uppercase;color:var(--ink-2);font-weight:500;align-items:center;
+  }
+  .fw-acc__head .lvl-col{text-align:center;grid-column:4}
+  .fw-row{border-bottom:1px solid var(--rule)}
+  .fw-row:last-child{border-bottom:0}
+  .fw-row__btn{
+    width:100%;display:grid;grid-template-columns:90px 1fr 36px 80px;gap:0;
+    padding:20px 22px;text-align:left;align-items:center;
+    transition:background .15s;
+  }
+  .fw-row__btn:hover{background:#fbfaf6}
+  .fw-row__code{font-family:'JetBrains Mono',monospace;font-size:14px;color:var(--ink);white-space:nowrap}
+  .fw-row__comp{font-size:15px;color:var(--ink);line-height:1.45;font-weight:400;padding-right:16px}
+  .fw-row__plus-wrap{
+    display:flex;align-items:center;justify-content:center;
+  }
+  .fw-row__plus-wrap .plus{
+    width:18px;height:18px;position:relative;opacity:.55;
+    transition:opacity .2s;
+  }
+  .fw-row__btn:hover .fw-row__plus-wrap .plus{opacity:1}
+  .fw-row__plus-wrap .plus::before,.fw-row__plus-wrap .plus::after{
+    content:"";position:absolute;background:var(--ink);
+    left:50%;top:50%;transform:translate(-50%,-50%);
+  }
+  .fw-row__plus-wrap .plus::before{width:12px;height:1px}
+  .fw-row__plus-wrap .plus::after{width:1px;height:12px;transition:transform .25s}
+  .fw-row.open .fw-row__plus-wrap .plus::after{transform:translate(-50%,-50%) scaleY(0)}
+  .fw-row__lvl{text-align:center}
+  .fw-row__body{overflow:hidden;max-height:0;transition:max-height .35s ease;background:#fbfaf6}
+  .fw-row__body-inner{
+    padding:4px 22px 22px 112px;
+    font-size:14px;line-height:1.6;color:var(--ink-2);max-width:760px;
+  }
+  .fw-row.open .fw-row__body{max-height:300px}
+  @media (max-width:680px){
+    .fw-acc__head,.fw-row__btn{grid-template-columns:60px 1fr 28px 56px;padding:14px 16px}
+    .fw-row__body-inner{padding:4px 16px 18px 76px;font-size:13.5px}
+    .fw-row__comp{font-size:14px}
+  }
+
+  .fw-table{
+    width:100%;border-collapse:collapse;background:#fff;border:1px solid var(--rule);
+    font-size:15px;
+  }
+  .fw-table th,.fw-table td{padding:18px 22px;text-align:left;vertical-align:middle}
+  .fw-table thead th{
+    background:#fbf8f1;
+    font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.1em;
+    text-transform:uppercase;color:var(--ink-2);font-weight:500;
+    border-bottom:1px solid var(--rule);
+  }
+  .fw-table tbody tr + tr td{border-top:1px solid var(--rule)}
+  .fw-table td.code{font-family:'JetBrains Mono',monospace;font-size:14px;color:var(--ink);width:90px;white-space:nowrap}
+  .fw-table td.comp{font-size:15px;color:var(--ink);line-height:1.5}
+  .fw-table td.lvl{width:80px;text-align:center}
+  .lvl-pill{
+    display:inline-flex;align-items:center;justify-content:center;
+    width:32px;height:32px;border-radius:50%;
+    background:var(--navy);color:#fff;
+    font-family:'Fraunces',serif;font-weight:500;font-size:15px;letter-spacing:-.01em;
+  }
+  .fw-note{
+    font-size:14px;color:var(--ink-2);line-height:1.6;max-width:760px;margin:0;
+    padding-left:18px;border-left:2px solid var(--terracotta);font-weight:400;
+  }
+  .fw-callout{
+    font-size:13.5px;color:var(--ink-2);line-height:1.6;margin:0;max-width:760px;
+    background:#fbf8f1;border:1px solid var(--rule-strong);padding:14px 16px;
+  }
+  .fw-callout strong{color:var(--ink);font-weight:600}
+  .fw-aria{display:flex;align-items:baseline;gap:12px;flex-wrap:wrap;margin:0}
+  .fw-aria__code{font-family:'JetBrains Mono',monospace;font-size:12px;letter-spacing:.06em;color:var(--terracotta);font-weight:500}
+  .fw-aria__label{font-family:'Fraunces',Georgia,serif;font-size:21px;letter-spacing:-.01em;color:var(--ink)}
+  @media (max-width:680px){
+    .fw-table th,.fw-table td{padding:14px 16px;font-size:14px}
+    .fw-table td.comp{font-size:14px}
+  }
+
+  /* ---------- METHODOLOGY ---------- */
+  .method{display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:start}
+  @media (max-width:900px){.method{grid-template-columns:1fr;gap:48px}}
+  .method__list{display:grid;gap:30px}
+  .method__item{display:grid;grid-template-columns:24px 1fr;gap:22px;align-items:start}
+  .method__item .n{font-family:'JetBrains Mono',monospace;font-size:12px;color:var(--terracotta);padding-top:4px}
+  .method__item h4{font-family:'Fraunces',serif;font-weight:500;font-size:19px;margin:0 0 6px;letter-spacing:-.005em}
+  .method__item p{margin:0;font-size:14.5px;color:var(--ink-2);line-height:1.6}
+  .pullquote{background:var(--navy);color:#fff;padding:48px 44px;border-radius:2px;position:relative}
+  .pullquote .lead{
+    font-family:'Fraunces',serif;font-style:italic;font-weight:300;
+    font-size:clamp(28px,2.6vw,38px);line-height:1.22;letter-spacing:-.018em;
+    color:#fff;margin:0 0 24px;text-wrap:balance;
+  }
+  .pullquote .lead em{color:#b9d0e8}
+  .pullquote p{font-family:'Inter',sans-serif;font-weight:300;font-size:15.5px;line-height:1.6;color:rgba(255,255,255,.82);margin:0}
+  .pullquote .credit{margin-top:24px;display:block;font-family:'Inter',sans-serif;font-size:12px;color:var(--mute-dark);letter-spacing:.06em;text-transform:uppercase}
+
+  /* ---------- PROCESS (06) ---------- */
+  .process{display:grid;gap:0;border-top:1px solid var(--ink)}
+  .step{
+    display:grid;grid-template-columns:120px 1fr;gap:28px;
+    padding:28px 0;border-bottom:1px solid var(--rule-strong);
+    align-items:baseline;
+  }
+  @media (max-width:680px){.step{grid-template-columns:64px 1fr;gap:18px;padding:22px 0}}
+  .step__n{
+    font-family:'Fraunces',serif;font-weight:300;font-size:42px;line-height:1;
+    letter-spacing:-.02em;color:var(--terracotta);
+  }
+  @media (max-width:680px){.step__n{font-size:30px}}
+  .step__body{padding-top:6px}
+  .step__h{font-family:'Fraunces',serif;font-weight:500;font-size:21px;letter-spacing:-.005em;margin:0 0 6px;line-height:1.25;color:var(--ink);text-wrap:balance}
+  .step__d{font-size:14.5px;line-height:1.55;color:var(--ink-2);margin:0;max-width:680px}
+
+  /* ---------- TRAINERS (07) ---------- */
+  .trainers{display:grid;grid-template-columns:1fr 1fr;gap:32px}
+  @media (max-width:840px){.trainers{grid-template-columns:1fr}}
+  .trainer{
+    background:#fff;border:1px solid var(--rule);
+    display:flex;flex-direction:column;overflow:hidden;
+    transition:border-color .2s, transform .2s;
+  }
+  .trainer:hover{border-color:var(--rule-strong)}
+  .trainer__portrait{
+    aspect-ratio:4/3;position:relative;overflow:hidden;
+    background:
+      repeating-linear-gradient(135deg,
+        rgba(27,58,107,.07) 0 14px,
+        rgba(27,58,107,.12) 14px 28px),
+      linear-gradient(180deg, #e9e5da, #d8d3c5);
+    border-bottom:1px solid var(--rule);
+  }
+  .trainer__portrait img{
+    position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block;
+    filter:saturate(.96);
+  }
+  .trainer__portrait::after{
+    content:attr(data-ph);position:absolute;left:18px;bottom:14px;
+    font-family:'JetBrains Mono',monospace;font-size:10.5px;
+    color:var(--ink-2);letter-spacing:.04em;
+    background:rgba(255,255,255,.85);padding:3px 7px;
+  }
+  .trainer__portrait .ring{
+    position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);
+    width:46%;aspect-ratio:1/1;border-radius:50%;
+    background:
+      radial-gradient(ellipse at 50% 35%, rgba(255,255,255,.45), transparent 55%),
+      linear-gradient(180deg,#b7ad96,#8e8472);
+    border:1px solid rgba(0,0,0,.06);
+  }
+  .trainer__body{padding:30px 30px 32px;display:flex;flex-direction:column;gap:10px;flex:1}
+  .trainer__eyebrow{font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.14em;color:var(--terracotta);text-transform:uppercase}
+  .trainer__name{font-family:'Fraunces',serif;font-weight:500;font-size:28px;letter-spacing:-.015em;margin:0;line-height:1.1;color:var(--ink)}
+  .trainer__role{font-size:14px;color:var(--ink-2);margin:0 0 12px;font-weight:400}
+  .trainer__lead{font-family:'Fraunces',Georgia,serif;font-style:italic;font-weight:400;font-size:17px;line-height:1.4;letter-spacing:-.01em;color:var(--navy-2);margin:0 0 12px}
+  .trainer__bio{font-size:14.5px;line-height:1.6;color:var(--ink-2);margin:0}
+  .trainers__foot{
+    margin-top:36px;text-align:center;
+    font-family:'Fraunces',serif;font-style:italic;font-weight:300;font-size:20px;
+    line-height:1.4;color:var(--ink);letter-spacing:-.005em;max-width:780px;
+    margin-left:auto;margin-right:auto;text-wrap:balance;
+  }
+
+  /* ---------- PROGRAM (08) ---------- */
+  .program{display:grid;grid-template-columns:1fr 1fr;gap:0;border:1px solid var(--rule);background:#fff}
+  @media (max-width:780px){.program{grid-template-columns:1fr}}
+  .day{padding:36px 36px 40px;display:flex;flex-direction:column;gap:18px}
+  .day + .day{border-left:1px solid var(--rule)}
+  @media (max-width:780px){.day + .day{border-left:0;border-top:1px solid var(--rule)}}
+  .day__tag{font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.1em;color:var(--terracotta);text-transform:uppercase}
+  .day__h{font-family:'Fraunces',serif;font-weight:500;font-size:26px;letter-spacing:-.015em;margin:0;line-height:1.15}
+  .day__time{font-size:13px;color:var(--ink-2);font-family:'JetBrains Mono',monospace;letter-spacing:.04em}
+  .day__list{list-style:none;margin:8px 0 0;padding:0;display:grid;gap:0;border-top:1px solid var(--rule)}
+  .day__list li{padding:14px 0;border-bottom:1px solid var(--rule);display:grid;grid-template-columns:36px 1fr;gap:14px;align-items:baseline}
+  .day__list li:last-child{border-bottom:0}
+  .day__list .mod{font-family:'JetBrains Mono',monospace;font-size:11.5px;color:var(--ink-2);letter-spacing:.05em}
+  .day__list .title{font-size:14.5px;color:var(--ink);line-height:1.45;font-weight:400}
+  .day__list .title small{display:block;font-size:12.5px;color:var(--ink-2);margin-top:3px;font-weight:400}
+
+  /* ---------- TESTIMONIALS (09) ---------- */
+  .testimonials{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
+  @media (max-width:900px){.testimonials{grid-template-columns:1fr}}
+  .t-card{
+    background:#fff;border:1px solid var(--rule);padding:36px 30px 30px;
+    display:flex;flex-direction:column;gap:18px;min-height:340px;
+    position:relative;transition:border-color .2s;
+  }
+  .t-card:hover{border-color:var(--rule-strong)}
+  .t-card .q{
+    font-family:'Fraunces',serif;font-size:72px;line-height:.5;color:var(--terracotta);
+    margin:0;font-weight:400;
+  }
+  .t-card p{
+    font-family:'Fraunces',serif;font-weight:400;font-size:18px;line-height:1.5;
+    color:var(--ink);margin:0;letter-spacing:-.005em;flex:1;
+  }
+  .t-card .who{margin-top:auto;padding-top:18px;border-top:1px solid var(--rule)}
+  .t-card .who .name{font-size:13.5px;font-weight:500;color:var(--ink)}
+  .t-card .who .org{font-size:12.5px;color:var(--ink-2);margin-top:2px}
+
+  /* ---------- SESSIONS (09) ---------- */
+  .sessions{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
+  @media (max-width:900px){.sessions{grid-template-columns:1fr}}
+  .session-card{
+    background:#fff;border:1px solid var(--rule);
+    padding:32px 30px 30px;display:flex;flex-direction:column;gap:18px;
+    min-height:340px;position:relative;transition:border-color .2s, transform .2s;
+  }
+  .session-card--active{border-color:var(--ink);box-shadow:0 1px 0 0 var(--ink), 0 6px 20px -12px rgba(10,22,40,.18)}
+  .session-card--ghost{
+    opacity:.78;background:transparent;border:1px dashed var(--rule-strong);
+    filter:saturate(.85);
+  }
+  .session-card--ghost:hover{opacity:1;border-color:var(--ink-2)}
+  .session-card__tag{
+    font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.1em;
+    text-transform:uppercase;display:inline-flex;align-items:center;gap:8px;
+  }
+  .session-card--active .session-card__tag{color:var(--terracotta)}
+  .session-card__tag .dot{width:7px;height:7px;border-radius:50%;display:inline-block}
+  .session-card--active .session-card__tag .dot{background:var(--terracotta);box-shadow:0 0 0 4px rgba(78,143,204,.14)}
+  .session-card--ghost .session-card__tag{color:var(--ink-2)}
+  .session-card--ghost .session-card__tag .dot{background:#bdb9af}
+  .session-card__h{
+    font-family:'Fraunces',serif;font-weight:500;font-size:26px;letter-spacing:-.015em;
+    margin:0;line-height:1.15;color:var(--ink);
+  }
+  .session-card__date{font-size:14px;color:var(--ink-2);margin:0;font-weight:400}
+  .session-card--ghost .session-card__date{font-family:'Fraunces',serif;font-style:italic;font-size:16px;color:var(--ink-2);font-weight:300}
+  .session-card__seats{display:flex;flex-direction:column;gap:10px;margin-top:6px}
+  .session-card__seats .label{
+    font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.06em;
+    color:var(--ink-2);text-transform:uppercase;font-weight:500;
+  }
+  .session-card__seats .text{font-size:14px;color:var(--ink);font-weight:400}
+  .session-card__bar{
+    display:grid;grid-template-columns:repeat(18,1fr);gap:3px;height:8px;
+  }
+  .session-card__bar span{background:#e4e2dc;display:block;border-radius:1px}
+  .session-card__bar span.filled{background:var(--terracotta)}
+  .session-card .btn{margin-top:auto;justify-content:center;width:100%;padding:14px 22px;font-size:14px}
+  .session-card__cta-ghost{
+    margin-top:auto;display:inline-flex;align-items:center;justify-content:center;gap:8px;
+    width:100%;padding:14px 22px;border:1px solid var(--rule-strong);
+    font-size:14px;font-weight:500;color:var(--ink);background:transparent;
+    transition:border-color .15s, background .15s, color .15s;
+  }
+  .session-card__cta-ghost:hover{border-color:var(--ink);background:#fbf8f1;color:var(--ink)}
+  .session-card__cta-ghost.confirmed{background:#fbf8f1;border-color:var(--terracotta);color:var(--terracotta)}
+
+  /* ---------- ARTICLES (17) ---------- */
+  .articles{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
+  @media (max-width:900px){.articles{grid-template-columns:1fr}}
+  .article-card{
+    background:#fff;border:1px solid var(--rule);
+    padding:30px 30px 30px;display:flex;flex-direction:column;gap:14px;min-height:280px;
+    text-decoration:none;color:inherit;
+    border-top:3px solid var(--terracotta);
+    transition:border-color .2s, transform .2s;
+  }
+  .article-card:hover{border-color:var(--ink-2);border-top-color:var(--terracotta)}
+  .article-card--seap{border-top-color:var(--navy-2)}
+  .article-card--law{border-top-color:var(--ink)}
+  .article-card--soon{cursor:default;opacity:.72}
+  .article-card--soon:hover{border-color:var(--rule);border-top-color:var(--ink)}
+  .article-card--soon .article-card__more{color:var(--ink-2)}
+  .article-card--soon .article-card__more::after{content:""}
+  .article-card__tag{
+    font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.1em;
+    text-transform:uppercase;color:var(--ink-2);font-weight:500;
+  }
+  .article-card__h{
+    font-family:'Fraunces',serif;font-weight:500;font-size:22px;letter-spacing:-.005em;
+    line-height:1.22;margin:0;color:var(--ink);text-wrap:balance;
+    display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;
+  }
+  .article-card__excerpt{font-size:14px;line-height:1.55;color:var(--ink-2);margin:0;flex:1}
+  .article-card__excerpt .ph{color:#9a958a;font-style:italic}
+  .article-card__foot{
+    display:flex;justify-content:space-between;align-items:center;
+    padding-top:14px;border-top:1px solid var(--rule);margin-top:6px;
+  }
+  .article-card__more{font-size:13.5px;font-weight:500;color:var(--ink);display:inline-flex;gap:8px;align-items:center}
+  .article-card__more::after{content:"→";transition:transform .2s}
+  .article-card:hover .article-card__more::after{transform:translateX(3px)}
+  .article-card__time{font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--ink-2);letter-spacing:.04em}
+
+  /* ---------- PRICING (10) ---------- */
+  .pricing{
+    background:#fff;border:1px solid var(--rule);
+    display:grid;grid-template-columns:1.05fr .95fr;gap:0;
+  }
+  @media (max-width:840px){.pricing{grid-template-columns:1fr}}
+  .price-left{padding:48px 44px;display:flex;flex-direction:column;gap:14px;border-right:1px solid var(--rule);background:#fbf8f1;position:relative}
+  @media (max-width:840px){.price-left{border-right:0;border-bottom:1px solid var(--rule)}}
+  .price-left .tag{font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.1em;color:var(--ink-2);text-transform:uppercase}
+  .price-left .name{font-family:'Fraunces',serif;font-size:28px;letter-spacing:-.015em;margin:0;font-weight:500}
+  .price-left .amount{font-family:'Fraunces',serif;font-size:74px;line-height:1;letter-spacing:-.03em;font-weight:400;display:flex;align-items:baseline;gap:8px;margin-top:6px}
+  .price-left .amount small{font-family:'Inter',sans-serif;font-size:14px;color:var(--ink-2);font-weight:400;letter-spacing:0}
+  .price-left .currency{font-size:30px;color:var(--ink-2);font-weight:400;letter-spacing:-.02em}
+  .price-note{font-size:13.5px;color:var(--ink-2);line-height:1.55;margin:8px 0 0;max-width:380px}
+  .price-discounts{display:grid;gap:10px;margin-top:20px;padding-top:20px;border-top:1px solid var(--rule)}
+  .discount{display:grid;grid-template-columns:46px 1fr;gap:14px;align-items:baseline}
+  .discount .pct{font-family:'Fraunces',serif;font-size:22px;color:var(--terracotta);font-weight:500;letter-spacing:-.01em}
+  .discount .txt{font-size:13.5px;color:var(--ink-2);line-height:1.5}
+  .price-right{padding:48px 44px;display:flex;flex-direction:column;gap:18px}
+  .price-right h4{
+    font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.1em;
+    color:var(--ink-2);text-transform:uppercase;margin:0;font-weight:500;
+  }
+  .price-right ul{list-style:none;margin:0;padding:0;display:grid;gap:14px}
+  .price-right ul li{font-size:14.5px;color:var(--ink);display:grid;grid-template-columns:22px 1fr;gap:12px;align-items:start;line-height:1.45}
+  .price-right ul li::before{
+    content:"";width:8px;height:8px;background:var(--terracotta);
+    margin-top:7px;display:block;
+  }
+  .price-right .btn{margin-top:auto;align-self:flex-start}
+
+  /* ---------- FUNDING (11) ---------- */
+  .funding{display:grid;grid-template-columns:1fr 1fr;gap:0;background:#fff;border:1px solid var(--rule)}
+  @media (max-width:840px){.funding{grid-template-columns:1fr}}
+  .fund-col{padding:42px 40px;display:flex;flex-direction:column;gap:14px}
+  .fund-col + .fund-col{border-left:1px solid var(--rule);background:#fbf8f1}
+  @media (max-width:840px){.fund-col + .fund-col{border-left:0;border-top:1px solid var(--rule)}}
+  .fund-col h3{
+    font-family:'Fraunces',serif;font-weight:500;font-size:22px;letter-spacing:-.01em;
+    margin:0 0 4px;display:flex;align-items:baseline;gap:12px;
+  }
+  .fund-col h3::before{
+    content:attr(data-num);font-family:'JetBrains Mono',monospace;font-size:11px;
+    color:var(--terracotta);letter-spacing:.06em;font-weight:500;
+  }
+  .fund-col p{font-size:14.5px;color:var(--ink-2);line-height:1.6;margin:0}
+  .fund-col p .ph{color:#9a958a;font-style:italic;font-size:.95em}
+  .fund-list{list-style:none;margin:12px 0 0;padding:0;display:grid;gap:0;border-top:1px solid var(--rule)}
+  .fund-list li{padding:12px 0;border-bottom:1px solid var(--rule);display:grid;grid-template-columns:130px 1fr;gap:18px;font-size:14px;align-items:baseline}
+  .fund-list li:last-child{border-bottom:0}
+  .fund-list .k{font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.08em;color:var(--ink-2);text-transform:uppercase}
+  .fund-list .v{color:var(--ink);font-weight:400;font-size:14px;line-height:1.4}
+  .fund-list .v .ph{font-size:1em}
+
+  /* ---------- FAQ (12) ---------- */
+  .faq{border-top:1px solid var(--ink)}
+  .faq__item{border-bottom:1px solid var(--rule-strong)}
+  .faq__btn{
+    width:100%;display:grid;grid-template-columns:auto 1fr auto;gap:24px;align-items:center;
+    padding:26px 0;text-align:left;
+  }
+  .faq__n{font-family:'JetBrains Mono',monospace;font-size:12px;color:var(--ink-2);min-width:32px}
+  .faq__q{font-family:'Fraunces',serif;font-weight:400;font-size:21px;letter-spacing:-.005em;color:var(--ink);line-height:1.3}
+  .faq__plus{width:22px;height:22px;position:relative}
+  .faq__plus::before,.faq__plus::after{
+    content:"";position:absolute;background:var(--ink);
+    left:50%;top:50%;transform:translate(-50%,-50%);
+  }
+  .faq__plus::before{width:14px;height:1px}
+  .faq__plus::after{width:1px;height:14px;transition:transform .25s}
+  .faq__item.open .faq__plus::after{transform:translate(-50%,-50%) scaleY(0)}
+  .faq__a{overflow:hidden;max-height:0;transition:max-height .35s ease}
+  .faq__a-inner{padding:0 56px 28px;font-size:15px;line-height:1.65;color:var(--ink-2);max-width:780px}
+  .faq__item.open .faq__a{max-height:480px}
+
+  /* ---------- ABOUT / HARRISON (13) ---------- */
+  .cred__top{display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:end;margin-bottom:64px}
+  @media (max-width:900px){.cred__top{grid-template-columns:1fr;gap:32px;margin-bottom:48px}}
+  .cred__h{
+    font-family:'Fraunces',serif;font-weight:300;
+    font-size:clamp(34px,4.2vw,60px);line-height:1.05;letter-spacing:-.025em;
+    margin:0;text-wrap:balance;
+  }
+  .cred__h em{font-style:italic;color:var(--terracotta);font-weight:300}
+  .cred__lede{font-size:17px;line-height:1.55;color:var(--ink-2);max-width:480px;margin:0;font-weight:300}
+  .cred__stats{display:grid;grid-template-columns:repeat(4,1fr);gap:0;border-top:1px solid var(--ink);border-bottom:1px solid var(--ink)}
+  @media (max-width:780px){.cred__stats{grid-template-columns:repeat(2,1fr)}}
+  .cred__stat{padding:38px 26px;border-right:1px solid var(--rule)}
+  .cred__stat:last-child{border-right:0}
+  .cred__stat .k{font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.1em;color:var(--ink-2);text-transform:uppercase;display:block;margin-bottom:14px}
+  .cred__stat .v{font-family:'Fraunces',serif;font-weight:300;font-size:clamp(38px,3.8vw,58px);line-height:1;letter-spacing:-.025em;color:var(--ink);display:block}
+  .cred__stat .vsub{font-family:'Inter',sans-serif;font-size:13px;color:var(--ink-2);margin-top:8px;display:block}
+  .cred__foot{margin-top:36px;display:flex;justify-content:space-between;align-items:center;gap:24px;flex-wrap:wrap}
+  .cred__foot a.text{font-size:14px;text-decoration:none;border-bottom:1px solid var(--ink);padding-bottom:2px}
+  .cred__foot a.text:hover{color:var(--terracotta);border-color:var(--terracotta)}
+
+  /* ---------- CROSS-SELL (15) ---------- */
+  .crosssell{
+    display:grid;grid-template-columns:2fr 1fr;gap:24px;align-items:stretch;
+  }
+  @media (max-width:880px){.crosssell{grid-template-columns:1fr}}
+  .cs-card{
+    background:#fff;border:1px solid var(--rule);
+    padding:36px 36px 32px;display:flex;flex-direction:column;gap:14px;
+    text-decoration:none;color:inherit;min-height:280px;
+    transition:border-color .2s, transform .2s;position:relative;
+  }
+  .cs-card:hover{border-color:var(--ink);transform:translateY(-2px)}
+  .cs-card__tag{
+    font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.1em;
+    color:var(--terracotta);text-transform:uppercase;font-weight:500;
+  }
+  .cs-card--primary .cs-card__tag::before{
+    content:"●";color:var(--terracotta);margin-right:8px;font-size:8px;vertical-align:middle;
+  }
+  .cs-card__h{
+    font-family:'Fraunces',serif;font-weight:500;font-size:28px;letter-spacing:-.015em;
+    margin:0;line-height:1.18;color:var(--ink);text-wrap:balance;
+  }
+  .cs-card--secondary .cs-card__h{font-size:22px}
+  .cs-card__d{font-size:14.5px;color:var(--ink-2);line-height:1.6;margin:0;max-width:560px}
+  .cs-card--secondary .cs-card__d{font-size:14px}
+  .cs-card__meta{
+    display:flex;flex-wrap:wrap;gap:18px;margin-top:8px;
+    font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.06em;
+    color:var(--ink-2);text-transform:uppercase;
+  }
+  .cs-card__meta span{display:inline-flex;align-items:center;gap:8px}
+  .cs-card__meta span::before{content:"";width:6px;height:1px;background:var(--terracotta);display:block}
+  .cs-card__link{
+    margin-top:auto;padding-top:18px;
+    font-size:14px;font-weight:500;display:inline-flex;align-items:center;gap:10px;
+    color:var(--ink);
+  }
+  .cs-card__link::after{content:"→";transition:transform .2s}
+  .cs-card:hover .cs-card__link::after{transform:translateX(4px)}
+  .cs-card--secondary{background:#fbf8f1}
+  .cs-card--secondary .cs-card__tag{color:var(--navy-2)}
+
+  /* ---------- FINAL CTA (16) ---------- */
+  .final{background:var(--navy);color:#fff;padding:130px 0 120px}
+  .final__inner{max-width:880px;text-align:center;margin:0 auto}
+  .final__seats{
+    font-family:'JetBrains Mono',monospace;font-size:12px;letter-spacing:.16em;
+    color:var(--terracotta);text-transform:uppercase;margin-bottom:22px;
+    display:inline-flex;align-items:center;gap:12px;
+  }
+  .final__seats::before,.final__seats::after{content:"";width:24px;height:1px;background:var(--terracotta);display:block}
+  .final h2{
+    font-family:'Fraunces',serif;font-weight:300;
+    font-size:clamp(36px,4.2vw,62px);line-height:1.06;letter-spacing:-.025em;
+    margin:0;text-wrap:balance;color:#fff;
+  }
+  .final h2 em{font-style:italic;color:#b9d0e8}
+  .final__date{font-size:16px;color:rgba(255,255,255,.72);margin:24px auto 0;font-weight:300;max-width:560px}
+  .final__cta{margin-top:40px}
+  .final__cta .btn{padding:18px 32px;font-size:16px}
+  .final__phone{
+    margin-top:32px;padding-top:28px;
+    border-top:1px solid rgba(255,255,255,.12);
+    max-width:520px;margin-left:auto;margin-right:auto;
+    font-size:14px;color:rgba(255,255,255,.6);line-height:1.55;
+  }
+  .final__phone a{
+    color:#fff;text-decoration:none;font-weight:500;
+    border-bottom:1px solid rgba(255,255,255,.3);padding-bottom:1px;
+    transition:border-color .15s;
+  }
+  .final__phone a:hover{border-color:var(--terracotta)}
+
+  /* ---------- REGISTRATION DRAWER ---------- */
+  .reg-overlay{
+    position:fixed;inset:0;background:rgba(10,22,40,.55);
+    opacity:0;pointer-events:none;transition:opacity .3s ease;z-index:90;
+    backdrop-filter:blur(2px);
+  }
+  .reg-overlay.open{opacity:1;pointer-events:auto}
+  .reg-drawer{
+    position:fixed;top:0;right:0;height:100vh;width:560px;max-width:100%;
+    background:var(--paper);z-index:100;
+    transform:translateX(100%);transition:transform .42s cubic-bezier(.22,.61,.36,1);
+    display:flex;flex-direction:column;
+    box-shadow:-20px 0 60px -20px rgba(10,22,40,.25);
+  }
+  .reg-drawer.open{transform:translateX(0)}
+  .reg-drawer__head{
+    display:flex;align-items:center;justify-content:space-between;
+    padding:22px 32px;border-bottom:1px solid var(--rule);
+    background:#fff;
+  }
+  .reg-drawer__title{font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.14em;color:var(--ink-2);text-transform:uppercase}
+  .reg-drawer__close{
+    width:32px;height:32px;position:relative;border-radius:50%;
+    transition:background .15s;
+  }
+  .reg-drawer__close:hover{background:var(--rule)}
+  .reg-drawer__close::before,.reg-drawer__close::after{
+    content:"";position:absolute;left:50%;top:50%;width:14px;height:1px;background:var(--ink);
+  }
+  .reg-drawer__close::before{transform:translate(-50%,-50%) rotate(45deg)}
+  .reg-drawer__close::after{transform:translate(-50%,-50%) rotate(-45deg)}
+  .reg-drawer__body{
+    flex:1;overflow-y:auto;padding:36px 32px 32px;
+  }
+  .reg-drawer__h{
+    font-family:'Fraunces',serif;font-weight:400;font-size:36px;
+    letter-spacing:-.02em;line-height:1.1;margin:0 0 12px;text-wrap:balance;
+  }
+  .reg-drawer__lede{font-size:14.5px;color:var(--ink-2);line-height:1.55;margin:0 0 28px;font-weight:300}
+  .reg-summary{
+    background:#fff;border:1px solid var(--rule);padding:16px 18px;
+    display:grid;grid-template-columns:1fr 1fr;gap:14px;
+    margin:0 0 28px;font-size:13px;
+  }
+  .reg-summary div{display:flex;flex-direction:column;gap:4px}
+  .reg-summary .k{font-family:'JetBrains Mono',monospace;font-size:10.5px;letter-spacing:.08em;color:var(--ink-2);text-transform:uppercase}
+  .reg-summary .v{font-size:13.5px;color:var(--ink);font-weight:500}
+  .reg-form{display:grid;gap:18px}
+  .reg-row{display:grid;gap:14px}
+  .reg-row--2{grid-template-columns:1fr 1fr}
+  @media (max-width:520px){.reg-row--2{grid-template-columns:1fr}}
+  .reg-field{display:flex;flex-direction:column;gap:7px;position:relative}
+  .reg-field label{
+    font-family:'JetBrains Mono',monospace;font-size:10.5px;letter-spacing:.08em;
+    color:var(--ink-2);text-transform:uppercase;font-weight:500;
+  }
+  .reg-field label .req{color:var(--terracotta);margin-left:3px}
+  .reg-field input,.reg-field select,.reg-field textarea{
+    font:inherit;font-size:15px;color:var(--ink);
+    background:#fff;border:1px solid var(--rule-strong);
+    padding:12px 14px;outline:none;border-radius:2px;
+    transition:border-color .15s, box-shadow .15s;
+    font-family:'Inter',sans-serif;
+  }
+  .reg-field textarea{resize:vertical;min-height:84px;line-height:1.5;font-family:inherit}
+  .reg-field select{appearance:none;background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='10' height='6' viewBox='0 0 10 6'><path d='M1 1l4 4 4-4' stroke='%231A1A1A' stroke-width='1.2' fill='none'/></svg>");background-repeat:no-repeat;background-position:right 14px center;padding-right:36px;cursor:pointer}
+  .reg-field input:focus,.reg-field select:focus,.reg-field textarea:focus{
+    border-color:var(--ink);box-shadow:0 0 0 3px rgba(78,143,204,.10);
+  }
+  .reg-field.error input,.reg-field.error select,.reg-field.error textarea{border-color:var(--terracotta)}
+  .reg-field .err-msg{font-size:11.5px;color:var(--terracotta);font-weight:500;min-height:14px;letter-spacing:0;text-transform:none}
+  .reg-consent{
+    display:flex;gap:12px;align-items:flex-start;
+    font-size:13px;color:var(--ink-2);line-height:1.5;
+    padding:14px 0 0;margin-top:4px;border-top:1px solid var(--rule);
+  }
+  .reg-consent input{margin-top:3px;accent-color:var(--terracotta);width:16px;height:16px;cursor:pointer}
+  .reg-consent label{cursor:pointer;flex:1}
+  .reg-consent a{color:var(--ink);text-decoration:underline;text-decoration-color:var(--rule-strong);text-underline-offset:3px}
+  .reg-consent a:hover{text-decoration-color:var(--terracotta);color:var(--terracotta)}
+  .reg-drawer__foot{
+    padding:20px 32px;border-top:1px solid var(--rule);background:#fff;
+    display:flex;flex-direction:column;gap:10px;
+  }
+  .reg-drawer__foot .btn{justify-content:center;width:100%;padding:16px 22px;font-size:15px}
+  .reg-drawer__foot .note{font-size:11.5px;color:var(--ink-2);text-align:center;line-height:1.5;letter-spacing:.01em}
+
+  .reg-success{display:none;padding:48px 32px;text-align:center}
+  .reg-success.show{display:block}
+  .reg-success__check{
+    width:64px;height:64px;border-radius:50%;background:#fbf8f1;
+    border:1.5px solid var(--terracotta);margin:0 auto 24px;
+    display:grid;place-items:center;color:var(--terracotta);
+    font-family:'Fraunces',serif;font-size:32px;line-height:1;
+  }
+  .reg-success h3{font-family:'Fraunces',serif;font-weight:500;font-size:30px;letter-spacing:-.015em;margin:0 0 12px;line-height:1.15}
+  .reg-success p{font-size:15px;color:var(--ink-2);line-height:1.6;margin:0 auto 8px;max-width:380px}
+  .reg-success .next{
+    margin-top:24px;padding-top:20px;border-top:1px solid var(--rule);
+    font-size:13px;color:var(--ink-2);text-align:left;display:grid;gap:10px;max-width:380px;margin-left:auto;margin-right:auto;
+  }
+  .reg-success .next strong{font-family:'JetBrains Mono',monospace;font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--terracotta);font-weight:500;display:block;margin-bottom:8px}
+  .reg-success .next ol{list-style:none;margin:0;padding:0;counter-reset:rs}
+  .reg-success .next ol li{counter-increment:rs;padding:8px 0;display:grid;grid-template-columns:24px 1fr;gap:10px;border-bottom:1px dashed var(--rule);font-size:13.5px;line-height:1.5;color:var(--ink-2)}
+  .reg-success .next ol li::before{content:counter(rs,decimal-leading-zero);font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--terracotta);letter-spacing:.04em}
+  .reg-success .next ol li:last-child{border-bottom:0}
+
+  body.reg-open{overflow:hidden}
+  @media (max-width:560px){.reg-drawer__body{padding:28px 22px} .reg-drawer__head,.reg-drawer__foot{padding:18px 22px}}
+
+  /* ---------- FOOTER ---------- */
+  .footer{background:#06101e;color:rgba(255,255,255,.6);padding:56px 0 40px;border-top:1px solid rgba(255,255,255,.06)}
+  .footer__grid{display:grid;grid-template-columns:1.4fr 1fr 1fr 1fr;gap:48px;margin-bottom:40px}
+  @media (max-width:780px){.footer__grid{grid-template-columns:1fr 1fr;gap:32px}}
+  @media (max-width:480px){.footer__grid{grid-template-columns:1fr}}
+  .footer a{text-decoration:none;color:rgba(255,255,255,.7);transition:color .15s}
+  .footer a:hover{color:#fff}
+  .footer__col h5{
+    font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.14em;
+    color:rgba(255,255,255,.5);text-transform:uppercase;margin:0 0 16px;font-weight:500;
+  }
+  .footer__col ul{list-style:none;margin:0;padding:0;display:grid;gap:10px}
+  .footer__col li{font-size:13.5px;line-height:1.5;color:rgba(255,255,255,.75)}
+  .footer__col li .ph{color:rgba(255,255,255,.4)}
+  .footer__brand{display:flex;align-items:center;gap:10px;color:#fff;margin-bottom:16px}
+  .footer__about{font-size:13px;line-height:1.55;color:rgba(255,255,255,.6);max-width:280px}
+  .footer__bottom{border-top:1px solid rgba(255,255,255,.08);padding-top:24px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px;font-size:12.5px;color:rgba(255,255,255,.45)}
+  .footer__bottom a{color:rgba(255,255,255,.6)}
+  .footer__bottom a:hover{color:#fff}
+
+  /* reveal */
+  @keyframes fadeUp{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:none}}
+  .reveal{opacity:0}
+  .reveal.in{animation:fadeUp .7s ease forwards}
+</style>
+</head>
+<body>
+
+<!-- ============ NAV ============ -->
+<header class="nav" id="nav" data-screen-label="nav">
+  <div class="container nav__inner">
+    <a class="brand" href="#top">
+      <div class="brand__mark">H</div>
+      <div class="brand__name">Harrison<span> / Consulting</span></div>
+    </a>
+    <nav class="nav__links" aria-label="Secțiuni">
+      <a href="#program">Program</a>
+      <a href="#sesiuni">Sesiuni</a>
+      <a href="#traineri">Traineri</a>
+      <a href="#pret">Preț</a>
+      <a href="#faq">Întrebări</a>
+      <a class="nav__cta" href="#sesiuni">Rezervă un loc</a>
+    </nav>
+  </div>
+  <div class="nav__progress" id="progress"></div>
+</header>
+
+<!-- ============ 01 / HERO ============ -->
+<section class="hero" id="top" data-screen-label="01 Hero">
+  <div class="hero__grid">
+    <div>
+      <div class="hero__eyebrow"><span class="label label--light" data-bind="hero.eyebrow">Curs Achiziții Publice</span></div>
+      <h1 class="hero__title"><span data-bind="hero.title">Achiziții Publice</span> <em data-bind="hero.titleEm">de la cadrul legal la SEAP, în 8 ore.</em></h1>
+      <p class="hero__sub" data-bind="hero.sub">Un curs practic pentru funcționarii publici care lucrează cu proceduri de achiziții publice și nu mai au timp să greșească.</p>
+      <div class="hero__cta-row">
+        <button type="button" class="btn" data-open-reg>Rezervă un loc <span class="btn__arrow">→</span></button>
+        <a href="#program" class="btn btn--ghost">Vezi programul</a>
+      </div>
+    </div>
+    <div class="hero__art" aria-hidden="true">
+      <svg viewBox="0 0 600 480" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Ilustrație: o procedură de achiziție publică">
+
+        <!-- Stack of small sheets (the many offers) — bottom-left -->
+        <g class="h-line-strong" fill="#0A1628">
+          <path d="M 180,390 L 280,366 L 180,342 L 80,366 Z"/>
+          <path d="M 180,378 L 280,354 L 180,330 L 80,354 Z"/>
+          <path d="M 180,366 L 280,342 L 180,318 L 80,342 Z"/>
+          <path d="M 180,354 L 280,330 L 180,306 L 80,330 Z"/>
+          <path d="M 180,342 L 280,318 L 180,294 L 80,318 Z"/>
+        </g>
+
+        <!-- Faint count tick on the stack -->
+        <g class="h-line" stroke-width=".8">
+          <path d="M 110,310 L 100,310 M 110,322 L 100,322 M 110,334 L 100,334 M 110,346 L 100,346 M 110,358 L 100,358"/>
+        </g>
+
+        <!-- Dashed connector — from top of stack to big sheet -->
+        <path d="M 230,290 C 290,250 340,220 380,200" class="h-line-dash"/>
+
+        <!-- Big chosen sheet (the one decision) — upper right, dominant -->
+        <g class="h-floater">
+          <path d="M 430,200 L 590,140 L 430,80 L 270,140 Z" class="h-acc h-sheet-fill"/>
+
+          <!-- Stamp: circle with check — prominent, centered on the sheet -->
+          <g transform="translate(430 140)">
+            <circle r="42" class="h-stamp-bg"/>
+            <circle r="42" class="h-acc"/>
+            <path d="M -18,2 L -4,16 L 20,-12" class="h-acc" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"/>
+          </g>
+        </g>
+
+      </svg>
+    </div>
+  </div>
+</section>
+
+
+<!-- ============ HERO SUMMARY STRIPE ============ -->
+<aside class="summary" aria-label="Sumar curs" data-screen-label="Hero summary">
+  <div class="container">
+    <div class="summary__card">
+      <a class="summary__col" href="#program">
+        <span class="summary__k">Durată</span>
+        <span class="summary__v">2 zile · 12 module</span>
+        <span class="summary__link">Vezi programul →</span>
+      </a>
+      <a class="summary__col" href="#proces">
+        <span class="summary__k">Format</span>
+        <span class="summary__v">Online live, Zoom</span>
+        <span class="summary__link">Cum funcționează →</span>
+      </a>
+      <a class="summary__col" href="#sesiuni">
+        <span class="summary__k">Grupă</span>
+        <span class="summary__v">Maximum 18 participanți</span>
+        <span class="summary__link">Vezi sesiunile →</span>
+      </a>
+      <a class="summary__col" href="#pret">
+        <span class="summary__k">Investiție</span>
+        <span class="summary__v"><span data-bind="price.amount">850</span> <span data-bind="price.currency">RON</span> <small data-bind="price.shortSuffix">+ TVA / pers.</small></span>
+        <span class="summary__link">Vezi prețul →</span>
+      </a>
+      <a class="summary__col" href="#cadru">
+        <span class="summary__k">Cadru de competențe</span>
+        <span class="summary__v" data-bind="framework.summaryValue">Aria 3 · cadru propus</span>
+        <span class="summary__link">Vezi cadrul →</span>
+      </a>
+    </div>
+  </div>
+</aside>
+
+<!-- ============ 02 / PROBLEMA ============ -->
+<section class="problem" data-screen-label="02 Problema">
+  <div class="problem__inner">
+    <div class="problem__label">02 / Problema</div>
+    <div class="problem__body">
+      <p>Răspunderea pentru o procedură de achiziție publică nu rămâne la instituție. <strong>Rămâne la persoana care a semnat.</strong> Inspecția vine pe documentele tale, nu pe intențiile tale.</p>
+      <p>Legislația se schimbă frecvent, instrucțiunile ANAP se completează, iar SEAP introduce funcționalități noi de care depinde valabilitatea procedurii. Între ceea ce ai învățat odată despre achiziții și ceea ce se aplică astăzi este suficient timp încât diferența să devină personală.</p>
+      <p>Acest curs nu este o trecere generală prin Legea 98/2016. Este un program de lucru pe documentele și procedurile pe care le ai zilnic în față, punct cu punct, până la pasul de pe SEAP.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 03 / OUTCOMES ============ -->
+<section class="section section--paper" id="program-overview" data-screen-label="03 Outcomes">
+  <div class="container">
+    <div class="section__head">
+      <div class="section__num">03 / Rezultate</div>
+      <div>
+        <h2 class="section__h">Ce vei putea face după curs.</h2>
+        <p class="section__lede">Patru competențe pe care le aplici imediat, pe documentele tale, fără traducere.</p>
+      </div>
+    </div>
+    <div class="outcomes">
+      <article class="outcome">
+        <div class="outcome__num">01</div>
+        <h3 class="outcome__h">Vei putea construi un program anual de achiziții corelat cu bugetul.</h3>
+        <p class="outcome__b">De la referatul de necesitate la PAAP, cu sursele de finanțare, codurile bugetare și calendarul real al instituției.</p>
+      </article>
+      <article class="outcome">
+        <div class="outcome__num">02</div>
+        <h3 class="outcome__h">Vei ști să alegi procedura corectă pentru fiecare achiziție.</h3>
+        <p class="outcome__b">Cumpărare directă, simplificată, licitație sau negociere, cu pragurile, condițiile cumulative și capcanele de încadrare pe care le sancționează ANAP.</p>
+      </article>
+      <article class="outcome">
+        <div class="outcome__num">03</div>
+        <h3 class="outcome__h">Vei putea redacta și urca pe SEAP documentația de atribuire.</h3>
+        <p class="outcome__b">Caiet de sarcini, factori de evaluare, clarificări și contestații, cu exemple aplicate și greșelile pe care le vede ANAP cel mai des.</p>
+      </article>
+      <article class="outcome">
+        <div class="outcome__num">04</div>
+        <h3 class="outcome__h">Vei recunoaște ce te face răspunzător personal și cum eviți.</h3>
+        <p class="outcome__b">Conflict de interese, incompatibilitate, abateri, sancțiuni contravenționale. Linia de demarcație, explicată cu cazuri reale.</p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 04 / METODOLOGIE ============ -->
+<section class="section section--white" data-screen-label="04 Metodologie">
+  <div class="container">
+    <div class="section__head">
+      <div class="section__num">04 / Metodologie</div>
+      <div>
+        <h2 class="section__h">Cum lucrăm efectiv în cele 8 ore.</h2>
+      </div>
+    </div>
+    <div class="method">
+      <div class="method__list">
+        <div class="method__item">
+          <div class="n">A</div>
+          <div>
+            <h4>Lucrăm pe documente reale, nu pe sloganuri.</h4>
+            <p>Fiecare participant primește un set complet de modele: referat de necesitate, strategie anuală, caiet de sarcini, raport al procedurii, fișă de conflict de interese, adnotate pe greșelile sancționate cel mai des de Curtea de Conturi.</p>
+          </div>
+        </div>
+        <div class="method__item">
+          <div class="n">B</div>
+          <div>
+            <h4>50% aplicații, 50% explicație juridică.</h4>
+            <p>Fiecare modul are un caz practic: o speță reală, un dosar ANAP, o decizie a Curții de Conturi. Discutăm ce s-a întâmplat, ce decizie ai fi luat tu și care a fost soluția corectă.</p>
+          </div>
+        </div>
+        <div class="method__item">
+          <div class="n">C</div>
+          <div>
+            <h4>Q&amp;A lunar timp de 4 luni după curs.</h4>
+            <p>După curs, ai acces la patru sesiuni lunare de întrebări și răspunsuri cu trainerii. Întrebarea ta concretă, răspunsul argumentat, cu referința legală, nu un forum.</p>
+          </div>
+        </div>
+        <div class="method__item">
+          <div class="n">D</div>
+          <div>
+            <h4>Grupe închise pe sector public.</h4>
+            <p>Nu împărțim sala cu reprezentanți de companii care vor să învețe să câștige licitații. Întrebările pe care le auzi sunt întrebările tale.</p>
+          </div>
+        </div>
+      </div>
+      <aside class="pullquote">
+        <p class="lead">Nu o prezentare de 8 ore. <em>O sesiune de lucru.</em></p>
+        <p>Grupele sunt limitate la 18 persoane pentru ca fiecare participant să aibă timp să întrebe pe documentele propriei instituții. Înainte de curs, completezi un formular diagnostic, astfel încât trainerii să cunoască deja cazurile pe care le aduci în sală.</p>
+        <span class="credit">Principiu de bază al programului</span>
+      </aside>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 05 / TRAINERI ============ -->
+<section class="section section--paper" id="traineri" data-screen-label="05 Traineri">
+  <div class="container">
+    <div class="section__head">
+      <div class="section__num">05 / Traineri</div>
+      <div>
+        <h2 class="section__h">Cursul este susținut de doi traineri.</h2>
+        <p class="section__lede">Materia este împărțită între cei doi. Fiecare livrează modulele pe care le-a practicat efectiv în instituții și pe care le poate apăra cu jurisprudență.</p>
+      </div>
+    </div>
+    <div class="trainers">
+      <article class="trainer" data-instructor="0">
+        <div class="trainer__portrait" data-portrait></div>
+        <div class="trainer__body">
+          <div class="trainer__eyebrow">Trainer</div>
+          <h3 class="trainer__name" data-bind="instructors.0.name">Doru Șelaru</h3>
+          <p class="trainer__role" data-bind="instructors.0.role">Senior Expert achiziții publice · fost ANAP</p>
+          <p class="trainer__lead" data-bind="instructors.0.lead">A fost de partea care sancționează neconformitatea.</p>
+          <p class="trainer__bio" data-bind="instructors.0.bio">Șase ani în Direcția de Monitorizare și Control din cadrul ANAP, înainte de a deveni trainer. Peste 300 de cursuri livrate și peste 6.000 de participanți din instituții publice și mediul privat. A supervizat peste 500 de proceduri de achiziție, online și offline.</p>
+        </div>
+      </article>
+      <article class="trainer" data-instructor="1">
+        <div class="trainer__portrait" data-portrait></div>
+        <div class="trainer__body">
+          <div class="trainer__eyebrow">Trainer</div>
+          <h3 class="trainer__name" data-bind="instructors.1.name">Oana Badică</h3>
+          <p class="trainer__role" data-bind="instructors.1.role">CEO Harrison Consulting</p>
+          <p class="trainer__lead" data-bind="instructors.1.lead">Completează expertiza de reglementare cu expertiza de implementare.</p>
+          <p class="trainer__bio" data-bind="instructors.1.bio">14 ani de consultanță pentru manageri publici și forța din spatele aplicației Harrison pentru transformarea digitală a instituțiilor publice.</p>
+        </div>
+      </article>
+    </div>
+    <p class="trainers__foot">
+      Împreună acoperă ambele capete ale unei proceduri de achiziție: reglementarea și implementarea ei în instituție.
+    </p>
+  </div>
+</section>
+
+<!-- ============ 06 / PROGRAM ============ -->
+<section class="section section--white" id="program" data-screen-label="06 Program">
+  <div class="container">
+    <div class="section__head">
+      <div class="section__num">06 / Program</div>
+      <div>
+        <h2 class="section__h">Două zile, opt ore, douăsprezece module.</h2>
+        <p class="section__lede">Programa este construită ca o singură procedură de achiziție urmărită de la nevoie la atribuire, cu pauzele de decizie marcate.</p>
+      </div>
+    </div>
+    <div class="program">
+      <div class="day">
+        <div class="day__tag">Ziua 1 · Cadrul și planificarea</div>
+        <h3 class="day__h">Cadrul legal și pregătirea procedurii</h3>
+        <div class="day__time">10:00 – 14:00 · 4 ore · pauze incluse</div>
+        <ul class="day__list">
+          <li><div class="mod">M1.1</div><div class="title">Cadrul legal aplicabil în 2026 <small>Legea 98/2016, HG 395, instrucțiuni ANAP, modificări recente</small></div></li>
+          <li><div class="mod">M1.2</div><div class="title">Identificarea nevoii și referatul de necesitate <small>Coduri CPV, estimare corectă, surse de finanțare</small></div></li>
+          <li><div class="mod">M1.3</div><div class="title">Programul anual al achizițiilor (PAAP) <small>Corelarea cu bugetul, calendarul, revizuirile</small></div></li>
+          <li><div class="mod">M1.4</div><div class="title">Strategia de contractare <small>Când este obligatorie, ce conține, capcane frecvente</small></div></li>
+          <li><div class="mod">M1.5</div><div class="title">Alegerea procedurii și pragurile valorice <small>Cumpărare directă, simplificată, licitație deschisă, negociere</small></div></li>
+          <li><div class="mod">M1.6</div><div class="title">Conflict de interese și răspundere personală <small>Cum se documentează, cazuri reale ANAP / DNA</small></div></li>
+        </ul>
+      </div>
+      <div class="day">
+        <div class="day__tag">Ziua 2 · SEAP și execuția</div>
+        <h3 class="day__h">Documentația, SEAP și controlul procedurii</h3>
+        <div class="day__time">10:00 – 14:00 · 4 ore · pauze incluse</div>
+        <ul class="day__list">
+          <li><div class="mod">M2.1</div><div class="title">Documentația de atribuire <small>Caietul de sarcini, factori de evaluare, garanții</small></div></li>
+          <li><div class="mod">M2.2</div><div class="title">Publicare în SEAP: pașii concreți <small>Configurare procedură, anunț, atașamente, validare</small></div></li>
+          <li><div class="mod">M2.3</div><div class="title">Clarificări și contestații <small>Termene, formulare, jurisprudență CNSC</small></div></li>
+          <li><div class="mod">M2.4</div><div class="title">Evaluarea ofertelor și raportul procedurii <small>Comisie, criterii, motivare, semnături</small></div></li>
+          <li><div class="mod">M2.5</div><div class="title">Atribuire, contractare, modificări ulterioare <small>Acte adiționale, prelungiri, suplimentări: ce este permis</small></div></li>
+          <li><div class="mod">M2.6</div><div class="title">Controlul ANAP și al Curții de Conturi <small>Ce documente cer, cum se motivează, ce se sancționează</small></div></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 07 / CADRUL DE COMPETENȚE DIGITALE ============ -->
+<section class="section section--gray" id="cadru" data-screen-label="07 Cadru competențe">
+  <div class="container">
+    <div class="section__head">
+      <div class="section__num">07 / Cadru</div>
+      <div>
+        <h2 class="section__h" data-bind="framework.heading">Cadrul de competențe digitale propus.</h2>
+        <p class="section__lede" data-bind="framework.note">Competențele din acest curs se regăsesc în Aria 3 din Cadrul de competențe digitale propus pentru funcționarii publici din România. Cadrul este în dezbatere publică, iar cursul rămâne formare continuă, cu certificat de participare.</p>
+      </div>
+    </div>
+    <div class="framework">
+      <div class="framework__col">
+        <div class="fw-aria">
+          <span class="fw-aria__code">ARIA 3</span>
+          <span class="fw-aria__label" data-bind="framework.ariaLabel">Conținut digital și servicii publice digitale</span>
+        </div>
+        <div class="fw-acc" id="fwAcc">
+          <div class="fw-acc__head">
+            <div>Cod</div>
+            <div>Sub-competență</div>
+            <div class="lvl-col">Nivel propus</div>
+          </div>
+          <div class="fw-row" data-fw="3.2">
+            <button class="fw-row__btn" aria-expanded="false">
+              <div class="fw-row__code">3.2</div>
+              <div class="fw-row__comp">Furnizarea și contribuirea la servicii publice digitale</div>
+              <div class="fw-row__plus-wrap"><span class="plus" aria-hidden="true"></span></div>
+              <div class="fw-row__lvl"><span class="lvl-pill">B</span></div>
+            </button>
+            <div class="fw-row__body"><div class="fw-row__body-inner">
+              Capacitatea de a contribui la servicii publice digitale prin instrumente precum SEAP, ghișeul.ro și platformele de raportare. În contextul cursului, vorbim despre configurarea procedurilor și gestionarea documentației și a interacțiunilor cu operatorii economici prin sistemul electronic de achiziții.
+            </div></div>
+          </div>
+          <div class="fw-row" data-fw="3.3">
+            <button class="fw-row__btn" aria-expanded="false">
+              <div class="fw-row__code">3.3</div>
+              <div class="fw-row__comp">Asigurarea conformității cu cadrele legale și standardele în medii digitale</div>
+              <div class="fw-row__plus-wrap"><span class="plus" aria-hidden="true"></span></div>
+              <div class="fw-row__lvl"><span class="lvl-pill">B</span></div>
+            </button>
+            <div class="fw-row__body"><div class="fw-row__body-inner">
+              Aplicarea corectă a cadrului legal (Legea 98/2016, HG 395/2016, instrucțiuni ANAP) în toate etapele unei proceduri efectuate prin sistem electronic. Include recunoașterea responsabilităților individuale și a obligațiilor de transparență specifice mediului digital.
+            </div></div>
+          </div>
+        </div>
+        <p class="fw-callout"><strong>O precizare necesară.</strong> Cadrul propus nu numește platforma de achiziții publice. Corespondența cu Aria 3 este una de conținut, nu o citare din textul cadrului. Codurile 3.2 și 3.3 sunt folosite ca mapare ilustrativă.</p>
+        <p class="fw-note" data-bind="framework.certNote">
+          Cursul este formare continuă și se finalizează cu un certificat de participare emis de Harrison Consulting. Competențele se mapează pe Aria 3 din cadrul propus. Documentul nu atestă un nivel certificat față de cadru.
+        </p>
+        <a href="articole/cadrul-de-competente-digitale.html" class="framework__more">Citește mai mult despre cadrul de competențe digitale propus</a>
+      </div>
+      <div>
+        <figure class="framework__diagram" id="frameworkDiagram" tabindex="0" role="button" aria-label="Deschide diagrama cadrului de competențe digitale propus">
+          <img src="assets/framework.svg" alt="Diagrama cadrului de competențe digitale propus, 7 arii de competență" />
+          <div class="framework__diagram-zoom">
+            <svg viewBox="0 0 11 11" xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-width="1.2"><circle cx="4.5" cy="4.5" r="3"/><path d="M 7 7 L 10 10" stroke-linecap="round"/><path d="M 4.5 3 L 4.5 6 M 3 4.5 L 6 4.5" stroke-linecap="round"/></svg>
+            <span>Mărește</span>
+          </div>
+        </figure>
+        <div class="framework__diagram-meta-row">
+          <span>Cadru propus · 7 arii</span>
+          <span>Click pentru detalii</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 08 / SESIUNI DISPONIBILE ============ -->
+<section class="section section--paper" id="sesiuni" data-screen-label="08 Sesiuni">
+  <div class="container">
+    <div class="section__head">
+      <div class="section__num">08 / Sesiuni</div>
+      <div>
+        <h2 class="section__h">Sesiuni disponibile.</h2>
+        <p class="section__lede" data-bind="sessionsLede">O cohortă este deschisă pentru înscrieri. Pentru datele următoare, lasă adresa pe lista de așteptare și te anunțăm când se deschid.</p>
+      </div>
+    </div>
+    <div class="sessions" id="sessionsList">
+      <article class="session-card session-card--active">
+        <div class="session-card__tag"><span class="dot"></span>Înscrieri deschise</div>
+        <h3 class="session-card__h" data-bind="sessions.0.label">Cohorta iunie 2026</h3>
+        <p class="session-card__date" data-bind="sessions.0.date">18–19 iunie 2026 · 10:00–14:00 · Online live, Zoom</p>
+        <div class="session-card__seats">
+          <span class="label">Capacitate</span>
+          <span class="text" data-bind="sessions.0.capacity">Grupă de maximum 18 participanți</span>
+        </div>
+        <a href="#cta-final" class="btn">Rezervă un loc <span class="btn__arrow">→</span></a>
+      </article>
+      <article class="session-card session-card--ghost">
+        <div class="session-card__tag"><span class="dot"></span>Cohorte viitoare</div>
+        <h3 class="session-card__h">Cohortele viitoare</h3>
+        <p class="session-card__date">Datele se anunță pe email</p>
+        <div class="session-card__seats">
+          <span class="label">Listă de așteptare</span>
+          <span class="text">Te anunțăm când se deschid înscrierile</span>
+        </div>
+        <button type="button" class="session-card__cta-ghost" data-notify="viitoare">Anunță-mă pentru cohortele viitoare <span aria-hidden="true">→</span></button>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 09 / CUM FUNCȚIONEAZĂ ============ -->
+<section class="section section--white" id="proces" data-screen-label="09 Cum functioneaza">
+  <div class="container">
+    <div class="section__head">
+      <div class="section__num">09 / Cum funcționează</div>
+      <div>
+        <h2 class="section__h">De la rezervare la certificat, în opt pași.</h2>
+        <p class="section__lede">Tot fluxul, scris ca să nu fie nevoie să-l ceri pe email.</p>
+      </div>
+    </div>
+    <div class="process">
+      <div class="step"><div class="step__n">01</div><div class="step__body"><h3 class="step__h">Rezervare loc</h3><p class="step__d">Completezi formularul de înscriere. Locul este blocat în lista cohortei pe baza datelor instituției.</p></div></div>
+      <div class="step"><div class="step__n">02</div><div class="step__body"><h3 class="step__h">Factură proformă</h3><p class="step__d">Primești factura proformă în 24 de ore lucrătoare, cu toate datele necesare pentru aprobarea internă.</p></div></div>
+      <div class="step"><div class="step__n">03</div><div class="step__body"><h3 class="step__h">Plată prin trezorerie sau bancă</h3><p class="step__d">Plata se efectuează în 10 zile lucrătoare. Locul rămâne rezervat dacă fluxul intern depășește termenul.</p></div></div>
+      <div class="step"><div class="step__n">04</div><div class="step__body"><h3 class="step__h">Confirmare și diagnostic</h3><p class="step__d">După încasare, primești confirmarea oficială și un formular diagnostic de 7 minute despre cazurile concrete pe care le aduci în sală.</p></div></div>
+      <div class="step"><div class="step__n">05</div><div class="step__body"><h3 class="step__h">Acces la sesiunile live</h3><p class="step__d">Cu o zi înainte primești link-ul Zoom, materialele și fișele de lucru pre-curs.</p></div></div>
+      <div class="step"><div class="step__n">06</div><div class="step__body"><h3 class="step__h">Două zile × 4 ore</h3><p class="step__d">Sesiuni live, 10:00 – 14:00, cu pauze. Tot conținutul este structurat în jurul cazurilor anunțate de participanți.</p></div></div>
+      <div class="step"><div class="step__n">07</div><div class="step__body"><h3 class="step__h">Certificat și adeverință</h3><p class="step__d">După curs primești certificatul de participare cu competențele evaluate și adeverința de servicii prestate, în format digital și fizic.</p></div></div>
+      <div class="step"><div class="step__n">08</div><div class="step__body"><h3 class="step__h">Q&amp;A lunar, 4 luni</h3><p class="step__d">Acces la patru sesiuni lunare de întrebări și răspunsuri cu trainerii, pe documentele pe care le lucrezi între timp.</p></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 10 / TESTIMONIALS ============ -->
+<section class="section section--paper" data-screen-label="10 Testimoniale">
+  <div class="container">
+    <div class="section__head">
+      <div class="section__num">10 / Participanți</div>
+      <div>
+        <h2 class="section__h">Ce spun cursanții.</h2>
+      </div>
+    </div>
+    <div class="testimonials">
+      <article class="t-card">
+        <div class="q">“</div>
+        <p>A fost o experiență extrem de utilă, care m-a ajutat să îmi consolidez o bază a cunoștințelor în domeniul achizițiilor publice. Explicațiile trainerului au fost pe cât de interesante și practice, pe atât de bine structurate, astfel încât să fie pe înțelesul tuturor.</p>
+        <div class="who"><div class="name">Ioana R.</div><div class="org">Cursant, sesiune anterioară</div></div>
+      </article>
+      <article class="t-card">
+        <div class="q">“</div>
+        <p>Este genul de curs de la care pleci cu multe clarificări și informații care îți fac munca mai ușoară.</p>
+        <div class="who"><div class="name">George I.</div><div class="org">Cursant, sesiune anterioară</div></div>
+      </article>
+      <article class="t-card">
+        <div class="q">“</div>
+        <p>Recomand acest curs chiar și celor care nu au deloc cunoștințe în domeniu. Vă va ajuta să înțelegeți mai ușor noțiunile de bază și să le aplicați eficient în activitatea voastră profesională.</p>
+        <div class="who"><div class="name">Mirela N.</div><div class="org">Cursant, sesiune anterioară</div></div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 11 / PRICING ============ -->
+<section class="section section--white" id="pret" data-screen-label="11 Pret">
+  <div class="container">
+    <div class="section__head">
+      <div class="section__num">11 / Preț</div>
+      <div>
+        <h2 class="section__h">Un preț. Tot ce trebuie inclus.</h2>
+        <p class="section__lede">Fără pachete confuze. Reducerile pentru instituții și pentru combinația AP + SCIM se aplică automat în factura proformă.</p>
+      </div>
+    </div>
+    <div class="pricing">
+      <div class="price-left">
+        <div class="tag">Înscriere participant</div>
+        <h3 class="name">Curs Achiziții Publice</h3>
+        <div class="amount"><span data-bind="price.amount">850</span><span class="currency" data-bind="price.currency">RON</span><small data-bind="price.suffix">+ TVA / participant</small></div>
+        <p class="price-note">Prețul este exprimat în lei și nu include TVA. Pentru instituțiile publice, factura proformă și factura fiscală sunt emise conform regimului fiscal aplicabil.</p>
+        <div class="price-discounts">
+          <div class="discount"><div class="pct">−15%</div><div class="txt">Reducere pentru 3 sau mai mulți participanți din aceeași instituție.</div></div>
+          <div class="discount"><div class="pct">−10%</div><div class="txt">Reducere per curs la înscrierea simultană la ambele cursuri (AP + SCIM).</div></div>
+        </div>
+      </div>
+      <div class="price-right">
+        <h4>Ce este inclus</h4>
+        <ul>
+          <li>Acces la ambele sesiuni live Zoom</li>
+          <li>Suport de curs, fișe de lucru și modele de documente</li>
+          <li>4 sesiuni lunare de Q&amp;A post-curs</li>
+          <li>Certificat de participare și adeverință de servicii prestate</li>
+          <li>Acces la înregistrarea sesiunilor <span class="ph">(de confirmat)</span></li>
+        </ul>
+        <a href="#cta-final" class="btn">Rezervă un loc <span class="btn__arrow">→</span></a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 12 / FINANȚARE ȘI PLATĂ ============ -->
+<section class="section section--gray" id="finantare" data-screen-label="12 Finantare">
+  <div class="container">
+    <div class="section__head">
+      <div class="section__num">12 / Finanțare și plată</div>
+      <div>
+        <h2 class="section__h">Cadrul administrativ, pe scurt.</h2>
+        <p class="section__lede">Informațiile necesare pentru aprobarea internă și pentru întocmirea documentelor de plată. Câmpurile marcate sunt placeholdere și vor fi completate cu datele oficiale ale Harrison Consulting SRL.</p>
+      </div>
+    </div>
+    <div class="funding">
+      <div class="fund-col">
+        <h3 data-num="A">Cum se finanțează</h3>
+        <p>
+          Conform legislației privind funcția publică, fiecare funcționar are dreptul la minimum două săptămâni de formare profesională la doi ani. Costul cursului este eligibil pentru includerea în bugetul instituției la articolul de cheltuieli pentru pregătirea profesională a personalului.
+        </p>
+        <p>
+          Linia bugetară recomandată: <span class="ph">[cod articol bugetar (de completat)]</span>. Documentația necesară pentru fundamentarea cheltuielii este pusă la dispoziție la cerere: proforma, programa cursului, CV-uri traineri și nota de fundamentare-model.
+        </p>
+        <p>
+          Baza legală: <span class="ph">[referință act normativ (de completat)]</span>.
+        </p>
+      </div>
+      <div class="fund-col">
+        <h3 data-num="B">Cum se plătește</h3>
+        <p style="margin-bottom:6px">
+          Factura proformă este emisă în 24 de ore lucrătoare de la rezervare. Plata se poate face prin trezorerie sau prin transfer bancar, în 10 zile lucrătoare.
+        </p>
+        <ul class="fund-list">
+          <li><div class="k">Furnizor</div><div class="v">Harrison Consulting SRL</div></li>
+          <li><div class="k">CUI</div><div class="v"><span class="ph">[CUI (de completat)]</span></div></li>
+          <li><div class="k">IBAN trezorerie</div><div class="v"><span class="ph">[IBAN trezorerie (de completat)]</span></div></li>
+          <li><div class="k">IBAN bancă</div><div class="v"><span class="ph">[IBAN bancă comercială (de completat)]</span></div></li>
+          <li><div class="k">TVA</div><div class="v"><span class="ph">[regim TVA (de completat)]</span></div></li>
+          <li><div class="k">Flux plată</div><div class="v">Proformă → aprobare internă → ordonanțare → plată → factură fiscală</div></li>
+          <li><div class="k">Documente</div><div class="v">Contract de servicii, proces-verbal, adeverință de servicii prestate, factură fiscală</div></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 13 / FAQ ============ -->
+<section class="section section--paper" id="faq" data-screen-label="13 FAQ">
+  <div class="container">
+    <div class="section__head">
+      <div class="section__num">13 / Întrebări frecvente</div>
+      <div>
+        <h2 class="section__h">Ce este bine să știi înainte de înscriere.</h2>
+      </div>
+    </div>
+    <div class="faq" id="faqList"></div>
+  </div>
+</section>
+
+<!-- ============ 14 / DESPRE HARRISON ============ -->
+<section class="section section--white" data-screen-label="14 Despre Harrison">
+  <div class="container">
+    <div class="cred__top">
+      <div>
+        <div class="section__num" style="margin-bottom:20px;border-top-color:var(--ink)">14 / Despre Harrison</div>
+        <h2 class="cred__h">Harrison Consulting, <em>formare profesională și soluții digitale pentru sectorul public.</em></h2>
+      </div>
+      <p class="cred__lede">Harrison Consulting SRL lucrează cu instituții publice din România de peste 14 ani. Programele de formare și soluțiile digitale sunt construite de la zero pentru specificul administrației publice: primării, spitale, școli, autorități și agenții. Nu preluăm soluții din mediul privat și nu le adaptăm.</p>
+    </div>
+    <div class="cred__stats">
+      <div class="cred__stat"><span class="k">Experiență</span><span class="v">14</span><span class="vsub">ani în sectorul public</span></div>
+      <div class="cred__stat"><span class="k">Clienți unici</span><span class="v">5.500</span><span class="vsub">instituții publice</span></div>
+      <div class="cred__stat"><span class="k">Cursuri</span><span class="v">4.000+</span><span class="vsub">desfășurate până în prezent</span></div>
+      <div class="cred__stat"><span class="k">Cursanți</span><span class="v">15.000+</span><span class="vsub">instruiți la nivel național</span></div>
+    </div>
+    <div class="cred__foot">
+      <a class="brand" href="https://harrison.ro" target="_blank" rel="noopener">
+        <img src="assets/harrison-logo.png" alt="Harrison Consulting" style="height:32px;width:auto;display:block;">
+      </a>
+      <a class="text" href="https://harrison.ro" target="_blank" rel="noopener">harrison.ro →</a>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 15 / CROSS-SELL ============ -->
+<section class="section section--tight section--paper" data-screen-label="15 Cross-sell">
+  <div class="container">
+    <div class="section__head">
+      <div class="section__num">15 / Te-ar putea interesa</div>
+      <div>
+        <h2 class="section__h">Te-ar putea interesa și.</h2>
+        <p class="section__lede">Două direcții pentru completarea cadrului: cursul SCIM, complementar la achiziții, și biblioteca de cursuri online Harrison pentru învățare în ritm propriu.</p>
+      </div>
+    </div>
+    <div class="crosssell">
+      <a href="https://cursobiectivescim.ro" target="_blank" rel="noopener" class="cs-card cs-card--primary">
+        <div class="cs-card__tag">Curs live · Format identic</div>
+        <h3 class="cs-card__h"><span class="ph">[Curs SCIM, denumire completă (de completat)]</span></h3>
+        <p class="cs-card__d">
+          Sistemul de Control Intern Managerial este cadrul în care funcționează și deciziile tale de achiziție. Același format: 2 zile × 4 ore, online live, grupă închisă pe sector public. Predat de echipa Harrison Consulting.
+        </p>
+        <div class="cs-card__meta">
+          <span>2 zile × 4 ore</span>
+          <span>Online live, Zoom</span>
+          <span>−10% în combinație cu AP</span>
+        </div>
+        <span class="cs-card__link">Vezi detaliile cursului SCIM</span>
+      </a>
+      <a href="https://cursuri.harrison.ro" target="_blank" rel="noopener" class="cs-card cs-card--secondary">
+        <div class="cs-card__tag">Bibliotecă online · Self-serve</div>
+        <h3 class="cs-card__h">Cursuri online Harrison</h3>
+        <p class="cs-card__d">
+          Peste 40 de cursuri digitale acreditate, disponibile permanent: financiar public, resurse umane, control intern, GDPR pentru instituții. Învățare în ritm propriu, certificat la final.
+        </p>
+        <div class="cs-card__meta">
+          <span>cursuri.harrison.ro</span>
+        </div>
+        <span class="cs-card__link">Deschide biblioteca</span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 16 / CTA FINAL ============ -->
+<section class="final" id="cta-final" data-screen-label="16 CTA Final">
+  <div class="container">
+    <div class="final__inner">
+      <div class="final__seats">Locuri disponibile: maximum 18 participanți</div>
+      <h2>Cohortele se închid <em>la 18 înscrieri.</em></h2>
+      <p class="final__date">Următoarea sesiune: <span data-bind="finalCta.date">18–19 iunie 2026</span> · Online live, Zoom · 10:00–14:00</p>
+      <div class="final__cta">
+        <button type="button" class="btn" data-open-reg>Rezervă un loc <span class="btn__arrow">→</span></button>
+      </div>
+      <div class="final__phone">
+        Ai întrebări înainte de înscriere? Sună-ne la <a href="tel:+40213000000"><span class="ph" style="color:#fff;font-style:normal">[+40 21 300 0000]</span></a>, luni–vineri între 09:00 și 17:00.
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 17 / ARTICOLE ============ -->
+<section class="section section--white" id="articole" data-screen-label="17 Articole">
+  <div class="container">
+    <div class="section__head">
+      <div class="section__num">17 / Resurse</div>
+      <div>
+        <h2 class="section__h">Resurse despre achiziții publice.</h2>
+        <p class="section__lede">Trei articole scrise de trainerii noștri, pentru cititorii care vor să înțeleagă cadrul înainte de a-l aplica.</p>
+      </div>
+    </div>
+    <div class="articles">
+      <a href="articole/cadrul-de-competente-digitale.html" class="article-card">
+        <div class="article-card__tag">Cadrul de competențe</div>
+        <h3 class="article-card__h">Cadrul de competențe digitale propus pentru funcționarii publici din România</h3>
+        <p class="article-card__excerpt">Ce este cadrul aflat în dezbatere, cum este structurat pe arii și niveluri și ce înseamnă pentru activitatea ta. Onest despre ce este și ce nu este.</p>
+        <div class="article-card__foot">
+          <span class="article-card__more">Citește articolul</span>
+          <span class="article-card__time">5 MIN CITIRE</span>
+        </div>
+      </a>
+      <a href="articole/seap-ghid-publicare.html" class="article-card article-card--seap">
+        <div class="article-card__tag">SEAP</div>
+        <h3 class="article-card__h">Ghid practic SEAP: pașii de publicare a procedurii fără contestații</h3>
+        <p class="article-card__excerpt">Câteva erori de configurare produc cele mai multe contestații. Checklist-ul pe care îl rulăm înainte de orice validare în SEAP.</p>
+        <div class="article-card__foot">
+          <span class="article-card__more">Citește articolul</span>
+          <span class="article-card__time">7 MIN CITIRE</span>
+        </div>
+      </a>
+      <div class="article-card article-card--law article-card--soon" aria-disabled="true">
+        <div class="article-card__tag">Legislație</div>
+        <h3 class="article-card__h">Legea 98/2016 în 2026: modificările pe care trebuie să le știi</h3>
+        <p class="article-card__excerpt">Articol în pregătire. Îl publicăm după ce datele legale sunt verificate de echipă.</p>
+        <div class="article-card__foot">
+          <span class="article-card__more">Disponibil în curând</span>
+          <span class="article-card__time">În curând</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ DIAGRAM MODAL ============ -->
+<div class="diag-overlay" id="diagOverlay" aria-hidden="true">
+  <div class="diag-modal" role="dialog" aria-modal="true" aria-labelledby="diagTitle">
+    <div class="diag-modal__head">
+      <h3 class="diag-modal__title" id="diagTitle">Cadrul de competențe digitale propus</h3>
+      <button type="button" class="diag-modal__close" id="diagClose" aria-label="Închide diagrama"></button>
+    </div>
+    <div class="diag-modal__frame">
+      <img src="assets/framework.svg" alt="Diagrama cadrului de competențe digitale propus, vizualizare extinsă" />
+    </div>
+  </div>
+</div>
+
+<!-- ============ REGISTRATION DRAWER ============ -->
+<div class="reg-overlay" id="regOverlay" aria-hidden="true"></div>
+<aside class="reg-drawer" id="regDrawer" role="dialog" aria-modal="true" aria-labelledby="regTitle" aria-hidden="true">
+  <header class="reg-drawer__head">
+    <div class="reg-drawer__title">Rezervă un loc</div>
+    <button type="button" class="reg-drawer__close" id="regClose" aria-label="Închide formularul"></button>
+  </header>
+
+  <div class="reg-drawer__body" id="regBody">
+    <h2 class="reg-drawer__h" id="regTitle">Înscriere la curs.</h2>
+    <p class="reg-drawer__lede">Completeți datele de mai jos. Primiți factura proformă în 24 de ore lucrătoare. Locul este blocat în momentul înregistrării formularului.</p>
+
+    <div class="reg-summary">
+      <div><span class="k">Curs</span><span class="v">Achiziții Publice</span></div>
+      <div><span class="k">Format</span><span class="v">Online live, Zoom</span></div>
+      <div><span class="k">Durată</span><span class="v">2 zile × 4 ore</span></div>
+      <div><span class="k">Preț</span><span class="v">850 RON + TVA / pers.</span></div>
+    </div>
+
+    <form class="reg-form" id="regForm" novalidate>
+      <div class="reg-row reg-row--2">
+        <div class="reg-field">
+          <label for="reg-name">Nume și prenume <span class="req">*</span></label>
+          <input id="reg-name" name="name" type="text" autocomplete="name" required />
+          <div class="err-msg"></div>
+        </div>
+        <div class="reg-field">
+          <label for="reg-role">Funcție în instituție <span class="req">*</span></label>
+          <input id="reg-role" name="role" type="text" placeholder="ex: Responsabil achiziții publice" required />
+          <div class="err-msg"></div>
+        </div>
+      </div>
+
+      <div class="reg-row reg-row--2">
+        <div class="reg-field">
+          <label for="reg-email">Email instituțional <span class="req">*</span></label>
+          <input id="reg-email" name="email" type="email" autocomplete="email" required />
+          <div class="err-msg"></div>
+        </div>
+        <div class="reg-field">
+          <label for="reg-phone">Telefon <span class="req">*</span></label>
+          <input id="reg-phone" name="phone" type="tel" autocomplete="tel" placeholder="+40 7XX XXX XXX" required />
+          <div class="err-msg"></div>
+        </div>
+      </div>
+
+      <div class="reg-field">
+        <label for="reg-institution">Instituția <span class="req">*</span></label>
+        <input id="reg-institution" name="institution" type="text" placeholder="ex: Primăria Municipiului ..." required />
+        <div class="err-msg"></div>
+      </div>
+
+      <div class="reg-row reg-row--2">
+        <div class="reg-field">
+          <label for="reg-cui">CUI instituție</label>
+          <input id="reg-cui" name="cui" type="text" placeholder="opt., pentru proforma" />
+          <div class="err-msg"></div>
+        </div>
+        <div class="reg-field">
+          <label for="reg-participants">Număr participanți <span class="req">*</span></label>
+          <select id="reg-participants" name="participants" required>
+            <option value="1">1 participant</option>
+            <option value="2">2 participanți</option>
+            <option value="3+">3 sau mai mulți (−15%)</option>
+          </select>
+          <div class="err-msg"></div>
+        </div>
+      </div>
+
+      <div class="reg-field">
+        <label for="reg-session">Sesiune dorită <span class="req">*</span></label>
+        <select id="reg-session" name="session" required>
+          <option value="iunie-2026">Cohorta iunie 2026 (18–19 iunie), înscrieri deschise</option>
+          <option value="viitoare">Cohorte viitoare, listă de așteptare</option>
+        </select>
+        <div class="err-msg"></div>
+      </div>
+
+      <div class="reg-field">
+        <label for="reg-notes">Observații sau întrebări pre-curs</label>
+        <textarea id="reg-notes" name="notes" placeholder="opt., ex: cazuri concrete pe care ai vrea să le abordezi în sală"></textarea>
+        <div class="err-msg"></div>
+      </div>
+
+      <div class="reg-consent">
+        <input type="checkbox" id="reg-consent" name="consent" required />
+        <label for="reg-consent">Sunt de acord cu prelucrarea datelor personale conform <a href="#">politicii de confidențialitate</a> și confirm că informațiile transmise sunt corecte.</label>
+      </div>
+    </form>
+  </div>
+
+  <div class="reg-success" id="regSuccess">
+    <div class="reg-success__check" aria-hidden="true">✓</div>
+    <h3>Înscriere primită.</h3>
+    <p>Mulțumim. <strong id="regSuccessName">Te</strong> vom contacta în următoarele 24 de ore lucrătoare cu factura proformă și confirmarea oficială a locului.</p>
+    <div class="next">
+      <strong>Pașii următori</strong>
+      <ol>
+        <li>Primești factura proformă pe email în 24 de ore.</li>
+        <li>Plata se efectuează în 10 zile lucrătoare.</li>
+        <li>După încasare, primești link-ul Zoom și formularul diagnostic.</li>
+      </ol>
+    </div>
+  </div>
+
+  <footer class="reg-drawer__foot" id="regFoot">
+    <button type="submit" form="regForm" class="btn" id="regSubmit">Trimite înscrierea <span class="btn__arrow">→</span></button>
+    <div class="note">Niciun cost facturat la acest pas. Locul este blocat după confirmarea proformei.</div>
+  </footer>
+</aside>
+
+<!-- ============ 18 / FOOTER ============ -->
+<footer class="footer">
+  <div class="container">
+    <div class="footer__grid">
+      <div class="footer__col">
+        <div class="footer__brand">
+          <div class="brand__mark">H</div>
+          <div class="brand__name" style="color:#fff">Harrison<span style="color:rgba(255,255,255,.5)"> / Consulting</span></div>
+        </div>
+        <p class="footer__about">Harrison Consulting SRL, programe de formare profesională pentru sectorul public din România.</p>
+      </div>
+      <div class="footer__col">
+        <h5>Contact</h5>
+        <ul>
+          <li><span class="ph">[Adresă sediu (de completat)]</span></li>
+          <li>CUI: <span class="ph">[de completat]</span></li>
+          <li><a href="/cdn-cgi/l/email-protection#6c0f0302180d0f182c040d1e1e051f0302421e03"><span class="ph">[<span class="__cf_email__" data-cfemail="ef8a828e8683af878e9d9d869c8081c19d80">[email&#160;protected]</span>]</span></a></li>
+          <li><span class="ph">[telefon (de completat)]</span></li>
+        </ul>
+      </div>
+      <div class="footer__col">
+        <h5>Cursuri</h5>
+        <ul>
+          <li><a href="#program">Achiziții Publice</a></li>
+          <li><a href="#"><span class="ph">[Curs SCIM, link]</span></a></li>
+          <li><a href="https://harrison.ro" target="_blank" rel="noopener">harrison.ro</a></li>
+        </ul>
+      </div>
+      <div class="footer__col">
+        <h5>Legal</h5>
+        <ul>
+          <li><a href="#">Politică de confidențialitate</a></li>
+          <li><a href="#">Termeni și condiții</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer__bottom">
+      <div>© 2026 Harrison Consulting SRL · Toate drepturile rezervate.</div>
+      <div>Pagină de curs · v9</div>
+    </div>
+  </div>
+</footer>
+
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+  /* =========================================================================
+     CONTENT — single source of truth for all editable copy on this page.
+     Edit values here; the HTML hydrates from them via [data-bind].
+     Adding a future open cohort = add one object to CONTENT.sessions.
+     ========================================================================= */
+  const CONTENT = {
+    course: "AP",
+    hero: {
+      eyebrow: "Curs Achiziții Publice",
+      title: "Achiziții Publice",
+      titleEm: "de la cadrul legal la SEAP, în 8 ore.",
+      sub: "Un curs practic pentru funcționarii publici care lucrează cu proceduri de achiziții publice și nu mai au timp să greșească."
+    },
+    price: {
+      amount: "850",
+      currency: "RON",
+      suffix: "+ TVA / participant",
+      shortSuffix: "+ TVA / pers."
+    },
+    instructors: [
+      {
+        name: "Doru Șelaru",
+        role: "Senior Expert achiziții publice · fost ANAP",
+        lead: "A fost de partea care sancționează neconformitatea.",
+        bio: "Șase ani în Direcția de Monitorizare și Control din cadrul ANAP, înainte de a deveni trainer. Peste 300 de cursuri livrate și peste 6.000 de participanți din instituții publice și mediul privat. A supervizat peste 500 de proceduri de achiziție, online și offline.",
+        portrait: "assets/doru-selaru.png"
+      },
+      {
+        name: "Oana Badică",
+        role: "CEO Harrison Consulting",
+        lead: "Completează expertiza de reglementare cu expertiza de implementare.",
+        bio: "14 ani de consultanță pentru manageri publici și forța din spatele aplicației Harrison pentru transformarea digitală a instituțiilor publice.",
+        portrait: null
+      }
+    ],
+    sessionsLede: "O cohortă este deschisă pentru înscrieri. Pentru datele următoare, lasă adresa pe lista de așteptare și te anunțăm când se deschid.",
+    sessions: [
+      { label: "Cohorta iunie 2026", date: "18–19 iunie 2026 · 10:00–14:00 · Online live, Zoom", capacity: "Grupă de maximum 18 participanți" }
+    ],
+    framework: {
+      heading: "Cadrul de competențe digitale propus.",
+      note: "Competențele din acest curs se regăsesc în Aria 3 din Cadrul de competențe digitale propus pentru funcționarii publici din România. Cadrul este în dezbatere publică, iar cursul rămâne formare continuă, cu certificat de participare.",
+      ariaLabel: "Conținut digital și servicii publice digitale",
+      certNote: "Cursul este formare continuă și se finalizează cu un certificat de participare emis de Harrison Consulting. Competențele se mapează pe Aria 3 din cadrul propus. Documentul nu atestă un nivel certificat față de cadru.",
+      summaryValue: "Aria 3 · cadru propus"
+    },
+    finalCta: { date: "18–19 iunie 2026" },
+    faq: [
+      ["Ce documente primesc la finalul cursului?",
+       "Primești două documente. Primul este certificatul de participare emis de Harrison Consulting, care menționează competențele dezvoltate și corespondența lor cu Aria 3 din cadrul de competențe digitale propus. Al doilea este adeverința de servicii prestate, utilizabilă în decontarea internă a cheltuielilor de formare profesională. Ambele sunt emise în format digital și fizic."],
+      ["Este sesiunea înregistrată?",
+       "Da. Înregistrările celor două sesiuni live sunt puse la dispoziția participanților după curs, pentru recapitulare și consultare. Accesul este individual, nu poate fi redistribuit. Durata exactă a accesului este confirmată înainte de începerea sesiunii."],
+      ["Ce se întâmplă dacă nu pot participa la una dintre sesiuni?",
+       "Locul este transferabil unei alte persoane din aceeași instituție, fără cost suplimentar. Dacă nu este posibil, te putem reprograma la următoarea cohortă. În plus, sesiunile sunt înregistrate, astfel încât poți recupera materia pe care nu ai putut-o urmări live și o reiei în sesiunile de Q&A lunare."],
+      ["Cât durează formularul diagnostic pre-curs?",
+       "Aproximativ 7 minute. Conține întrebări scurte despre tipul instituției, procedurile pe care le ai în derulare și cazurile concrete pe care ai vrea să le discuți. Răspunsurile tale ajung la traineri înainte de sesiune, astfel încât conținutul este calibrat pe cazurile reale din sală."],
+      ["Câți participanți sunt în fiecare grupă?",
+       "Maximum 18. Limita este aleasă astfel încât fiecare participant să aibă timp pentru întrebări concrete pe documentele propriei instituții. După atingerea limitei, înscrierile se mută pe lista de așteptare pentru cohorta următoare."],
+      ["Care este baza legală pentru includerea cursului în bugetul instituției?",
+       "Conform legislației privind funcția publică, fiecare funcționar are dreptul la minimum două săptămâni de formare profesională la fiecare doi ani. Cursul este eligibil pentru bugetul de pregătire profesională. La cerere, furnizăm nota de fundamentare-model și documentația de însoțire. Referința exactă a actului normativ este indicată în secțiunea Finanțare și plată."],
+      ["Dacă plata prin trezorerie depășește termenul de 10 zile, locul rămâne rezervat?",
+       "Da. Înțelegem cum funcționează fluxul intern în instituțiile publice. Atâta timp cât există o proformă acceptată și o referință la procesul de plată în derulare, locul este menținut până la încasare. Te rugăm să ne anunți prin email cum evoluează aprobarea. Atât."],
+      ["Cursul este recunoscut oficial?",
+       "Cursul este formare continuă, organizat de Harrison Consulting, și se finalizează cu un certificat de participare. Nu este un curs acreditat ANC. Competențele dezvoltate se mapează pe Aria 3 din cadrul de competențe digitale propus pentru funcționarii publici, aflat în dezbatere publică. Certificatul poate fi folosit ca dovadă a perfecționării profesionale în dosarul funcționarului public."]
+    ]
+  };
+
+  // ---------- Hydration: write CONTENT into the DOM ----------
+  function resolveBind(path){
+    return path.split('.').reduce((o, k) => (o == null ? undefined : o[k]), CONTENT);
+  }
+  function renderPortrait(card){
+    const idx = +card.getAttribute('data-instructor');
+    const ins = (CONTENT.instructors || [])[idx];
+    const box = card.querySelector('[data-portrait]');
+    if(!ins || !box) return;
+    const placeholder = () => {
+      box.innerHTML = '<div class="ring"></div>';
+      box.setAttribute('data-ph', 'FOTO ' + ins.name + ' (de adăugat)');
+    };
+    if(ins.portrait){
+      const img = document.createElement('img');
+      img.alt = 'Portret ' + ins.name;
+      img.loading = 'lazy';
+      img.onerror = placeholder;
+      img.src = ins.portrait;
+      box.appendChild(img);
+    } else {
+      placeholder();
+    }
+  }
+  document.querySelectorAll('[data-bind]').forEach(el => {
+    const v = resolveBind(el.getAttribute('data-bind'));
+    if(v != null) el.textContent = v;
+  });
+  document.querySelectorAll('.trainer[data-instructor]').forEach(renderPortrait);
+
+  // ---------- Notify-me buttons (ghost sessions) ----------
+  document.querySelectorAll('[data-notify]').forEach(b => {
+    b.addEventListener('click', () => {
+      b.classList.add('confirmed');
+      b.innerHTML = 'Te anunțăm când se deschide ✓';
+      b.disabled = true;
+    });
+  });
+
+  // ---------- Diagram modal ----------
+  const diagOverlay = document.getElementById('diagOverlay');
+  const diagTrigger = document.getElementById('frameworkDiagram');
+  const diagCloseBtn = document.getElementById('diagClose');
+  function openDiag(){
+    diagOverlay.classList.add('open');
+    diagOverlay.setAttribute('aria-hidden','false');
+    document.body.classList.add('diag-open');
+  }
+  function closeDiag(){
+    diagOverlay.classList.remove('open');
+    diagOverlay.setAttribute('aria-hidden','true');
+    document.body.classList.remove('diag-open');
+  }
+  if(diagTrigger){
+    diagTrigger.addEventListener('click', openDiag);
+    diagTrigger.addEventListener('keydown', (e) => { if(e.key === 'Enter' || e.key === ' '){ e.preventDefault(); openDiag(); } });
+  }
+  if(diagCloseBtn) diagCloseBtn.addEventListener('click', closeDiag);
+  if(diagOverlay) diagOverlay.addEventListener('click', (e) => { if(e.target === diagOverlay) closeDiag(); });
+  document.addEventListener('keydown', (e) => { if(e.key === 'Escape' && diagOverlay && diagOverlay.classList.contains('open')) closeDiag(); });
+
+  // ---------- Registration Drawer ----------
+  const regOverlay = document.getElementById('regOverlay');
+  const regDrawer = document.getElementById('regDrawer');
+  const regClose = document.getElementById('regClose');
+  const regForm = document.getElementById('regForm');
+  const regBody = document.getElementById('regBody');
+  const regSuccess = document.getElementById('regSuccess');
+  const regFoot = document.getElementById('regFoot');
+  let lastFocus = null;
+
+  function openReg(opts){
+    opts = opts || {};
+    lastFocus = document.activeElement;
+    regOverlay.classList.add('open');
+    regDrawer.classList.add('open');
+    regOverlay.setAttribute('aria-hidden','false');
+    regDrawer.setAttribute('aria-hidden','false');
+    document.body.classList.add('reg-open');
+    if(opts.session){
+      const sel = document.getElementById('reg-session');
+      if(sel) sel.value = opts.session;
+    }
+    setTimeout(() => { const first = regDrawer.querySelector('input,select,textarea,button'); if(first) first.focus(); }, 200);
+  }
+  function closeReg(){
+    regOverlay.classList.remove('open');
+    regDrawer.classList.remove('open');
+    regOverlay.setAttribute('aria-hidden','true');
+    regDrawer.setAttribute('aria-hidden','true');
+    document.body.classList.remove('reg-open');
+    if(lastFocus && lastFocus.focus) lastFocus.focus();
+  }
+  regOverlay.addEventListener('click', closeReg);
+  regClose.addEventListener('click', closeReg);
+  document.addEventListener('keydown', (e) => { if(e.key === 'Escape' && regDrawer.classList.contains('open')) closeReg(); });
+
+  // Wire all CTAs that should open the drawer
+  document.querySelectorAll('[data-open-reg], a.btn[href="#cta-final"], a.nav__cta, a.btn[href="#sesiuni"], a.btn[href="#pret"]').forEach(el => {
+    el.addEventListener('click', (e) => {
+      // honor [data-open-reg], otherwise only intercept terracotta primary buttons inside CTAs
+      const txt = (el.textContent || '').trim();
+      if(el.hasAttribute('data-open-reg') || txt.toLowerCase().startsWith('rezerv')){
+        e.preventDefault();
+        openReg({ session: el.getAttribute('data-session') || undefined });
+      }
+    });
+  });
+  // The active session card CTA passes the live cohort value to the drawer
+  const cohortBtn = document.querySelector('.session-card--active .btn');
+  if(cohortBtn){ cohortBtn.setAttribute('data-session','iunie-2026'); }
+
+  // Form validation + submit
+  function setError(field, msg){
+    field.classList.toggle('error', !!msg);
+    const m = field.querySelector('.err-msg'); if(m) m.textContent = msg || '';
+  }
+  regForm.addEventListener('input', (e) => {
+    const field = e.target.closest('.reg-field');
+    if(field) setError(field, '');
+  });
+  regForm.addEventListener('submit', (e) => {
+    e.preventDefault();
+    let ok = true;
+    const fields = regForm.querySelectorAll('.reg-field');
+    fields.forEach(field => {
+      const input = field.querySelector('input,select,textarea');
+      if(!input || !input.required) return;
+      const val = (input.value || '').trim();
+      if(!val){ setError(field, 'Acest câmp este obligatoriu.'); ok = false; return; }
+      if(input.type === 'email' && !/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(val)){ setError(field, 'Adresă de email invalidă.'); ok = false; return; }
+      if(input.type === 'tel' && val.replace(/\D/g,'').length < 9){ setError(field, 'Număr de telefon prea scurt.'); ok = false; return; }
+      setError(field, '');
+    });
+    const consent = document.getElementById('reg-consent');
+    if(!consent.checked){
+      const wrap = consent.closest('.reg-consent'); wrap.style.color = 'var(--terracotta)';
+      ok = false;
+    } else {
+      const wrap = consent.closest('.reg-consent'); wrap.style.color = '';
+    }
+    if(!ok) return;
+
+    // success state
+    const name = document.getElementById('reg-name').value.trim().split(/\s+/)[0] || 'Te';
+    document.getElementById('regSuccessName').textContent = name;
+    regBody.style.display = 'none';
+    regFoot.style.display = 'none';
+    regSuccess.classList.add('show');
+  });
+
+  // ---------- Framework accordion ----------
+  document.querySelectorAll('#fwAcc .fw-row').forEach(row => {
+    const btn = row.querySelector('.fw-row__btn');
+    btn.addEventListener('click', () => {
+      const open = row.classList.toggle('open');
+      btn.setAttribute('aria-expanded', open ? 'true' : 'false');
+    });
+  });
+
+  // ---------- FAQ (fed from CONTENT.faq) ----------
+  const FAQ = CONTENT.faq;
+
+  const faqList = document.getElementById('faqList');
+  FAQ.forEach((qa, i) => {
+    const num = String(i + 1).padStart(2, '0');
+    const item = document.createElement('div');
+    item.className = 'faq__item';
+    item.innerHTML = `
+      <button class="faq__btn" aria-expanded="false">
+        <span class="faq__n">${num}</span>
+        <span class="faq__q">${qa[0]}</span>
+        <span class="faq__plus" aria-hidden="true"></span>
+      </button>
+      <div class="faq__a"><div class="faq__a-inner">${qa[1]}</div></div>
+    `;
+    const btn = item.querySelector('.faq__btn');
+    btn.addEventListener('click', () => {
+      const open = item.classList.toggle('open');
+      btn.setAttribute('aria-expanded', open ? 'true' : 'false');
+    });
+    faqList.appendChild(item);
+  });
+
+  // ---------- NAV ----------
+  const nav = document.getElementById('nav');
+  const progress = document.getElementById('progress');
+  const heroEl = document.querySelector('.hero');
+  function onScroll(){
+    const max = document.body.scrollHeight - window.innerHeight;
+    const p = Math.max(0, Math.min(1, window.scrollY / max));
+    progress.style.setProperty('--p', (p * 100).toFixed(2) + '%');
+    const heroBottom = heroEl.getBoundingClientRect().bottom;
+    nav.classList.toggle('is-light', heroBottom < 30);
+  }
+  window.addEventListener('scroll', onScroll, {passive:true});
+  onScroll();
+
+  // ---------- Reveal ----------
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); } });
+  }, {threshold:.14});
+  document.querySelectorAll('.outcome, .t-card, .step, .trainer, .day, .cred__stat, .method__item, .fund-col, .fw-row, .cs-card, .session-card, .article-card').forEach((el, i) => {
+    el.classList.add('reveal');
+    el.style.animationDelay = (i % 4) * 60 + 'ms';
+    io.observe(el);
+  });
+</script>
+
+</body>
+</html>

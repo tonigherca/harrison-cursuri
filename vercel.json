@@ -1,0 +1,14 @@
+{
+  "rewrites": [
+    {
+      "source": "/",
+      "has": [{ "type": "host", "value": "cursseap.ro" }],
+      "destination": "/curs-achizitii-publice.html"
+    },
+    {
+      "source": "/",
+      "has": [{ "type": "host", "value": "cursscim.ro" }],
+      "destination": "/curs-obiective-scim.html"
+    }
+  ]
+}

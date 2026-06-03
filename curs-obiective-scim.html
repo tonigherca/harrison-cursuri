@@ -1,0 +1,1896 @@
+<!doctype html>
+<html lang="ro">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Curs Obiective SCIM · Harrison Consulting</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300;9..144,400;9..144,500;9..144,600;9..144,700&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+<style>
+  :root{
+    --navy:#0A1628;
+    --navy-2:#1B3A6B;
+    --paper:#FAFAF8;
+    --gray:#f3efe6;
+    --ink:#1A1A1A;
+    --ink-2:#3a3a3a;
+    --rule:#e4e2dc;
+    --rule-strong:#cdcac1;
+    --terracotta:#4E8FCC;
+    --terracotta-2:#3372AD;
+    --mute-dark:rgba(255,255,255,.62);
+    --mute-dark-2:rgba(255,255,255,.42);
+    --max:1240px;
+    --gutter:32px;
+  }
+  *{box-sizing:border-box}
+  html,body{margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{
+    font-family:'Inter',-apple-system,BlinkMacSystemFont,sans-serif;
+    background:var(--paper);
+    color:var(--ink);
+    -webkit-font-smoothing:antialiased;
+    text-rendering:optimizeLegibility;
+    font-size:16px;
+    line-height:1.55;
+  }
+  .serif{font-family:'Fraunces',Georgia,serif;font-optical-sizing:auto;letter-spacing:-.01em}
+  .mono{font-family:'JetBrains Mono',ui-monospace,monospace}
+  .container{max-width:var(--max);margin:0 auto;padding:0 var(--gutter)}
+  .label{font-size:11px;letter-spacing:.18em;text-transform:uppercase;font-weight:500;color:var(--ink-2)}
+  .label--light{color:var(--mute-dark)}
+  a{color:inherit}
+  button{font:inherit;cursor:pointer;border:0;background:none;color:inherit}
+  .ph{color:#9a958a;font-style:italic}
+
+  /* ---------- NAV ---------- */
+  .nav{
+    position:sticky;top:0;z-index:50;
+    background:var(--navy);color:#fff;
+    border-bottom:1px solid rgba(255,255,255,.08);
+    transition:background .25s ease, color .25s ease, border-color .25s ease;
+  }
+  .nav.is-light{
+    background:rgba(250,250,248,.92);
+    backdrop-filter:saturate(1.1) blur(10px);
+    color:var(--ink);
+    border-bottom:1px solid var(--rule);
+  }
+  .nav__inner{display:flex;align-items:center;justify-content:space-between;height:64px}
+  .brand{display:flex;align-items:center;gap:10px;text-decoration:none;color:inherit}
+  .brand__mark{
+    width:26px;height:26px;border-radius:3px;background:var(--terracotta);
+    display:grid;place-items:center;color:#fff;
+    font-family:'Fraunces',serif;font-weight:600;font-size:16px;
+  }
+  .brand__name{font-family:'Fraunces',serif;font-weight:500;font-size:18px;letter-spacing:-.01em}
+  .brand__name span{opacity:.55;font-weight:400}
+  .nav__links{display:flex;align-items:center;gap:26px;font-size:13.5px}
+  .nav__links a{text-decoration:none;opacity:.78;transition:opacity .15s}
+  .nav__links a:hover{opacity:1}
+  .nav__cta{
+    padding:8px 14px;border-radius:2px;background:var(--terracotta);color:#fff;
+    font-size:13px;font-weight:500;text-decoration:none;transition:background .15s;
+  }
+  .nav__cta:hover{background:var(--terracotta-2)}
+  .nav__progress{position:absolute;left:0;right:0;bottom:-1px;height:1px;background:transparent}
+  .nav__progress::after{content:"";display:block;height:100%;width:var(--p,0%);background:var(--terracotta);transition:width .08s linear}
+  @media (max-width:880px){.nav__links a:not(.nav__cta){display:none}}
+
+  /* ---------- HERO ---------- */
+  .hero{background:var(--navy);color:#fff;position:relative;overflow:hidden;min-height:calc(100vh - 64px - 100px)}
+  @media (max-width:900px){.hero{min-height:auto}}
+  .hero::before{
+    content:"";position:absolute;inset:0;pointer-events:none;
+    background:
+      radial-gradient(1000px 600px at 85% -10%, rgba(78,143,204,.10), transparent 60%),
+      radial-gradient(800px 500px at 0% 100%, rgba(27,58,107,.55), transparent 60%);
+  }
+  .hero__grid{
+    position:relative;display:grid;grid-template-columns:1fr 1fr;gap:48px;
+    padding:80px var(--gutter) 140px;align-items:center;
+    max-width:var(--max);margin:0 auto;
+    min-height:calc(100vh - 64px - 100px);
+  }
+  @media (max-width:900px){.hero__grid{grid-template-columns:1fr;gap:32px;padding:64px var(--gutter) 100px;min-height:auto}}
+  .hero__eyebrow{display:flex;align-items:center;gap:14px;margin-bottom:36px}
+  .hero__eyebrow::before{content:"";width:24px;height:1px;background:var(--terracotta);display:block}
+  .hero__title{
+    font-family:'Fraunces',serif;font-weight:400;font-variation-settings:"opsz" 144;
+    font-size:clamp(40px,5.2vw,76px);
+    line-height:1.04;letter-spacing:-.025em;
+    margin:0 0 28px;color:#fff;text-wrap:balance;
+  }
+  .hero__title em{font-style:italic;font-weight:400;color:#b9d0e8}
+  .hero__sub{font-size:19px;line-height:1.55;max-width:560px;color:rgba(255,255,255,.78);font-weight:300;margin:0 0 40px}
+  .hero__cta-row{display:flex;align-items:center;gap:22px;flex-wrap:wrap}
+
+  /* ---------- HERO ART (SVG) ---------- */
+  .hero__art{
+    position:relative;
+    display:flex;align-items:center;justify-content:center;
+    align-self:stretch;
+  }
+  .hero__art svg{
+    width:100%;max-width:680px;height:auto;display:block;
+    overflow:visible;
+  }
+  @media (max-width:560px){.hero__art{margin-top:8px}}
+
+  .hero__art .h-line{stroke:rgba(255,255,255,.22);stroke-width:1;fill:none}
+  .hero__art .h-line-strong{stroke:rgba(255,255,255,.36);stroke-width:1;fill:none}
+  .hero__art .h-line-dash{stroke:rgba(255,255,255,.35);stroke-width:1;fill:none;stroke-dasharray:3 5}
+  .hero__art .h-acc{stroke:var(--terracotta);stroke-width:1.4;fill:none}
+  .hero__art .h-acc-thin{stroke:var(--terracotta);stroke-width:1;fill:none}
+  .hero__art .h-acc-fill{fill:var(--terracotta)}
+  .hero__art .h-sheet-fill{fill:#0A1628}
+  .hero__art .h-stamp-bg{fill:#0A1628}
+
+  @keyframes heroFloat{
+    0%,100%{transform:translateY(0)}
+    50%{transform:translateY(-5px)}
+  }
+  .hero__art .h-floater{transform-origin:center;animation:heroFloat 5.5s ease-in-out infinite}
+  .btn{
+    display:inline-flex;align-items:center;gap:10px;
+    padding:16px 26px;font-size:15px;font-weight:500;
+    background:var(--terracotta);color:#fff;text-decoration:none;
+    border-radius:2px;transition:background .15s, transform .15s;
+    border:1px solid var(--terracotta);
+  }
+  .btn:hover{background:var(--terracotta-2);border-color:var(--terracotta-2)}
+  .btn:active{transform:translateY(1px)}
+  .btn__arrow{transition:transform .2s}
+  .btn:hover .btn__arrow{transform:translateX(3px)}
+  .btn--ghost{background:transparent;color:#fff;border:1px solid rgba(255,255,255,.22)}
+  .btn--ghost:hover{background:rgba(255,255,255,.06);border-color:rgba(255,255,255,.35)}
+  .btn--outline{background:transparent;color:var(--ink);border:1px solid var(--ink)}
+  .btn--outline:hover{background:var(--ink);color:#fff}
+  .btn--dark{background:var(--ink);border-color:var(--ink);color:#fff}
+  .btn--dark:hover{background:#000;border-color:#000}
+
+  .hero__meta{border-left:1px solid rgba(255,255,255,.12);padding-left:32px;display:grid;gap:26px}
+  @media (max-width:900px){.hero__meta{border-left:0;border-top:1px solid rgba(255,255,255,.12);padding-left:0;padding-top:32px}}
+  .hero__meta-row{display:grid;grid-template-columns:auto 1fr;gap:14px 24px;align-items:baseline}
+  .hero__meta-k{font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--mute-dark-2);min-width:78px}
+  .hero__meta-v{font-size:15.5px;color:#fff;font-weight:400}
+  .hero__meta-v.serif{font-size:21px;letter-spacing:-.01em}
+  .hero__meta-v .ph{color:rgba(255,255,255,.5)}
+
+  /* ---------- HERO SUMMARY STRIPE ---------- */
+  .summary{
+    background:var(--navy);
+    padding:0 0 0;position:relative;
+    margin-top:-40px;
+  }
+  .summary .container{position:relative;z-index:2}
+  .summary__card{
+    background:#fff;border:1px solid var(--rule);
+    display:grid;grid-template-columns:repeat(5,1fr);
+    box-shadow:0 30px 80px -40px rgba(0,0,0,.45), 0 2px 0 0 var(--rule);
+    transform:translateY(-30px);
+    position:relative;z-index:2;
+  }
+  @media (max-width:1080px){.summary__card{grid-template-columns:repeat(3,1fr)}}
+  @media (max-width:720px){.summary__card{grid-template-columns:repeat(2,1fr)}}
+  @media (max-width:480px){.summary__card{grid-template-columns:1fr}}
+  .summary__col{
+    padding:24px 22px 22px;
+    display:flex;flex-direction:column;gap:6px;
+    text-decoration:none;color:inherit;
+    border-right:1px solid var(--rule);
+    transition:background .15s;
+    position:relative;
+  }
+  .summary__col:last-child{border-right:0}
+  @media (max-width:1080px){
+    .summary__col:nth-child(3n){border-right:0}
+    .summary__col:nth-child(n+4){border-top:1px solid var(--rule)}
+  }
+  @media (max-width:720px){
+    .summary__col{border-right:1px solid var(--rule)!important}
+    .summary__col:nth-child(2n){border-right:0!important}
+    .summary__col:nth-child(n+3){border-top:1px solid var(--rule)}
+  }
+  @media (max-width:480px){
+    .summary__col{border-right:0!important;border-top:1px solid var(--rule)!important}
+    .summary__col:first-child{border-top:0!important}
+  }
+  .summary__col:hover{background:#fbf8f1}
+  .summary__k{
+    font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.1em;
+    color:var(--ink-2);text-transform:uppercase;font-weight:500;
+  }
+  .summary__v{
+    font-family:'Fraunces',serif;font-weight:500;font-size:20px;line-height:1.2;
+    letter-spacing:-.012em;color:var(--ink);
+  }
+  .summary__v small{font-family:'Inter',sans-serif;font-size:13px;color:var(--ink-2);font-weight:400;letter-spacing:0;margin-left:2px}
+  .summary__link{
+    margin-top:auto;padding-top:14px;
+    font-size:12px;font-weight:500;color:var(--terracotta);
+    letter-spacing:.01em;
+    display:inline-flex;align-items:center;gap:6px;
+    opacity:.85;transition:opacity .15s, gap .15s;
+  }
+  .summary__col:hover .summary__link{opacity:1;gap:9px}
+
+  /* ---------- SECTION FRAMEWORK ---------- */
+  .section{padding:120px 0;position:relative}
+  .section--tight{padding:90px 0}
+  .section--dark{background:var(--navy);color:#fff}
+  .section--paper{background:var(--paper)}
+  .section--white{background:#fff}
+  .section--gray{background:var(--gray)}
+  .section__head{display:grid;grid-template-columns:200px 1fr;gap:48px;margin-bottom:64px;align-items:start}
+  @media (max-width:780px){.section__head{grid-template-columns:1fr;gap:18px;margin-bottom:44px}}
+  .section__num{
+    font-family:'JetBrains Mono',monospace;font-size:12px;
+    color:var(--ink-2);letter-spacing:.05em;
+    border-top:1px solid var(--ink);padding-top:14px;
+    display:inline-block;min-width:90px;
+  }
+  .section--dark .section__num{color:var(--mute-dark);border-top-color:rgba(255,255,255,.4)}
+  .section__h{
+    font-family:'Fraunces',serif;font-weight:400;
+    font-size:clamp(32px,3.6vw,52px);line-height:1.08;letter-spacing:-.02em;
+    margin:0;max-width:820px;text-wrap:balance;
+  }
+  .section__lede{font-size:18px;line-height:1.55;max-width:660px;margin:20px 0 0;color:var(--ink-2);font-weight:300}
+  .section--dark .section__lede{color:rgba(255,255,255,.72)}
+
+  /* ---------- PROBLEM ---------- */
+  .problem{background:var(--navy);color:#fff}
+  .problem__inner{
+    display:grid;grid-template-columns:200px 1fr;gap:48px;
+    padding:120px var(--gutter);max-width:var(--max);margin:0 auto;
+  }
+  @media (max-width:780px){.problem__inner{grid-template-columns:1fr;gap:24px;padding:80px var(--gutter)}}
+  .problem__label{
+    font-family:'JetBrains Mono',monospace;font-size:12px;color:var(--mute-dark);
+    border-top:1px solid rgba(255,255,255,.4);padding-top:14px;
+    align-self:start;letter-spacing:.05em;
+  }
+  .problem__body{
+    font-family:'Fraunces',serif;font-weight:300;
+    font-size:clamp(22px,2.1vw,30px);line-height:1.36;letter-spacing:-.012em;
+    color:#fff;max-width:880px;text-wrap:pretty;
+  }
+  .problem__body p{margin:0 0 22px}
+  .problem__body p:first-child{font-size:1.08em}
+  .problem__body p:first-child strong{font-weight:500;color:#fff;background:linear-gradient(transparent 62%, rgba(78,143,204,.42) 62%)}
+  .problem__body p:last-child{margin-bottom:0;color:rgba(255,255,255,.82)}
+
+  /* ---------- OUTCOMES ---------- */
+  .outcomes{display:grid;grid-template-columns:repeat(4,1fr);gap:0;border-top:1px solid var(--rule);border-left:1px solid var(--rule)}
+  @media (max-width:900px){.outcomes{grid-template-columns:repeat(2,1fr)}}
+  @media (max-width:560px){.outcomes{grid-template-columns:1fr}}
+  .outcome{
+    padding:36px 30px 40px;
+    border-right:1px solid var(--rule);border-bottom:1px solid var(--rule);
+    background:#fff;display:flex;flex-direction:column;gap:18px;min-height:300px;
+    transition:background .2s;
+  }
+  .outcome:hover{background:#fbfaf6}
+  .outcome__num{
+    font-family:'Fraunces',serif;font-weight:300;font-size:42px;line-height:1;letter-spacing:-.02em;
+    color:var(--terracotta);
+  }
+  .outcome__h{
+    font-family:'Fraunces',serif;font-weight:500;font-size:21px;line-height:1.25;
+    letter-spacing:-.005em;margin:0;color:var(--ink);text-wrap:balance;
+  }
+  .outcome__b{font-size:14px;line-height:1.6;color:var(--ink-2);margin:auto 0 0;font-weight:400}
+
+  /* ---------- FRAMEWORK (04) ---------- */
+  .framework{display:grid;grid-template-columns:1.15fr .85fr;gap:48px;align-items:start}
+  @media (max-width:900px){.framework{grid-template-columns:1fr;gap:36px}}
+  .framework__col{display:grid;gap:28px;min-width:0}
+  .framework__intro{font-size:17px;line-height:1.6;color:var(--ink-2);font-weight:300;margin:0;max-width:720px}
+  .framework__diagram{
+    background:#fff;border:1px solid var(--rule);
+    aspect-ratio:1/1;position:relative;overflow:hidden;
+    display:grid;place-items:center;cursor:zoom-in;
+    transition:border-color .2s, transform .2s;
+  }
+  .framework__diagram:hover{border-color:var(--ink-2)}
+  .framework__diagram img{
+    width:90%;height:auto;display:block;
+    transition:transform .3s ease;
+  }
+  .framework__diagram:hover img{transform:scale(1.02)}
+  .framework__diagram-zoom{
+    position:absolute;bottom:14px;right:14px;
+    display:flex;align-items:center;gap:8px;
+    font-family:'JetBrains Mono',monospace;font-size:10.5px;
+    color:var(--ink-2);letter-spacing:.08em;text-transform:uppercase;
+    background:rgba(255,255,255,.92);padding:6px 10px;
+    border:1px solid var(--rule);pointer-events:none;
+  }
+  .framework__diagram-zoom svg{width:11px;height:11px}
+  .framework__diagram-meta-row{
+    display:flex;justify-content:space-between;align-items:center;gap:14px;
+    padding-top:10px;font-family:'JetBrains Mono',monospace;font-size:11px;
+    letter-spacing:.08em;color:var(--ink-2);text-transform:uppercase;
+  }
+
+  /* ---------- DIAGRAM MODAL ---------- */
+  .diag-overlay{
+    position:fixed;inset:0;background:rgba(10,22,40,.86);
+    opacity:0;pointer-events:none;transition:opacity .25s ease;z-index:200;
+    backdrop-filter:blur(4px);
+    display:flex;align-items:center;justify-content:center;padding:48px;
+  }
+  .diag-overlay.open{opacity:1;pointer-events:auto}
+  .diag-modal{
+    position:relative;max-width:min(1100px, 96vw);max-height:90vh;
+    display:flex;flex-direction:column;gap:14px;
+    transform:scale(.96);transition:transform .3s cubic-bezier(.22,.61,.36,1);
+  }
+  .diag-overlay.open .diag-modal{transform:scale(1)}
+  .diag-modal__head{
+    display:flex;justify-content:space-between;align-items:center;gap:24px;color:#fff;
+  }
+  .diag-modal__title{
+    font-family:'Fraunces',serif;font-weight:400;font-size:22px;
+    letter-spacing:-.01em;margin:0;color:#fff;
+  }
+  .diag-modal__close{
+    width:40px;height:40px;border-radius:50%;
+    background:rgba(255,255,255,.10);position:relative;
+    transition:background .15s;cursor:pointer;
+  }
+  .diag-modal__close:hover{background:rgba(255,255,255,.22)}
+  .diag-modal__close::before,.diag-modal__close::after{
+    content:"";position:absolute;left:50%;top:50%;width:16px;height:1px;background:#fff;
+  }
+  .diag-modal__close::before{transform:translate(-50%,-50%) rotate(45deg)}
+  .diag-modal__close::after{transform:translate(-50%,-50%) rotate(-45deg)}
+  .diag-modal__frame{
+    background:#fff;border:1px solid rgba(255,255,255,.12);
+    padding:32px;flex:1;min-height:0;
+    display:flex;align-items:center;justify-content:center;overflow:hidden;
+  }
+  .diag-modal__frame img{
+    max-width:100%;max-height:calc(90vh - 80px);
+    height:auto;display:block;
+  }
+  body.diag-open{overflow:hidden}
+  .framework__more{
+    margin-top:4px;font-size:14px;color:var(--navy);text-decoration:none;
+    display:inline-flex;align-items:center;gap:8px;
+    border-bottom:1px solid transparent;padding-bottom:2px;
+    transition:border-color .15s, color .15s;
+    align-self:start;
+  }
+  .framework__more:hover{border-color:var(--terracotta);color:var(--terracotta)}
+  .framework__more::after{content:"→";transition:transform .2s}
+  .framework__more:hover::after{transform:translateX(3px)}
+  /* ---------- FRAMEWORK ACCORDION ---------- */
+  .fw-acc{
+    background:#fff;border:1px solid var(--rule);
+    display:grid;gap:0;
+  }
+  .fw-acc__head{
+    display:grid;grid-template-columns:90px 1fr 36px 80px;gap:0;
+    padding:14px 22px;background:#fbf8f1;border-bottom:1px solid var(--rule);
+    font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.1em;
+    text-transform:uppercase;color:var(--ink-2);font-weight:500;align-items:center;
+  }
+  .fw-acc__head .lvl-col{text-align:center;grid-column:4}
+  .fw-row{border-bottom:1px solid var(--rule)}
+  .fw-row:last-child{border-bottom:0}
+  .fw-row__btn{
+    width:100%;display:grid;grid-template-columns:90px 1fr 36px 80px;gap:0;
+    padding:20px 22px;text-align:left;align-items:center;
+    transition:background .15s;
+  }
+  .fw-row__btn:hover{background:#fbfaf6}
+  .fw-row__code{font-family:'JetBrains Mono',monospace;font-size:14px;color:var(--ink);white-space:nowrap}
+  .fw-row__comp{font-size:15px;color:var(--ink);line-height:1.45;font-weight:400;padding-right:16px}
+  .fw-row__plus-wrap{
+    display:flex;align-items:center;justify-content:center;
+  }
+  .fw-row__plus-wrap .plus{
+    width:18px;height:18px;position:relative;opacity:.55;
+    transition:opacity .2s;
+  }
+  .fw-row__btn:hover .fw-row__plus-wrap .plus{opacity:1}
+  .fw-row__plus-wrap .plus::before,.fw-row__plus-wrap .plus::after{
+    content:"";position:absolute;background:var(--ink);
+    left:50%;top:50%;transform:translate(-50%,-50%);
+  }
+  .fw-row__plus-wrap .plus::before{width:12px;height:1px}
+  .fw-row__plus-wrap .plus::after{width:1px;height:12px;transition:transform .25s}
+  .fw-row.open .fw-row__plus-wrap .plus::after{transform:translate(-50%,-50%) scaleY(0)}
+  .fw-row__lvl{text-align:center}
+  .fw-row__body{overflow:hidden;max-height:0;transition:max-height .35s ease;background:#fbfaf6}
+  .fw-row__body-inner{
+    padding:4px 22px 22px 112px;
+    font-size:14px;line-height:1.6;color:var(--ink-2);max-width:760px;
+  }
+  .fw-row.open .fw-row__body{max-height:300px}
+  @media (max-width:680px){
+    .fw-acc__head,.fw-row__btn{grid-template-columns:60px 1fr 28px 56px;padding:14px 16px}
+    .fw-row__body-inner{padding:4px 16px 18px 76px;font-size:13.5px}
+    .fw-row__comp{font-size:14px}
+  }
+
+  .fw-table{
+    width:100%;border-collapse:collapse;background:#fff;border:1px solid var(--rule);
+    font-size:15px;
+  }
+  .fw-table th,.fw-table td{padding:18px 22px;text-align:left;vertical-align:middle}
+  .fw-table thead th{
+    background:#fbf8f1;
+    font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.1em;
+    text-transform:uppercase;color:var(--ink-2);font-weight:500;
+    border-bottom:1px solid var(--rule);
+  }
+  .fw-table tbody tr + tr td{border-top:1px solid var(--rule)}
+  .fw-table td.code{font-family:'JetBrains Mono',monospace;font-size:14px;color:var(--ink);width:90px;white-space:nowrap}
+  .fw-table td.comp{font-size:15px;color:var(--ink);line-height:1.5}
+  .fw-table td.lvl{width:80px;text-align:center}
+  .lvl-pill{
+    display:inline-flex;align-items:center;justify-content:center;
+    width:32px;height:32px;border-radius:50%;
+    background:var(--navy);color:#fff;
+    font-family:'Fraunces',serif;font-weight:500;font-size:15px;letter-spacing:-.01em;
+  }
+  .fw-note{
+    font-size:14px;color:var(--ink-2);line-height:1.6;max-width:760px;margin:0;
+    padding-left:18px;border-left:2px solid var(--terracotta);font-weight:400;
+  }
+  @media (max-width:680px){
+    .fw-table th,.fw-table td{padding:14px 16px;font-size:14px}
+    .fw-table td.comp{font-size:14px}
+  }
+
+  /* ---------- METHODOLOGY ---------- */
+  .method{display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:start}
+  @media (max-width:900px){.method{grid-template-columns:1fr;gap:48px}}
+  .method__list{display:grid;gap:30px}
+  .method__item{display:grid;grid-template-columns:24px 1fr;gap:22px;align-items:start}
+  .method__item .n{font-family:'JetBrains Mono',monospace;font-size:12px;color:var(--terracotta);padding-top:4px}
+  .method__item h4{font-family:'Fraunces',serif;font-weight:500;font-size:19px;margin:0 0 6px;letter-spacing:-.005em}
+  .method__item p{margin:0;font-size:14.5px;color:var(--ink-2);line-height:1.6}
+  .pullquote{background:var(--navy);color:#fff;padding:48px 44px;border-radius:2px;position:relative}
+  .pullquote .lead{
+    font-family:'Fraunces',serif;font-style:italic;font-weight:300;
+    font-size:clamp(28px,2.6vw,38px);line-height:1.22;letter-spacing:-.018em;
+    color:#fff;margin:0 0 24px;text-wrap:balance;
+  }
+  .pullquote .lead em{color:#b9d0e8}
+  .pullquote p{font-family:'Inter',sans-serif;font-weight:300;font-size:15.5px;line-height:1.6;color:rgba(255,255,255,.82);margin:0}
+  .pullquote .credit{margin-top:24px;display:block;font-family:'Inter',sans-serif;font-size:12px;color:var(--mute-dark);letter-spacing:.06em;text-transform:uppercase}
+
+  /* ---------- PROCESS (06) ---------- */
+  .process{display:grid;gap:0;border-top:1px solid var(--ink)}
+  .step{
+    display:grid;grid-template-columns:120px 1fr;gap:28px;
+    padding:28px 0;border-bottom:1px solid var(--rule-strong);
+    align-items:baseline;
+  }
+  @media (max-width:680px){.step{grid-template-columns:64px 1fr;gap:18px;padding:22px 0}}
+  .step__n{
+    font-family:'Fraunces',serif;font-weight:300;font-size:42px;line-height:1;
+    letter-spacing:-.02em;color:var(--terracotta);
+  }
+  @media (max-width:680px){.step__n{font-size:30px}}
+  .step__body{padding-top:6px}
+  .step__h{font-family:'Fraunces',serif;font-weight:500;font-size:21px;letter-spacing:-.005em;margin:0 0 6px;line-height:1.25;color:var(--ink);text-wrap:balance}
+  .step__d{font-size:14.5px;line-height:1.55;color:var(--ink-2);margin:0;max-width:680px}
+
+  /* ---------- TRAINERS (07) ---------- */
+  .trainers{display:grid;grid-template-columns:1fr 1fr;gap:32px}
+  @media (max-width:840px){.trainers{grid-template-columns:1fr}}
+  .trainer{
+    background:#fff;border:1px solid var(--rule);
+    display:flex;flex-direction:column;overflow:hidden;
+    transition:border-color .2s, transform .2s;
+  }
+  .trainer:hover{border-color:var(--rule-strong)}
+  .trainer__portrait{
+    aspect-ratio:4/3;position:relative;overflow:hidden;
+    background:
+      repeating-linear-gradient(135deg,
+        rgba(27,58,107,.07) 0 14px,
+        rgba(27,58,107,.12) 14px 28px),
+      linear-gradient(180deg, #e9e5da, #d8d3c5);
+    border-bottom:1px solid var(--rule);
+  }
+  .trainer__portrait img{
+    position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block;
+    filter:saturate(.96);
+  }
+  .trainer__portrait::after{
+    content:attr(data-ph);position:absolute;left:18px;bottom:14px;
+    font-family:'JetBrains Mono',monospace;font-size:10.5px;
+    color:var(--ink-2);letter-spacing:.04em;
+    background:rgba(255,255,255,.85);padding:3px 7px;
+  }
+  .trainer__portrait .ring{
+    position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);
+    width:46%;aspect-ratio:1/1;border-radius:50%;
+    background:
+      radial-gradient(ellipse at 50% 35%, rgba(255,255,255,.45), transparent 55%),
+      linear-gradient(180deg,#b7ad96,#8e8472);
+    border:1px solid rgba(0,0,0,.06);
+  }
+  .trainer__body{padding:30px 30px 32px;display:flex;flex-direction:column;gap:10px;flex:1}
+  .trainer__eyebrow{font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.14em;color:var(--terracotta);text-transform:uppercase}
+  .trainer__name{font-family:'Fraunces',serif;font-weight:500;font-size:28px;letter-spacing:-.015em;margin:0;line-height:1.1;color:var(--ink)}
+  .trainer__role{font-size:14px;color:var(--ink-2);margin:0 0 8px;font-weight:400}
+  .trainer__bio{font-size:14.5px;line-height:1.6;color:var(--ink-2);margin:0}
+  .trainers__foot{
+    margin-top:36px;text-align:center;
+    font-family:'Fraunces',serif;font-style:italic;font-weight:300;font-size:20px;
+    line-height:1.4;color:var(--ink);letter-spacing:-.005em;max-width:780px;
+    margin-left:auto;margin-right:auto;text-wrap:balance;
+  }
+
+  /* ---------- PROGRAM (08) ---------- */
+  .program{display:grid;grid-template-columns:1fr 1fr;gap:0;border:1px solid var(--rule);background:#fff}
+  @media (max-width:780px){.program{grid-template-columns:1fr}}
+  .day{padding:36px 36px 40px;display:flex;flex-direction:column;gap:18px}
+  .day + .day{border-left:1px solid var(--rule)}
+  @media (max-width:780px){.day + .day{border-left:0;border-top:1px solid var(--rule)}}
+  .day__tag{font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.1em;color:var(--terracotta);text-transform:uppercase}
+  .day__h{font-family:'Fraunces',serif;font-weight:500;font-size:26px;letter-spacing:-.015em;margin:0;line-height:1.15}
+  .day__time{font-size:13px;color:var(--ink-2);font-family:'JetBrains Mono',monospace;letter-spacing:.04em}
+  .day__list{list-style:none;margin:8px 0 0;padding:0;display:grid;gap:0;border-top:1px solid var(--rule)}
+  .day__list li{padding:14px 0;border-bottom:1px solid var(--rule);display:grid;grid-template-columns:36px 1fr;gap:14px;align-items:baseline}
+  .day__list li:last-child{border-bottom:0}
+  .day__list .mod{font-family:'JetBrains Mono',monospace;font-size:11.5px;color:var(--ink-2);letter-spacing:.05em}
+  .day__list .title{font-size:14.5px;color:var(--ink);line-height:1.45;font-weight:400}
+  .day__list .title small{display:block;font-size:12.5px;color:var(--ink-2);margin-top:3px;font-weight:400}
+
+  /* ---------- TESTIMONIALS (09) ---------- */
+  .testimonials{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
+  @media (max-width:900px){.testimonials{grid-template-columns:1fr}}
+  .t-card{
+    background:#fff;border:1px solid var(--rule);padding:36px 30px 30px;
+    display:flex;flex-direction:column;gap:18px;min-height:340px;
+    position:relative;transition:border-color .2s;
+  }
+  .t-card:hover{border-color:var(--rule-strong)}
+  .t-card .q{
+    font-family:'Fraunces',serif;font-size:72px;line-height:.5;color:var(--terracotta);
+    margin:0;font-weight:400;
+  }
+  .t-card p{
+    font-family:'Fraunces',serif;font-weight:400;font-size:18px;line-height:1.5;
+    color:var(--ink);margin:0;letter-spacing:-.005em;flex:1;
+  }
+  .t-card .who{margin-top:auto;padding-top:18px;border-top:1px solid var(--rule)}
+  .t-card .who .name{font-size:13.5px;font-weight:500;color:var(--ink)}
+  .t-card .who .org{font-size:12.5px;color:var(--ink-2);margin-top:2px}
+
+  /* ---------- SESSIONS (09) ---------- */
+  .sessions{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
+  @media (max-width:900px){.sessions{grid-template-columns:1fr}}
+  .session-card{
+    background:#fff;border:1px solid var(--rule);
+    padding:32px 30px 30px;display:flex;flex-direction:column;gap:18px;
+    min-height:340px;position:relative;transition:border-color .2s, transform .2s;
+  }
+  .session-card--active{border-color:var(--ink);box-shadow:0 1px 0 0 var(--ink), 0 6px 20px -12px rgba(10,22,40,.18)}
+  .session-card--ghost{
+    opacity:.78;background:transparent;border:1px dashed var(--rule-strong);
+    filter:saturate(.85);
+  }
+  .session-card--ghost:hover{opacity:1;border-color:var(--ink-2)}
+  .session-card__tag{
+    font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.1em;
+    text-transform:uppercase;display:inline-flex;align-items:center;gap:8px;
+  }
+  .session-card--active .session-card__tag{color:var(--terracotta)}
+  .session-card__tag .dot{width:7px;height:7px;border-radius:50%;display:inline-block}
+  .session-card--active .session-card__tag .dot{background:var(--terracotta);box-shadow:0 0 0 4px rgba(78,143,204,.14)}
+  .session-card--ghost .session-card__tag{color:var(--ink-2)}
+  .session-card--ghost .session-card__tag .dot{background:#bdb9af}
+  .session-card__h{
+    font-family:'Fraunces',serif;font-weight:500;font-size:26px;letter-spacing:-.015em;
+    margin:0;line-height:1.15;color:var(--ink);
+  }
+  .session-card__date{font-size:14px;color:var(--ink-2);margin:0;font-weight:400}
+  .session-card--ghost .session-card__date{font-family:'Fraunces',serif;font-style:italic;font-size:16px;color:var(--ink-2);font-weight:300}
+  .session-card__seats{display:flex;flex-direction:column;gap:10px;margin-top:6px}
+  .session-card__seats .label{
+    font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.06em;
+    color:var(--ink-2);text-transform:uppercase;font-weight:500;
+  }
+  .session-card__seats .text{font-size:14px;color:var(--ink);font-weight:400}
+  .session-card__bar{
+    display:grid;grid-template-columns:repeat(18,1fr);gap:3px;height:8px;
+  }
+  .session-card__bar span{background:#e4e2dc;display:block;border-radius:1px}
+  .session-card__bar span.filled{background:var(--terracotta)}
+  .session-card .btn{margin-top:auto;justify-content:center;width:100%;padding:14px 22px;font-size:14px}
+  .session-card__cta-ghost{
+    margin-top:auto;display:inline-flex;align-items:center;justify-content:center;gap:8px;
+    width:100%;padding:14px 22px;border:1px solid var(--rule-strong);
+    font-size:14px;font-weight:500;color:var(--ink);background:transparent;
+    transition:border-color .15s, background .15s, color .15s;
+  }
+  .session-card__cta-ghost:hover{border-color:var(--ink);background:#fbf8f1;color:var(--ink)}
+  .session-card__cta-ghost.confirmed{background:#fbf8f1;border-color:var(--terracotta);color:var(--terracotta)}
+
+  /* ---------- ARTICLES (17) ---------- */
+  .articles{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
+  @media (max-width:900px){.articles{grid-template-columns:1fr}}
+  .article-card{
+    background:#fff;border:1px solid var(--rule);
+    padding:30px 30px 30px;display:flex;flex-direction:column;gap:14px;min-height:280px;
+    text-decoration:none;color:inherit;
+    border-top:3px solid var(--terracotta);
+    transition:border-color .2s, transform .2s;
+  }
+  .article-card:hover{border-color:var(--ink-2);border-top-color:var(--terracotta)}
+  .article-card--seap{border-top-color:var(--navy-2)}
+  .article-card--law{border-top-color:var(--ink)}
+  .article-card__tag{
+    font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.1em;
+    text-transform:uppercase;color:var(--ink-2);font-weight:500;
+  }
+  .article-card__h{
+    font-family:'Fraunces',serif;font-weight:500;font-size:22px;letter-spacing:-.005em;
+    line-height:1.22;margin:0;color:var(--ink);text-wrap:balance;
+    display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;
+  }
+  .article-card__excerpt{font-size:14px;line-height:1.55;color:var(--ink-2);margin:0;flex:1}
+  .article-card__excerpt .ph{color:#9a958a;font-style:italic}
+  .article-card__foot{
+    display:flex;justify-content:space-between;align-items:center;
+    padding-top:14px;border-top:1px solid var(--rule);margin-top:6px;
+  }
+  .article-card__more{font-size:13.5px;font-weight:500;color:var(--ink);display:inline-flex;gap:8px;align-items:center}
+  .article-card__more::after{content:"→";transition:transform .2s}
+  .article-card:hover .article-card__more::after{transform:translateX(3px)}
+  .article-card__time{font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--ink-2);letter-spacing:.04em}
+
+  /* ---------- PRICING (10) ---------- */
+  .pricing{
+    background:#fff;border:1px solid var(--rule);
+    display:grid;grid-template-columns:1.05fr .95fr;gap:0;
+  }
+  @media (max-width:840px){.pricing{grid-template-columns:1fr}}
+  .price-left{padding:48px 44px;display:flex;flex-direction:column;gap:14px;border-right:1px solid var(--rule);background:#fbf8f1;position:relative}
+  @media (max-width:840px){.price-left{border-right:0;border-bottom:1px solid var(--rule)}}
+  .price-left .tag{font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.1em;color:var(--ink-2);text-transform:uppercase}
+  .price-left .name{font-family:'Fraunces',serif;font-size:28px;letter-spacing:-.015em;margin:0;font-weight:500}
+  .price-left .amount{font-family:'Fraunces',serif;font-size:74px;line-height:1;letter-spacing:-.03em;font-weight:400;display:flex;align-items:baseline;gap:8px;margin-top:6px}
+  .price-left .amount small{font-family:'Inter',sans-serif;font-size:14px;color:var(--ink-2);font-weight:400;letter-spacing:0}
+  .price-left .currency{font-size:30px;color:var(--ink-2);font-weight:400;letter-spacing:-.02em}
+  .price-note{font-size:13.5px;color:var(--ink-2);line-height:1.55;margin:8px 0 0;max-width:380px}
+  .price-discounts{display:grid;gap:10px;margin-top:20px;padding-top:20px;border-top:1px solid var(--rule)}
+  .discount{display:grid;grid-template-columns:46px 1fr;gap:14px;align-items:baseline}
+  .discount .pct{font-family:'Fraunces',serif;font-size:22px;color:var(--terracotta);font-weight:500;letter-spacing:-.01em}
+  .discount .txt{font-size:13.5px;color:var(--ink-2);line-height:1.5}
+  .price-right{padding:48px 44px;display:flex;flex-direction:column;gap:18px}
+  .price-right h4{
+    font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.1em;
+    color:var(--ink-2);text-transform:uppercase;margin:0;font-weight:500;
+  }
+  .price-right ul{list-style:none;margin:0;padding:0;display:grid;gap:14px}
+  .price-right ul li{font-size:14.5px;color:var(--ink);display:grid;grid-template-columns:22px 1fr;gap:12px;align-items:start;line-height:1.45}
+  .price-right ul li::before{
+    content:"";width:8px;height:8px;background:var(--terracotta);
+    margin-top:7px;display:block;
+  }
+  .price-right .btn{margin-top:auto;align-self:flex-start}
+
+  /* ---------- FUNDING (11) ---------- */
+  .funding{display:grid;grid-template-columns:1fr 1fr;gap:0;background:#fff;border:1px solid var(--rule)}
+  @media (max-width:840px){.funding{grid-template-columns:1fr}}
+  .fund-col{padding:42px 40px;display:flex;flex-direction:column;gap:14px}
+  .fund-col + .fund-col{border-left:1px solid var(--rule);background:#fbf8f1}
+  @media (max-width:840px){.fund-col + .fund-col{border-left:0;border-top:1px solid var(--rule)}}
+  .fund-col h3{
+    font-family:'Fraunces',serif;font-weight:500;font-size:22px;letter-spacing:-.01em;
+    margin:0 0 4px;display:flex;align-items:baseline;gap:12px;
+  }
+  .fund-col h3::before{
+    content:attr(data-num);font-family:'JetBrains Mono',monospace;font-size:11px;
+    color:var(--terracotta);letter-spacing:.06em;font-weight:500;
+  }
+  .fund-col p{font-size:14.5px;color:var(--ink-2);line-height:1.6;margin:0}
+  .fund-col p .ph{color:#9a958a;font-style:italic;font-size:.95em}
+  .fund-list{list-style:none;margin:12px 0 0;padding:0;display:grid;gap:0;border-top:1px solid var(--rule)}
+  .fund-list li{padding:12px 0;border-bottom:1px solid var(--rule);display:grid;grid-template-columns:130px 1fr;gap:18px;font-size:14px;align-items:baseline}
+  .fund-list li:last-child{border-bottom:0}
+  .fund-list .k{font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.08em;color:var(--ink-2);text-transform:uppercase}
+  .fund-list .v{color:var(--ink);font-weight:400;font-size:14px;line-height:1.4}
+  .fund-list .v .ph{font-size:1em}
+
+  /* ---------- FAQ (12) ---------- */
+  .faq{border-top:1px solid var(--ink)}
+  .faq__item{border-bottom:1px solid var(--rule-strong)}
+  .faq__btn{
+    width:100%;display:grid;grid-template-columns:auto 1fr auto;gap:24px;align-items:center;
+    padding:26px 0;text-align:left;
+  }
+  .faq__n{font-family:'JetBrains Mono',monospace;font-size:12px;color:var(--ink-2);min-width:32px}
+  .faq__q{font-family:'Fraunces',serif;font-weight:400;font-size:21px;letter-spacing:-.005em;color:var(--ink);line-height:1.3}
+  .faq__plus{width:22px;height:22px;position:relative}
+  .faq__plus::before,.faq__plus::after{
+    content:"";position:absolute;background:var(--ink);
+    left:50%;top:50%;transform:translate(-50%,-50%);
+  }
+  .faq__plus::before{width:14px;height:1px}
+  .faq__plus::after{width:1px;height:14px;transition:transform .25s}
+  .faq__item.open .faq__plus::after{transform:translate(-50%,-50%) scaleY(0)}
+  .faq__a{overflow:hidden;max-height:0;transition:max-height .35s ease}
+  .faq__a-inner{padding:0 56px 28px;font-size:15px;line-height:1.65;color:var(--ink-2);max-width:780px}
+  .faq__item.open .faq__a{max-height:480px}
+
+  /* ---------- ABOUT / HARRISON (13) ---------- */
+  .cred__top{display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:end;margin-bottom:64px}
+  @media (max-width:900px){.cred__top{grid-template-columns:1fr;gap:32px;margin-bottom:48px}}
+  .cred__h{
+    font-family:'Fraunces',serif;font-weight:300;
+    font-size:clamp(34px,4.2vw,60px);line-height:1.05;letter-spacing:-.025em;
+    margin:0;text-wrap:balance;
+  }
+  .cred__h em{font-style:italic;color:var(--terracotta);font-weight:300}
+  .cred__lede{font-size:17px;line-height:1.55;color:var(--ink-2);max-width:480px;margin:0;font-weight:300}
+  .cred__stats{display:grid;grid-template-columns:repeat(4,1fr);gap:0;border-top:1px solid var(--ink);border-bottom:1px solid var(--ink)}
+  @media (max-width:780px){.cred__stats{grid-template-columns:repeat(2,1fr)}}
+  .cred__stat{padding:38px 26px;border-right:1px solid var(--rule)}
+  .cred__stat:last-child{border-right:0}
+  .cred__stat .k{font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.1em;color:var(--ink-2);text-transform:uppercase;display:block;margin-bottom:14px}
+  .cred__stat .v{font-family:'Fraunces',serif;font-weight:300;font-size:clamp(38px,3.8vw,58px);line-height:1;letter-spacing:-.025em;color:var(--ink);display:block}
+  .cred__stat .vsub{font-family:'Inter',sans-serif;font-size:13px;color:var(--ink-2);margin-top:8px;display:block}
+  .cred__foot{margin-top:36px;display:flex;justify-content:space-between;align-items:center;gap:24px;flex-wrap:wrap}
+  .cred__foot a.text{font-size:14px;text-decoration:none;border-bottom:1px solid var(--ink);padding-bottom:2px}
+  .cred__foot a.text:hover{color:var(--terracotta);border-color:var(--terracotta)}
+
+  /* ---------- CROSS-SELL (15) ---------- */
+  .crosssell{
+    display:grid;grid-template-columns:2fr 1fr;gap:24px;align-items:stretch;
+  }
+  @media (max-width:880px){.crosssell{grid-template-columns:1fr}}
+  .cs-card{
+    background:#fff;border:1px solid var(--rule);
+    padding:36px 36px 32px;display:flex;flex-direction:column;gap:14px;
+    text-decoration:none;color:inherit;min-height:280px;
+    transition:border-color .2s, transform .2s;position:relative;
+  }
+  .cs-card:hover{border-color:var(--ink);transform:translateY(-2px)}
+  .cs-card__tag{
+    font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.1em;
+    color:var(--terracotta);text-transform:uppercase;font-weight:500;
+  }
+  .cs-card--primary .cs-card__tag::before{
+    content:"●";color:var(--terracotta);margin-right:8px;font-size:8px;vertical-align:middle;
+  }
+  .cs-card__h{
+    font-family:'Fraunces',serif;font-weight:500;font-size:28px;letter-spacing:-.015em;
+    margin:0;line-height:1.18;color:var(--ink);text-wrap:balance;
+  }
+  .cs-card--secondary .cs-card__h{font-size:22px}
+  .cs-card__d{font-size:14.5px;color:var(--ink-2);line-height:1.6;margin:0;max-width:560px}
+  .cs-card--secondary .cs-card__d{font-size:14px}
+  .cs-card__meta{
+    display:flex;flex-wrap:wrap;gap:18px;margin-top:8px;
+    font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.06em;
+    color:var(--ink-2);text-transform:uppercase;
+  }
+  .cs-card__meta span{display:inline-flex;align-items:center;gap:8px}
+  .cs-card__meta span::before{content:"";width:6px;height:1px;background:var(--terracotta);display:block}
+  .cs-card__link{
+    margin-top:auto;padding-top:18px;
+    font-size:14px;font-weight:500;display:inline-flex;align-items:center;gap:10px;
+    color:var(--ink);
+  }
+  .cs-card__link::after{content:"→";transition:transform .2s}
+  .cs-card:hover .cs-card__link::after{transform:translateX(4px)}
+  .cs-card--secondary{background:#fbf8f1}
+  .cs-card--secondary .cs-card__tag{color:var(--navy-2)}
+
+  /* ---------- FINAL CTA (16) ---------- */
+  .final{background:var(--navy);color:#fff;padding:130px 0 120px}
+  .final__inner{max-width:880px;text-align:center;margin:0 auto}
+  .final__seats{
+    font-family:'JetBrains Mono',monospace;font-size:12px;letter-spacing:.16em;
+    color:var(--terracotta);text-transform:uppercase;margin-bottom:22px;
+    display:inline-flex;align-items:center;gap:12px;
+  }
+  .final__seats::before,.final__seats::after{content:"";width:24px;height:1px;background:var(--terracotta);display:block}
+  .final h2{
+    font-family:'Fraunces',serif;font-weight:300;
+    font-size:clamp(36px,4.2vw,62px);line-height:1.06;letter-spacing:-.025em;
+    margin:0;text-wrap:balance;color:#fff;
+  }
+  .final h2 em{font-style:italic;color:#b9d0e8}
+  .final__date{font-size:16px;color:rgba(255,255,255,.72);margin:24px auto 0;font-weight:300;max-width:560px}
+  .final__cta{margin-top:40px}
+  .final__cta .btn{padding:18px 32px;font-size:16px}
+  .final__phone{
+    margin-top:32px;padding-top:28px;
+    border-top:1px solid rgba(255,255,255,.12);
+    max-width:520px;margin-left:auto;margin-right:auto;
+    font-size:14px;color:rgba(255,255,255,.6);line-height:1.55;
+  }
+  .final__phone a{
+    color:#fff;text-decoration:none;font-weight:500;
+    border-bottom:1px solid rgba(255,255,255,.3);padding-bottom:1px;
+    transition:border-color .15s;
+  }
+  .final__phone a:hover{border-color:var(--terracotta)}
+
+  /* ---------- REGISTRATION DRAWER ---------- */
+  .reg-overlay{
+    position:fixed;inset:0;background:rgba(10,22,40,.55);
+    opacity:0;pointer-events:none;transition:opacity .3s ease;z-index:90;
+    backdrop-filter:blur(2px);
+  }
+  .reg-overlay.open{opacity:1;pointer-events:auto}
+  .reg-drawer{
+    position:fixed;top:0;right:0;height:100vh;width:560px;max-width:100%;
+    background:var(--paper);z-index:100;
+    transform:translateX(100%);transition:transform .42s cubic-bezier(.22,.61,.36,1);
+    display:flex;flex-direction:column;
+    box-shadow:-20px 0 60px -20px rgba(10,22,40,.25);
+  }
+  .reg-drawer.open{transform:translateX(0)}
+  .reg-drawer__head{
+    display:flex;align-items:center;justify-content:space-between;
+    padding:22px 32px;border-bottom:1px solid var(--rule);
+    background:#fff;
+  }
+  .reg-drawer__title{font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.14em;color:var(--ink-2);text-transform:uppercase}
+  .reg-drawer__close{
+    width:32px;height:32px;position:relative;border-radius:50%;
+    transition:background .15s;
+  }
+  .reg-drawer__close:hover{background:var(--rule)}
+  .reg-drawer__close::before,.reg-drawer__close::after{
+    content:"";position:absolute;left:50%;top:50%;width:14px;height:1px;background:var(--ink);
+  }
+  .reg-drawer__close::before{transform:translate(-50%,-50%) rotate(45deg)}
+  .reg-drawer__close::after{transform:translate(-50%,-50%) rotate(-45deg)}
+  .reg-drawer__body{
+    flex:1;overflow-y:auto;padding:36px 32px 32px;
+  }
+  .reg-drawer__h{
+    font-family:'Fraunces',serif;font-weight:400;font-size:36px;
+    letter-spacing:-.02em;line-height:1.1;margin:0 0 12px;text-wrap:balance;
+  }
+  .reg-drawer__lede{font-size:14.5px;color:var(--ink-2);line-height:1.55;margin:0 0 28px;font-weight:300}
+  .reg-summary{
+    background:#fff;border:1px solid var(--rule);padding:16px 18px;
+    display:grid;grid-template-columns:1fr 1fr;gap:14px;
+    margin:0 0 28px;font-size:13px;
+  }
+  .reg-summary div{display:flex;flex-direction:column;gap:4px}
+  .reg-summary .k{font-family:'JetBrains Mono',monospace;font-size:10.5px;letter-spacing:.08em;color:var(--ink-2);text-transform:uppercase}
+  .reg-summary .v{font-size:13.5px;color:var(--ink);font-weight:500}
+  .reg-form{display:grid;gap:18px}
+  .reg-row{display:grid;gap:14px}
+  .reg-row--2{grid-template-columns:1fr 1fr}
+  @media (max-width:520px){.reg-row--2{grid-template-columns:1fr}}
+  .reg-field{display:flex;flex-direction:column;gap:7px;position:relative}
+  .reg-field label{
+    font-family:'JetBrains Mono',monospace;font-size:10.5px;letter-spacing:.08em;
+    color:var(--ink-2);text-transform:uppercase;font-weight:500;
+  }
+  .reg-field label .req{color:var(--terracotta);margin-left:3px}
+  .reg-field input,.reg-field select,.reg-field textarea{
+    font:inherit;font-size:15px;color:var(--ink);
+    background:#fff;border:1px solid var(--rule-strong);
+    padding:12px 14px;outline:none;border-radius:2px;
+    transition:border-color .15s, box-shadow .15s;
+    font-family:'Inter',sans-serif;
+  }
+  .reg-field textarea{resize:vertical;min-height:84px;line-height:1.5;font-family:inherit}
+  .reg-field select{appearance:none;background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='10' height='6' viewBox='0 0 10 6'><path d='M1 1l4 4 4-4' stroke='%231A1A1A' stroke-width='1.2' fill='none'/></svg>");background-repeat:no-repeat;background-position:right 14px center;padding-right:36px;cursor:pointer}
+  .reg-field input:focus,.reg-field select:focus,.reg-field textarea:focus{
+    border-color:var(--ink);box-shadow:0 0 0 3px rgba(78,143,204,.10);
+  }
+  .reg-field.error input,.reg-field.error select,.reg-field.error textarea{border-color:var(--terracotta)}
+  .reg-field .err-msg{font-size:11.5px;color:var(--terracotta);font-weight:500;min-height:14px;letter-spacing:0;text-transform:none}
+  .reg-consent{
+    display:flex;gap:12px;align-items:flex-start;
+    font-size:13px;color:var(--ink-2);line-height:1.5;
+    padding:14px 0 0;margin-top:4px;border-top:1px solid var(--rule);
+  }
+  .reg-consent input{margin-top:3px;accent-color:var(--terracotta);width:16px;height:16px;cursor:pointer}
+  .reg-consent label{cursor:pointer;flex:1}
+  .reg-consent a{color:var(--ink);text-decoration:underline;text-decoration-color:var(--rule-strong);text-underline-offset:3px}
+  .reg-consent a:hover{text-decoration-color:var(--terracotta);color:var(--terracotta)}
+  .reg-drawer__foot{
+    padding:20px 32px;border-top:1px solid var(--rule);background:#fff;
+    display:flex;flex-direction:column;gap:10px;
+  }
+  .reg-drawer__foot .btn{justify-content:center;width:100%;padding:16px 22px;font-size:15px}
+  .reg-drawer__foot .note{font-size:11.5px;color:var(--ink-2);text-align:center;line-height:1.5;letter-spacing:.01em}
+
+  .reg-success{display:none;padding:48px 32px;text-align:center}
+  .reg-success.show{display:block}
+  .reg-success__check{
+    width:64px;height:64px;border-radius:50%;background:#fbf8f1;
+    border:1.5px solid var(--terracotta);margin:0 auto 24px;
+    display:grid;place-items:center;color:var(--terracotta);
+    font-family:'Fraunces',serif;font-size:32px;line-height:1;
+  }
+  .reg-success h3{font-family:'Fraunces',serif;font-weight:500;font-size:30px;letter-spacing:-.015em;margin:0 0 12px;line-height:1.15}
+  .reg-success p{font-size:15px;color:var(--ink-2);line-height:1.6;margin:0 auto 8px;max-width:380px}
+  .reg-success .next{
+    margin-top:24px;padding-top:20px;border-top:1px solid var(--rule);
+    font-size:13px;color:var(--ink-2);text-align:left;display:grid;gap:10px;max-width:380px;margin-left:auto;margin-right:auto;
+  }
+  .reg-success .next strong{font-family:'JetBrains Mono',monospace;font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--terracotta);font-weight:500;display:block;margin-bottom:8px}
+  .reg-success .next ol{list-style:none;margin:0;padding:0;counter-reset:rs}
+  .reg-success .next ol li{counter-increment:rs;padding:8px 0;display:grid;grid-template-columns:24px 1fr;gap:10px;border-bottom:1px dashed var(--rule);font-size:13.5px;line-height:1.5;color:var(--ink-2)}
+  .reg-success .next ol li::before{content:counter(rs,decimal-leading-zero);font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--terracotta);letter-spacing:.04em}
+  .reg-success .next ol li:last-child{border-bottom:0}
+
+  body.reg-open{overflow:hidden}
+  @media (max-width:560px){.reg-drawer__body{padding:28px 22px} .reg-drawer__head,.reg-drawer__foot{padding:18px 22px}}
+
+  /* ---------- FOOTER ---------- */
+  .footer{background:#06101e;color:rgba(255,255,255,.6);padding:56px 0 40px;border-top:1px solid rgba(255,255,255,.06)}
+  .footer__grid{display:grid;grid-template-columns:1.4fr 1fr 1fr 1fr;gap:48px;margin-bottom:40px}
+  @media (max-width:780px){.footer__grid{grid-template-columns:1fr 1fr;gap:32px}}
+  @media (max-width:480px){.footer__grid{grid-template-columns:1fr}}
+  .footer a{text-decoration:none;color:rgba(255,255,255,.7);transition:color .15s}
+  .footer a:hover{color:#fff}
+  .footer__col h5{
+    font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.14em;
+    color:rgba(255,255,255,.5);text-transform:uppercase;margin:0 0 16px;font-weight:500;
+  }
+  .footer__col ul{list-style:none;margin:0;padding:0;display:grid;gap:10px}
+  .footer__col li{font-size:13.5px;line-height:1.5;color:rgba(255,255,255,.75)}
+  .footer__col li .ph{color:rgba(255,255,255,.4)}
+  .footer__brand{display:flex;align-items:center;gap:10px;color:#fff;margin-bottom:16px}
+  .footer__about{font-size:13px;line-height:1.55;color:rgba(255,255,255,.6);max-width:280px}
+  .footer__bottom{border-top:1px solid rgba(255,255,255,.08);padding-top:24px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px;font-size:12.5px;color:rgba(255,255,255,.45)}
+  .footer__bottom a{color:rgba(255,255,255,.6)}
+  .footer__bottom a:hover{color:#fff}
+
+  /* reveal */
+  @keyframes fadeUp{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:none}}
+  .reveal{opacity:0}
+  .reveal.in{animation:fadeUp .7s ease forwards}
+
+  /* ===================== SCIM ADDITIONS ===================== */
+  .hero__meta-note{font-size:12.5px;line-height:1.5;color:rgba(255,255,255,.5);max-width:270px;margin-top:2px}
+  .hero__meta-note b{color:rgba(255,255,255,.7);font-weight:500}
+
+  /* Framework placeholder (no diagram asset yet) */
+  .fw-ph{background:#fff;border:1px solid var(--rule);display:flex;flex-direction:column;overflow:hidden}
+  .fw-ph__canvas{aspect-ratio:4/3;position:relative;display:grid;place-items:center;
+    background:repeating-linear-gradient(135deg, rgba(27,58,107,.05) 0 14px, rgba(27,58,107,.09) 14px 28px), linear-gradient(180deg,#f4f1ea,#e9e5da)}
+  .fw-ph__grid{display:grid;grid-template-columns:repeat(4,46px);grid-auto-rows:46px;gap:9px}
+  .fw-ph__cell{border:1px solid var(--rule-strong);background:rgba(255,255,255,.6);display:grid;place-items:center;
+    font-family:'JetBrains Mono',monospace;font-size:14px;color:var(--ink-2)}
+  .fw-ph__cell.is-on{background:var(--terracotta);border-color:var(--terracotta);color:#fff;box-shadow:0 6px 18px -8px rgba(78,143,204,.6)}
+  .fw-ph__tag{position:absolute;left:16px;bottom:14px;font-family:'JetBrains Mono',monospace;font-size:10.5px;color:var(--ink-2);letter-spacing:.04em;background:rgba(255,255,255,.85);padding:4px 8px}
+  .fw-ph__meta{display:flex;justify-content:space-between;align-items:center;gap:14px;padding:12px 16px;border-top:1px solid var(--rule);
+    font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.08em;color:var(--ink-2);text-transform:uppercase}
+
+  /* Methodology simple methods list */
+  .method__intro p{font-size:16px;line-height:1.65;color:var(--ink-2);margin:0 0 16px;font-weight:400;max-width:560px}
+  .method__methods{list-style:none;margin:22px 0 0;padding:0;display:grid;gap:0;border-top:1px solid var(--rule)}
+  .method__methods li{padding:14px 0;border-bottom:1px solid var(--rule);display:grid;grid-template-columns:30px 1fr;gap:14px;align-items:baseline;
+    font-size:15.5px;color:var(--ink);line-height:1.4}
+  .method__methods li:last-child{border-bottom:0}
+  .method__methods .mk{font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--terracotta);letter-spacing:.04em}
+
+  /* Single trainer layout */
+  .trainer-solo{display:grid;grid-template-columns:.82fr 1.18fr;gap:0;background:#fff;border:1px solid var(--rule)}
+  @media (max-width:780px){.trainer-solo{grid-template-columns:1fr}}
+  .trainer-solo__portrait{position:relative;overflow:hidden;align-self:stretch;min-height:340px;border-right:1px solid var(--rule);
+    background:repeating-linear-gradient(135deg, rgba(27,58,107,.07) 0 14px, rgba(27,58,107,.12) 14px 28px), linear-gradient(180deg,#e9e5da,#d8d3c5)}
+  @media (max-width:780px){.trainer-solo__portrait{border-right:0;border-bottom:1px solid var(--rule);aspect-ratio:4/3;min-height:0}}
+  .trainer-solo__portrait img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;filter:saturate(.96)}
+  .trainer-solo__portrait::after{content:attr(data-ph);position:absolute;left:18px;bottom:14px;font-family:'JetBrains Mono',monospace;font-size:10.5px;color:var(--ink-2);letter-spacing:.04em;background:rgba(255,255,255,.85);padding:4px 8px}
+  .trainer-solo__portrait .ring{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:46%;aspect-ratio:1/1;border-radius:50%;
+    background:radial-gradient(ellipse at 50% 35%, rgba(255,255,255,.45), transparent 55%),linear-gradient(180deg,#b7ad96,#8e8472);border:1px solid rgba(0,0,0,.06)}
+  .trainer-solo__body{padding:40px 44px 42px;display:flex;flex-direction:column;gap:8px}
+  @media (max-width:560px){.trainer-solo__body{padding:30px 24px}}
+  .trainer-solo__eyebrow{font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.14em;color:var(--terracotta);text-transform:uppercase}
+  .trainer-solo__name{font-family:'Fraunces',serif;font-weight:500;font-size:clamp(28px,3vw,36px);letter-spacing:-.015em;margin:2px 0 0;line-height:1.08;color:var(--ink)}
+  .trainer-solo__bio{font-size:15.5px;line-height:1.65;color:var(--ink-2);margin:14px 0 0;max-width:600px}
+  .trainer-solo__cred{margin-top:22px;padding:20px 24px;background:#fbf8f1;border-left:2px solid var(--terracotta);font-size:14.5px;line-height:1.6;color:var(--ink);max-width:600px}
+  .trainer-solo__cred b{font-weight:600}
+
+  /* Program day prose + materials */
+  .day__desc{font-size:14.5px;line-height:1.68;color:var(--ink-2);margin:8px 0 0}
+  .program-materials{margin-top:28px;background:#fff;border:1px solid var(--rule);padding:30px 34px}
+  .program-materials h4{font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.1em;color:var(--ink-2);text-transform:uppercase;margin:0 0 18px;font-weight:500}
+  .program-materials ul{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(3,1fr);gap:14px 30px}
+  @media (max-width:780px){.program-materials ul{grid-template-columns:1fr 1fr}}
+  @media (max-width:480px){.program-materials ul{grid-template-columns:1fr}}
+  .program-materials li{font-size:14.5px;color:var(--ink);display:grid;grid-template-columns:16px 1fr;gap:10px;align-items:start;line-height:1.4}
+  .program-materials li::before{content:"";width:7px;height:7px;background:var(--terracotta);margin-top:7px;display:block}
+
+  /* Pricing trust note */
+  .price-trust{margin-top:30px;font-family:'Fraunces',serif;font-style:italic;font-weight:300;font-size:clamp(20px,2vw,26px);line-height:1.38;color:var(--ink);max-width:760px;text-wrap:balance;letter-spacing:-.01em}
+  .price-trust b{font-style:normal;font-weight:500}
+
+  /* Cross-sell single full-width */
+  .crosssell--single{grid-template-columns:1fr}
+
+  /* Testimonials lede */
+  .t-lede{font-size:14px;line-height:1.6;color:var(--ink-2);max-width:680px;margin:18px 0 0;font-weight:400}
+
+</style>
+</head>
+<body>
+
+<!-- ============ NAV ============ -->
+<header class="nav" id="nav" data-screen-label="nav">
+  <div class="container nav__inner">
+    <a class="brand" href="#top">
+      <div class="brand__mark">H</div>
+      <div class="brand__name">Harrison<span> / Consulting</span></div>
+    </a>
+    <nav class="nav__links" aria-label="Secțiuni">
+      <a href="#program">Program</a>
+      <a href="#metodologie">Metodologie</a>
+      <a href="#trainer">Trainer</a>
+      <a href="#pret">Preț</a>
+      <a href="#faq">Întrebări</a>
+      <a class="nav__cta" href="#cta-final" data-open-reg>Rezervă un loc</a>
+    </nav>
+  </div>
+  <div class="nav__progress" id="progress"></div>
+</header>
+
+<!-- ============ 01 / HERO ============ -->
+<section class="hero" id="top" data-screen-label="01 Hero">
+  <div class="hero__grid">
+    <div>
+      <div class="hero__eyebrow"><span class="label label--light">Curs Obiective SCIM</span></div>
+      <h1 class="hero__title">Control intern managerial, <em>de la obiective la indicatori,</em> în 8 ore.</h1>
+      <p class="hero__sub">Un curs practic pentru funcționarii publici care răspund de obiectivele și indicatorii de performanță ceruți de OSGG 600/2018, și nu își permit ca documentele semnate să pice la control.</p>
+      <div class="hero__cta-row">
+        <button type="button" class="btn" data-open-reg>Rezervă un loc <span class="btn__arrow">→</span></button>
+        <a href="#program" class="btn btn--ghost">Vezi programul</a>
+      </div>
+    </div>
+    <div class="hero__art" aria-hidden="true">
+      <svg viewBox="0 0 600 480" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Ilustrație: un obiectiv specific validat la control">
+        <g class="h-line-strong" fill="#0A1628">
+          <path d="M 180,390 L 280,366 L 180,342 L 80,366 Z"/>
+          <path d="M 180,378 L 280,354 L 180,330 L 80,354 Z"/>
+          <path d="M 180,366 L 280,342 L 180,318 L 80,342 Z"/>
+          <path d="M 180,354 L 280,330 L 180,306 L 80,330 Z"/>
+          <path d="M 180,342 L 280,318 L 180,294 L 80,318 Z"/>
+        </g>
+        <g class="h-line" stroke-width=".8">
+          <path d="M 110,310 L 100,310 M 110,322 L 100,322 M 110,334 L 100,334 M 110,346 L 100,346 M 110,358 L 100,358"/>
+        </g>
+        <path d="M 230,290 C 290,250 340,220 380,200" class="h-line-dash"/>
+        <g class="h-floater">
+          <path d="M 430,200 L 590,140 L 430,80 L 270,140 Z" class="h-acc h-sheet-fill"/>
+          <g transform="translate(430 140)">
+            <circle r="42" class="h-stamp-bg"/>
+            <circle r="42" class="h-acc"/>
+            <path d="M -18,2 L -4,16 L 20,-12" class="h-acc" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"/>
+          </g>
+        </g>
+      </svg>
+    </div>
+  </div>
+</section>
+
+<!-- ============ HERO SUMMARY STRIPE ============ -->
+<aside class="summary" aria-label="Sumar curs" data-screen-label="Hero summary">
+  <div class="container">
+    <div class="summary__card">
+      <a class="summary__col" href="#program">
+        <span class="summary__k">Durată</span>
+        <span class="summary__v">2 zile · 8 ore</span>
+        <span class="summary__link">Vezi programul →</span>
+      </a>
+      <a class="summary__col" href="#cum">
+        <span class="summary__k">Format</span>
+        <span class="summary__v">Online live, Zoom</span>
+        <span class="summary__link">Cum funcționează →</span>
+      </a>
+      <a class="summary__col" href="#metodologie">
+        <span class="summary__k">Grupă</span>
+        <span class="summary__v">Maximum 18 participanți</span>
+        <span class="summary__link">Cum lucrăm →</span>
+      </a>
+      <a class="summary__col" href="#pret">
+        <span class="summary__k">Investiție</span>
+        <span class="summary__v"><span data-bind="price.amount">850</span> <span data-bind="price.currency">RON</span> <small data-bind="price.suffixShort">+ TVA / participant</small></span>
+        <span class="summary__link">Vezi prețul →</span>
+      </a>
+      <a class="summary__col" href="#cadru">
+        <span class="summary__k">Cadru de competențe</span>
+        <span class="summary__v">Aria 7 · 7.1</span>
+        <span class="summary__link">Vezi cadrul →</span>
+      </a>
+    </div>
+  </div>
+</aside>
+
+<!-- ============ 02 / PROBLEMA ============ -->
+<section class="problem" data-screen-label="02 Problema">
+  <div class="problem__inner">
+    <div class="problem__label">02 / Problema</div>
+    <div class="problem__body">
+      <p>În controlul intern managerial, responsabilitatea nu rămâne la instituție. <strong>Rămâne la persoana care a semnat.</strong></p>
+      <p>Un obiectiv formulat greșit, un indicator pe care nimeni nu îl poate măsura, o matrice de responsabilități în care nu se înțelege cine răspunde de ce. Toate par detalii administrative până în momentul în care vine auditul. Atunci devin constatări, iar constatările au un nume și o semnătură în dreptul lor.</p>
+      <p>Cei mai mulți oameni care lucrează cu SCIM nu au învățat niciodată sistematic cum se construiește un obiectiv specific corect sau cum se alege un indicator pe care îl poți raporta fără să te contrazici singur peste șase luni. Au preluat modele, le-au copiat, le-au adaptat după ureche. Funcționează până când cineva le citește cu atenție.</p>
+      <p>Cursul acesta pleacă exact de la zona în care apar problemele: formularea obiectivelor, alegerea indicatorilor și stabilirea clară a responsabilităților. Nu teorie despre OSGG 600/2018, ci munca pe care o ai de făcut după ce închizi pagina cu legislația.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 03 / OUTCOMES ============ -->
+<section class="section section--paper" id="outcomes" data-screen-label="03 Outcomes">
+  <div class="container">
+    <div class="section__head">
+      <div class="section__num">03 / Rezultate</div>
+      <div>
+        <h2 class="section__h">Ce vei putea face după curs.</h2>
+        <p class="section__lede">Patru lucruri pe care le aplici imediat, pe documentele propriei instituții, în sistemul de control intern cerut de OSGG 600/2018.</p>
+      </div>
+    </div>
+    <div class="outcomes">
+      <article class="outcome">
+        <div class="outcome__num">01</div>
+        <h3 class="outcome__h">Formulezi obiective care trec de control.</h3>
+        <p class="outcome__b">Vei ști să identifici obiectivele generale ale instituției și să le transformi în obiective specifice formulate corect, după metoda SMART, astfel încât să reziste la o citire atentă din partea auditului.</p>
+      </article>
+      <article class="outcome">
+        <div class="outcome__num">02</div>
+        <h3 class="outcome__h">Construiești indicatori pe care chiar îi poți măsura.</h3>
+        <p class="outcome__b">Vei putea alege indicatori de performanță relevanți și măsurabili, vei face distincția între un indicator bun și unul pe care nu îl poți raporta, și vei ști să îi corelezi cu obiectivele pe care le susțin.</p>
+      </article>
+      <article class="outcome">
+        <div class="outcome__num">03</div>
+        <h3 class="outcome__h">Stabilești cine răspunde, fără ambiguități.</h3>
+        <p class="outcome__b">Vei completa o matrice de responsabilități clară, în care se vede cine coordonează, cine execută, cine monitorizează și cine raportează, și vei înțelege cum circulă responsabilitatea în interiorul instituției.</p>
+      </article>
+      <article class="outcome">
+        <div class="outcome__num">04</div>
+        <h3 class="outcome__h">Îți acoperi propria semnătură.</h3>
+        <p class="outcome__b">Vei pleca de la curs cu un model complet de organizare a activității unui compartiment, de la obiectiv la indicator, responsabil și termen, pe care îl poți folosi direct ca dovadă a unei abordări corecte în fața controlului.</p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 04 / CADRUL DE COMPETENȚE DIGITALE ============ -->
+<section class="section section--white" id="cadru" data-screen-label="04 Cadru competente">
+  <div class="container">
+    <div class="section__head">
+      <div class="section__num">04 / Cadru</div>
+      <div>
+        <h2 class="section__h">Cadrul de Competențe Digitale.</h2>
+        <p class="section__lede">Competențele din acest curs se regăsesc în competența 7.1, Gestionarea performanței și a operațiunilor, din Aria 7 a Cadrului de competențe digitale propus pentru funcționarii publici din România. Este o mapare de conținut, nu o certificare. Certificatul rămâne un certificat de participare pentru formare continuă.</p>
+      </div>
+    </div>
+    <div class="framework">
+      <div class="framework__col">
+        <table class="fw-table">
+          <thead>
+            <tr><th>Cod</th><th>Competență</th></tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="code">7.1</td>
+              <td class="comp">Gestionarea performanței și a operațiunilor</td>
+            </tr>
+          </tbody>
+        </table>
+        <p class="fw-note">Codul și descriptorul provin din cadrul propus pentru funcționarii publici din România, aflat încă în dezbatere. Aria 7 este definită pentru funcțiile de management, iar nivelurile A, B și C din cadru indică treapta de responsabilitate managerială, nu gradul de dificultate. De aceea cursul se mapează pe competență, fără a afirma un nivel.</p>
+      </div>
+      <div>
+        <figure class="fw-ph">
+          <div class="fw-ph__canvas">
+            <div class="fw-ph__grid" aria-hidden="true">
+              <div class="fw-ph__cell">1</div>
+              <div class="fw-ph__cell">2</div>
+              <div class="fw-ph__cell">3</div>
+              <div class="fw-ph__cell">4</div>
+              <div class="fw-ph__cell">5</div>
+              <div class="fw-ph__cell">6</div>
+              <div class="fw-ph__cell is-on">7</div>
+            </div>
+            <div class="fw-ph__tag">SCHEMĂ ORIENTATIVĂ · Cadrul propus · 7 arii</div>
+          </div>
+          <figcaption class="fw-ph__meta">
+            <span>Aria 7 · competența 7.1</span>
+            <span class="ph">[Schemă orientativă, diagrama din cadrul propus, de adăugat]</span>
+          </figcaption>
+        </figure>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 05 / METODOLOGIE ============ -->
+<section class="section section--paper" id="metodologie" data-screen-label="05 Metodologie">
+  <div class="container">
+    <div class="section__head">
+      <div class="section__num">05 / Metodologie</div>
+      <div>
+        <h2 class="section__h">Se învață făcând, nu ascultând.</h2>
+      </div>
+    </div>
+    <div class="method">
+      <div>
+        <div class="method__intro">
+          <p>Cursurile de SCIM din sectorul public au reputația de a fi sesiuni în care cineva citește legislația cu voce tare timp de opt ore. Acesta nu este genul acela de curs.</p>
+          <p>Fiecare noțiune este urmată imediat de o aplicație pe care o faci tu, pe exemple din activitatea reală a instituțiilor publice. Transformi obiective generale în obiective specifice. Analizezi indicatori formulați greșit și îi reconstruiești. Completezi o matrice de responsabilități pornind de la o situație concretă. Lucrezi în echipă pe un studiu de caz și îți prezinți soluția.</p>
+        </div>
+        <ul class="method__methods">
+          <li><span class="mk">01</span><span>Ateliere aplicative pe documente reale</span></li>
+          <li><span class="mk">02</span><span>Exerciții de reformulare a obiectivelor și indicatorilor</span></li>
+          <li><span class="mk">03</span><span>Studii de caz din practica instituțiilor publice</span></li>
+          <li><span class="mk">04</span><span>Simulări de evaluare a realizării obiectivelor</span></li>
+          <li><span class="mk">05</span><span>Jocuri de rol pe stabilirea responsabilităților</span></li>
+          <li><span class="mk">06</span><span>Mini-proiect final pe echipe</span></li>
+        </ul>
+      </div>
+      <aside class="pullquote">
+        <p class="lead">La final nu pleci cu un suport de curs pe care nu îl vei deschide niciodată. <em>Pleci cu lucruri pe care le-ai construit deja cu mâna ta.</em></p>
+        <span class="credit">Principiul cursului</span>
+      </aside>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 06 / CUM FUNCȚIONEAZĂ ============ -->
+<section class="section section--white" id="cum" data-screen-label="06 Cum functioneaza">
+  <div class="container">
+    <div class="section__head">
+      <div class="section__num">06 / Cum funcționează</div>
+      <div>
+        <h2 class="section__h">De la înscriere la certificat.</h2>
+        <p class="section__lede">Tot fluxul, scris ca să nu fie nevoie să-l ceri pe email.</p>
+      </div>
+    </div>
+    <div class="process">
+      <div class="step"><div class="step__n">01</div><div class="step__body"><h3 class="step__h">Te înscrii online</h3><p class="step__d">Completezi formularul de pe această pagină. Nu plătești nimic în acel moment.</p></div></div>
+      <div class="step"><div class="step__n">02</div><div class="step__body"><h3 class="step__h">Primești factura proformă</h3><p class="step__d">Îți trimitem pe email o factură proformă pe care instituția o poate procesa prin transfer bancar, inclusiv din trezorerie.</p></div></div>
+      <div class="step"><div class="step__n">03</div><div class="step__body"><h3 class="step__h">Completezi formularul de diagnostic</h3><p class="step__d">Cu câteva zile înainte de curs primești cinci întrebări scurte despre situația ta concretă, ca trainerul să adapteze exemplele la ce ai tu nevoie.</p></div></div>
+      <div class="step"><div class="step__n">04</div><div class="step__body"><h3 class="step__h">Participi la cele două sesiuni live</h3><p class="step__d">Două zile, câte patru ore, pe Zoom. Camera deschisă, lucru efectiv, întrebări în timp real.</p></div></div>
+      <div class="step"><div class="step__n">05</div><div class="step__body"><h3 class="step__h">Primești certificatul și suportul aplicativ</h3><p class="step__d">După curs primești certificatul de participare, modelele de lucru și accesul la cele patru sesiuni lunare de întrebări și răspunsuri pentru implementare.</p></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 07 / TRAINER ============ -->
+<section class="section section--paper" id="trainer" data-screen-label="07 Trainer">
+  <div class="container">
+    <div class="section__head">
+      <div class="section__num">07 / Trainer</div>
+      <div>
+        <h2 class="section__h">Cine livrează cursul.</h2>
+      </div>
+    </div>
+    <div class="trainer-solo">
+      <div class="trainer-solo__portrait" data-ph="PORTRET · Marilena Manta [F2]"><div class="ring"></div></div>
+      <div class="trainer-solo__body">
+        <div class="trainer-solo__eyebrow">Trainer</div>
+        <h3 class="trainer-solo__name">Marilena Manta</h3>
+        <p class="trainer-solo__bio">Marilena Manta a lucrat cu precădere în mediul public, unde s-a ocupat de documentarea și implementarea sistemelor de management al calității și de auditare internă. Este lector certificat de Institutul Național de Control Intern și de Autoritatea Națională pentru Calificări, iar în prezent livrează cursuri de audit intern, etică și integritate, control financiar preventiv și regimul incompatibilităților și conflictului de interese.</p>
+        <div class="trainer-solo__cred">Dublă certificare de la chiar instituțiile care contează pentru un dosar SCIM: <b>Institutul Național de Control Intern</b> și <b>Autoritatea Națională pentru Calificări</b>.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 08 / PROGRAM ============ -->
+<section class="section section--white" id="program" data-screen-label="08 Program">
+  <div class="container">
+    <div class="section__head">
+      <div class="section__num">08 / Program</div>
+      <div>
+        <h2 class="section__h">Ce se întâmplă în cele două zile.</h2>
+        <p class="section__lede">Două zile, câte patru ore, de la 10:00 la 14:00, de la obiectiv la monitorizare.</p>
+      </div>
+    </div>
+    <div class="program">
+      <div class="day">
+        <div class="day__tag">Ziua I · Obiective și metoda SMART</div>
+        <h3 class="day__h">Obiective generale, obiective specifice și metoda SMART</h3>
+        <div class="day__time">10:00 – 14:00 · 4 ore</div>
+        <p class="day__desc">Pleci de la diferența reală dintre un obiectiv și o activitate, ceva ce se confundă mai des decât ar trebui. Identifici obiectivele generale ale instituției pornind de la legislație, atribuții și nevoile comunității, apoi le transformi în obiective specifice formulate după metoda SMART. Lucrezi pe exemple greșite, le reconstruiești, și înțelegi lanțul logic care leagă obiectivul general de obiectivul specific, de activitate și de rezultat. Ziua se închide cu un studiu de caz aplicat pe activitatea unui compartiment.</p>
+      </div>
+      <div class="day">
+        <div class="day__tag">Ziua II · Indicatori, responsabilități, monitorizare</div>
+        <h3 class="day__h">Indicatori de performanță, responsabilități și monitorizare</h3>
+        <div class="day__time">10:00 – 14:00 · 4 ore</div>
+        <p class="day__desc">A doua zi construiești indicatorii pentru obiectivele formulate în prima zi. Faci distincția între un indicator pe care îl poți măsura și unul care sună bine dar nu se poate raporta. Completezi matricea de responsabilități, stabilești cine coordonează, execută, monitorizează și raportează, apoi corelezi indicatorii cu responsabilitățile. Ziua se încheie cu un mini-proiect pe echipe: un model complet de organizare a activității unui compartiment, de la obiectiv la monitorizare.</p>
+      </div>
+    </div>
+    <div class="program-materials">
+      <h4>Materiale incluse</h4>
+      <ul>
+        <li>Suport de curs aplicativ</li>
+        <li>Fișe de lucru</li>
+        <li>Model de obiective și indicatori</li>
+        <li>Matrice de responsabilități</li>
+        <li>Studii de caz</li>
+        <li>Certificat de participare</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 09 / TESTIMONIALE (ascuns la lansare) ============ -->
+<section class="section section--paper" id="testimoniale" data-screen-label="09 Testimoniale">
+  <div class="container">
+    <div class="section__head">
+      <div class="section__num">09 / Cursanți</div>
+      <div>
+        <h2 class="section__h">Ce spun cursanții Harrison.</h2>
+        <p class="t-lede">Impresii reale de la participanți din programele de formare Harrison. Provin din alte cursuri ale noastre, nu din această sesiune anume, și le păstrăm până când strângem feedback din prima serie a acestui curs.</p>
+      </div>
+    </div>
+    <div class="testimonials">
+      <article class="t-card">
+        <div class="q" aria-hidden="true">„</div>
+        <p>Mi-a plăcut mult modul în care lectorul a reușit să explice procesul, a fost pe înțelesul meu.</p>
+        <div class="who">
+          <div class="name">Adina T.</div>
+          <div class="org">Cursantă Harrison</div>
+        </div>
+      </article>
+      <article class="t-card">
+        <div class="q" aria-hidden="true">„</div>
+        <p>Cursul acesta a fost o ocazie de a-mi reîmprospăta cunoștințele pe care le aveam deja, dar mai ales de a interacționa cu colegi din alte orașe și de a împărtăși fiecare câte puțin din experiențele profesionale. Recomand.</p>
+        <div class="who">
+          <div class="name">Roxana N.</div>
+          <div class="org">Cursantă Harrison</div>
+        </div>
+      </article>
+      <article class="t-card">
+        <div class="q" aria-hidden="true">„</div>
+        <p>Este unul dintre cele mai practice seminarii la care am participat. Am plecat cu informații actualizate, practice, aplicabile, care chiar mă ajută la locul de muncă. Mulțumesc!</p>
+        <div class="who">
+          <div class="name">Mihail C.</div>
+          <div class="org">Cursant Harrison</div>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 10 / PREȚURI ============ -->
+<section class="section section--white" id="pret" data-screen-label="10 Pret">
+  <div class="container">
+    <div class="section__head">
+      <div class="section__num">10 / Preț</div>
+      <div>
+        <h2 class="section__h">Un preț, totul inclus.</h2>
+        <p class="section__lede">Fără tier-uri de funcționalități. Reducerile de volum și de pachet se aplică automat în factura proformă.</p>
+      </div>
+    </div>
+    <div class="pricing">
+      <div class="price-left">
+        <div class="tag">Înscriere participant</div>
+        <h3 class="name">Curs Obiective SCIM</h3>
+        <div class="amount"><span data-bind="price.amount">850</span><span class="currency" data-bind="price.currency">RON</span><small data-bind="price.suffixShort">+ TVA / participant</small></div>
+        <p class="price-note">Preț per participant, 850 RON plus TVA. Factura proformă și factura fiscală sunt emise conform regimului fiscal aplicabil.</p>
+        <div class="price-discounts">
+          <div class="discount"><div class="pct">−15%</div><div class="txt">Pentru 3 sau mai mulți participanți din aceeași instituție.</div></div>
+          <div class="discount"><div class="pct">−10%</div><div class="txt">La fiecare curs, dacă te înscrii și la cursul de Achiziții Publice.</div></div>
+        </div>
+      </div>
+      <div class="price-right">
+        <h4>Ce este inclus</h4>
+        <ul>
+          <li>Două sesiuni live pe Zoom, câte patru ore</li>
+          <li>Suport de curs, fișe de lucru și modele de documente</li>
+          <li>Matrice de responsabilități și model de obiective și indicatori</li>
+          <li>Certificat de participare</li>
+          <li>Patru sesiuni lunare de întrebări și răspunsuri după curs, pentru implementare</li>
+          <li>Formular de diagnostic înainte de curs</li>
+        </ul>
+        <button type="button" class="btn" data-open-reg>Rezervă un loc <span class="btn__arrow">→</span></button>
+      </div>
+    </div>
+    <p class="price-trust">Răspunderea pentru un sistem de control intern formulat greșit este personală. <b>La 850 RON plus TVA, cursul costă mai puțin decât o singură constatare pe care o eviți.</b></p>
+  </div>
+</section>
+
+<!-- ============ 11 / FINANȚARE ȘI PLATĂ ============ -->
+<section class="section section--gray" id="finantare" data-screen-label="11 Finantare">
+  <div class="container">
+    <div class="section__head">
+      <div class="section__num">11 / Finanțare și plată</div>
+      <div>
+        <h2 class="section__h">Cum plătește instituția ta.</h2>
+        <p class="section__lede">Informațiile necesare pentru aprobarea internă și pentru documentele de plată. Câmpurile marcate sunt placeholdere și vor fi completate cu datele oficiale ale Harrison Consulting SRL.</p>
+      </div>
+    </div>
+    <div class="funding">
+      <div class="fund-col">
+        <h3 data-num="A">Cum se finanțează</h3>
+        <p>Angajatorii din sectorul public au obligația de a asigura formarea profesională a personalului cel puțin o dată la doi ani. Participarea la acest curs intră în această categorie și poate fi acoperită din bugetul de formare al instituției.</p>
+        <p>Baza legală: <span class="ph">[referință act normativ · de completat]</span>. Linia bugetară recomandată: <span class="ph">[cod articol bugetar · de completat]</span>.</p>
+        <p>Surse de finanțare: <span class="ph">[instrumente de finanțare europeană și națională active · de completat]</span>.</p>
+      </div>
+      <div class="fund-col">
+        <h3 data-num="B">Cum se plătește</h3>
+        <p style="margin-bottom:6px">După înscriere primești o factură proformă. Instituția o poate procesa prin transfer bancar obișnuit sau prin trezorerie. Acesta este fluxul standard pentru instituțiile publice din România și nu necesită card sau plată online în momentul înscrierii.</p>
+        <ul class="fund-list">
+          <li><div class="k">Furnizor</div><div class="v">Harrison Consulting SRL</div></li>
+          <li><div class="k">CUI</div><div class="v"><span class="ph">[CUI · de completat]</span></div></li>
+          <li><div class="k">IBAN trezorerie</div><div class="v"><span class="ph">[IBAN trezorerie · de completat]</span></div></li>
+          <li><div class="k">IBAN bancă</div><div class="v"><span class="ph">[IBAN bancă comercială · de completat]</span></div></li>
+          <li><div class="k">TVA</div><div class="v"><span class="ph">[regim TVA · de completat]</span></div></li>
+          <li><div class="k">Flux plată</div><div class="v">Proformă → aprobare internă → ordonanțare → plată → factură fiscală</div></li>
+          <li><div class="k">Documente</div><div class="v">Contract de servicii, proces-verbal, adeverință de servicii prestate, factură fiscală</div></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 12 / FAQ ============ -->
+<section class="section section--paper" id="faq" data-screen-label="12 FAQ">
+  <div class="container">
+    <div class="section__head">
+      <div class="section__num">12 / Întrebări frecvente</div>
+      <div>
+        <h2 class="section__h">Întrebări frecvente.</h2>
+      </div>
+    </div>
+    <div class="faq" id="faqList"></div>
+  </div>
+</section>
+
+<!-- ============ 13 / DESPRE HARRISON ============ -->
+<section class="section section--white" data-screen-label="13 Despre Harrison">
+  <div class="container">
+    <div class="cred__top">
+      <div>
+        <div class="section__num" style="margin-bottom:20px;border-top-color:var(--ink)">13 / Despre Harrison</div>
+        <h2 class="cred__h">Harrison Consulting, <em>formare profesională și soluții digitale pentru sectorul public.</em></h2>
+      </div>
+      <p class="cred__lede">Harrison Consulting SRL lucrează cu instituții publice din România de peste 14 ani. Programele de formare și soluțiile digitale sunt construite de la zero pentru specificul administrației publice: primării, spitale, școli, autorități și agenții. Nu preluăm soluții din mediul privat și nu le adaptăm.</p>
+    </div>
+    <div class="cred__stats">
+      <div class="cred__stat"><span class="k">Experiență</span><span class="v">14</span><span class="vsub">ani în sectorul public</span></div>
+      <div class="cred__stat"><span class="k">Clienți unici</span><span class="v">5.500</span><span class="vsub">instituții publice</span></div>
+      <div class="cred__stat"><span class="k">Cursuri</span><span class="v">4.000+</span><span class="vsub">desfășurate până în prezent</span></div>
+      <div class="cred__stat"><span class="k">Cursanți</span><span class="v">15.000+</span><span class="vsub">instruiți la nivel național</span></div>
+    </div>
+    <div class="cred__foot">
+      <a class="brand" href="https://harrison.ro" target="_blank" rel="noopener">
+        <img src="assets/harrison-logo.png" alt="Harrison Consulting" style="height:32px;width:auto;display:block;">
+      </a>
+      <a class="text" href="https://harrison.ro" target="_blank" rel="noopener">harrison.ro →</a>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 14 / CROSS-SELL ============ -->
+<section class="section section--tight section--paper" data-screen-label="14 Cross-sell">
+  <div class="container">
+    <div class="section__head">
+      <div class="section__num">14 / Te-ar putea interesa</div>
+      <div>
+        <h2 class="section__h">Tot din zona responsabilității tale.</h2>
+        <p class="section__lede">Dacă lucrezi cu obiective, indicatori și control intern, probabil te intersectezi și cu achizițiile publice. Cursul de Achiziții Publice acoperă cadrul legal și lucrul efectiv în SEAP, cu aceeași abordare aplicativă.</p>
+      </div>
+    </div>
+    <div class="crosssell">
+      <a href="Curs Achizitii Publice.html" class="cs-card cs-card--primary">
+        <div class="cs-card__tag">Curs live · Complementar</div>
+        <h3 class="cs-card__h">Achiziții Publice, de la cadrul legal la SEAP</h3>
+        <p class="cs-card__d">Doi traineri, accent pe lucrul real în platforma SEAP, nu pe teorie. Același format aplicativ, 2 zile × 4 ore, online live, grupă închisă pe sector public.</p>
+        <div class="cs-card__meta">
+          <span>2 zile × 4 ore</span>
+          <span>Online live, Zoom</span>
+          <span>−10% în combinație cu SCIM</span>
+        </div>
+        <span class="cs-card__link">Vezi detalii despre cursul de Achiziții Publice</span>
+      </a>
+      <a href="https://cursuri.harrison.ro" target="_blank" rel="noopener" class="cs-card cs-card--secondary">
+        <div class="cs-card__tag">Formare asincronă · Permanent disponibil</div>
+        <h3 class="cs-card__h">Biblioteca de cursuri Harrison</h3>
+        <p class="cs-card__d">Cursuri digitale pe teme de administrație publică, disponibile oricând. Audit intern, financiar public, resurse umane, control intern, GDPR pentru instituții publice. Certificat de participare la final.</p>
+        <div class="cs-card__meta">
+          <span>40+ cursuri</span>
+          <span>Ritm propriu</span>
+          <span>cursuri.harrison.ro</span>
+        </div>
+        <span class="cs-card__link">Explorează biblioteca Harrison</span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 16 / ARTICOLE ============ -->
+<section class="section section--white" id="articole" data-screen-label="16 Articole">
+  <div class="container">
+    <div class="section__head">
+      <div class="section__num">16 / Articole</div>
+      <div>
+        <h2 class="section__h">Resurse despre control intern.</h2>
+        <p class="section__lede">Articole practice despre obiective, indicatori și cadrul de competențe. Scrise de lectorul cursului, pentru funcționarii publici care lucrează cu SCIM.</p>
+      </div>
+    </div>
+    <div class="articles">
+      <a class="article-card" href="articole/obiectiv-activitate-rezultat.html">
+        <div class="article-card__tag">Obiective</div>
+        <h3 class="article-card__h">Obiectiv general, obiectiv specific, activitate, rezultat: cum le diferențiezi corect</h3>
+        <p class="article-card__excerpt">Cea mai frecventă confuzie în control intern managerial, explicată cu testul rapid de diferențiere și lanțul logic complet.</p>
+        <div class="article-card__foot">
+          <span class="article-card__more">Citește articolul</span>
+          <span class="article-card__time">7 min</span>
+        </div>
+      </a>
+      <a class="article-card article-card--seap" href="articole/obiective-smart-scim.html">
+        <div class="article-card__tag">Metoda SMART</div>
+        <h3 class="article-card__h">Cum scrii obiective SMART pentru SCIM: exemple corecte și formulări greșite</h3>
+        <p class="article-card__excerpt">Criteriu cu criteriu, cu un obiectiv slab transformat în unul SMART pe un caz real din administrația publică.</p>
+        <div class="article-card__foot">
+          <span class="article-card__more">Citește articolul</span>
+          <span class="article-card__time">7 min</span>
+        </div>
+      </a>
+      <a class="article-card article-card--law" href="articole/indicatori-matrice-responsabilitati.html">
+        <div class="article-card__tag">Indicatori</div>
+        <h3 class="article-card__h">Indicatori de performanță și matricea responsabilităților în SCIM: ghid practic</h3>
+        <p class="article-card__excerpt">Tipurile de indicatori, cum alegi indicatorul potrivit și cum completezi matricea care leagă obiectivele de oamenii care răspund.</p>
+        <div class="article-card__foot">
+          <span class="article-card__more">Citește articolul</span>
+          <span class="article-card__time">8 min</span>
+        </div>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 17 / CTA FINAL ============ -->
+<section class="final" id="cta-final" data-screen-label="17 CTA Final">
+  <div class="container">
+    <div class="final__inner">
+      <div class="final__seats">Sesiune recurentă · maximum 18 participanți</div>
+      <h2>Locuri disponibile: <em>maximum 18 participanți.</em></h2>
+      <p class="final__date">Următoarea sesiune: <span data-bind="hero.date">18-19 iunie 2026</span>. Dacă vrei să afli mai multe înainte de a decide, scrie-ne la <span class="ph" style="color:rgba(255,255,255,.6)">[email de contact · de completat]</span> și îți răspundem în aceeași zi.</p>
+      <div class="final__cta">
+        <button type="button" class="btn" data-open-reg>Rezervă un loc <span class="btn__arrow">→</span></button>
+        <a href="#footer-contact" class="btn btn--ghost" style="margin-left:14px">Scrie-ne</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ REGISTRATION DRAWER ============ -->
+<div class="reg-overlay" id="regOverlay" aria-hidden="true"></div>
+<aside class="reg-drawer" id="regDrawer" role="dialog" aria-modal="true" aria-labelledby="regTitle" aria-hidden="true">
+  <header class="reg-drawer__head">
+    <div class="reg-drawer__title">Rezervă un loc</div>
+    <button type="button" class="reg-drawer__close" id="regClose" aria-label="Închide formularul"></button>
+  </header>
+
+  <div class="reg-drawer__body" id="regBody">
+    <h2 class="reg-drawer__h" id="regTitle">Înscriere la curs.</h2>
+    <p class="reg-drawer__lede">Completați datele de mai jos. Primiți factura proformă în 24 de ore lucrătoare. Nu se facturează niciun cost la acest pas.</p>
+
+    <div class="reg-summary">
+      <div><span class="k">Curs</span><span class="v">Obiective SCIM</span></div>
+      <div><span class="k">Format</span><span class="v">Online live, Zoom</span></div>
+      <div><span class="k">Durată</span><span class="v">2 zile × 4 ore</span></div>
+      <div><span class="k">Preț</span><span class="v"><span data-bind="price.amount">850</span> <span data-bind="price.currency">RON</span> + TVA / pers.</span></div>
+    </div>
+
+    <form class="reg-form" id="regForm" novalidate>
+      <div class="reg-row reg-row--2">
+        <div class="reg-field">
+          <label for="reg-name">Nume și prenume <span class="req">*</span></label>
+          <input id="reg-name" name="name" type="text" autocomplete="name" required />
+          <div class="err-msg"></div>
+        </div>
+        <div class="reg-field">
+          <label for="reg-role">Funcție în instituție <span class="req">*</span></label>
+          <input id="reg-role" name="role" type="text" placeholder="ex: Responsabil SCIM" required />
+          <div class="err-msg"></div>
+        </div>
+      </div>
+
+      <div class="reg-row reg-row--2">
+        <div class="reg-field">
+          <label for="reg-email">Email instituțional <span class="req">*</span></label>
+          <input id="reg-email" name="email" type="email" autocomplete="email" required />
+          <div class="err-msg"></div>
+        </div>
+        <div class="reg-field">
+          <label for="reg-phone">Telefon <span class="req">*</span></label>
+          <input id="reg-phone" name="phone" type="tel" autocomplete="tel" placeholder="+40 7XX XXX XXX" required />
+          <div class="err-msg"></div>
+        </div>
+      </div>
+
+      <div class="reg-field">
+        <label for="reg-institution">Instituția <span class="req">*</span></label>
+        <input id="reg-institution" name="institution" type="text" placeholder="ex: Primăria Municipiului ..." required />
+        <div class="err-msg"></div>
+      </div>
+
+      <div class="reg-row reg-row--2">
+        <div class="reg-field">
+          <label for="reg-cui">CUI instituție</label>
+          <input id="reg-cui" name="cui" type="text" placeholder="opt., pentru proforma" />
+          <div class="err-msg"></div>
+        </div>
+        <div class="reg-field">
+          <label for="reg-participants">Număr participanți <span class="req">*</span></label>
+          <select id="reg-participants" name="participants" required>
+            <option value="1">1 participant</option>
+            <option value="2">2 participanți</option>
+            <option value="3+">3 sau mai mulți (−15%)</option>
+          </select>
+          <div class="err-msg"></div>
+        </div>
+      </div>
+
+      <div class="reg-field">
+        <label for="reg-session">Sesiune dorită <span class="req">*</span></label>
+        <select id="reg-session" name="session" required>
+          <option value="iunie-2026">Sesiunea 18-19 iunie 2026</option>
+          <option value="serie-viitoare">Listă prioritară pentru o serie viitoare</option>
+        </select>
+        <div class="err-msg"></div>
+      </div>
+
+      <div class="reg-field">
+        <label for="reg-notes">Observații sau întrebări pre-curs</label>
+        <textarea id="reg-notes" name="notes" placeholder="opt., ex: cazuri concrete pe care ai vrea să le abordezi"></textarea>
+        <div class="err-msg"></div>
+      </div>
+
+      <div class="reg-consent">
+        <input type="checkbox" id="reg-consent" name="consent" required />
+        <label for="reg-consent">Sunt de acord cu prelucrarea datelor personale conform <a href="#">politicii de confidențialitate</a> și confirm că informațiile transmise sunt corecte.</label>
+      </div>
+    </form>
+  </div>
+
+  <div class="reg-success" id="regSuccess">
+    <div class="reg-success__check" aria-hidden="true">✓</div>
+    <h3>Înscriere primită.</h3>
+    <p>Mulțumim. <strong id="regSuccessName">Te</strong> vom contacta în următoarele 24 de ore lucrătoare cu factura proformă și confirmarea oficială a locului.</p>
+    <div class="next">
+      <strong>Pașii următori</strong>
+      <ol>
+        <li>Primești factura proformă pe email în 24 de ore.</li>
+        <li>Instituția o procesează prin transfer bancar sau trezorerie.</li>
+        <li>Înainte de curs primești formularul de diagnostic și link-ul Zoom.</li>
+      </ol>
+    </div>
+  </div>
+
+  <footer class="reg-drawer__foot" id="regFoot">
+    <button type="submit" form="regForm" class="btn" id="regSubmit">Trimite înscrierea <span class="btn__arrow">→</span></button>
+    <div class="note">Niciun cost facturat la acest pas. Locul este blocat după confirmarea proformei.</div>
+  </footer>
+</aside>
+
+<!-- ============ 16 / FOOTER ============ -->
+<footer class="footer" id="footer-contact">
+  <div class="container">
+    <div class="footer__grid">
+      <div class="footer__col">
+        <div class="footer__brand">
+          <div class="brand__mark">H</div>
+          <div class="brand__name" style="color:#fff">Harrison<span style="color:rgba(255,255,255,.5)"> / Consulting</span></div>
+        </div>
+        <p class="footer__about">Harrison Consulting SRL oferă programe de formare profesională pentru sectorul public din România.</p>
+      </div>
+      <div class="footer__col">
+        <h5>Contact</h5>
+        <ul>
+          <li><span class="ph">[Adresă sediu · de completat]</span></li>
+          <li>CUI: <span class="ph">[de completat]</span></li>
+          <li>Nr. înregistrare: <span class="ph">[J · de completat]</span></li>
+          <li><span class="ph">[email de contact · de completat]</span></li>
+          <li><span class="ph">[telefon · de completat]</span></li>
+        </ul>
+      </div>
+      <div class="footer__col">
+        <h5>Cursuri</h5>
+        <ul>
+          <li><a href="#top">Obiective SCIM</a></li>
+          <li><a href="Curs Achizitii Publice.html">Achiziții Publice</a></li>
+          <li><a href="https://harrison.ro" target="_blank" rel="noopener">harrison.ro</a></li>
+        </ul>
+      </div>
+      <div class="footer__col">
+        <h5>Legal</h5>
+        <ul>
+          <li><a href="#">Politică de confidențialitate</a></li>
+          <li><a href="#">Termeni și condiții</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer__bottom">
+      <div>© 2026 Harrison Consulting SRL · Toate drepturile rezervate.</div>
+      <div>Curs Obiective SCIM · pagină de curs</div>
+    </div>
+  </div>
+</footer>
+
+
+<script>
+  /* ===================================================================
+     CONTENT  ::  single source of truth for editable copy.
+     Edit values here; the page renders from them on load.
+     =================================================================== */
+  const CONTENT = {
+    course: "SCIM",
+    hero: {
+      eyebrow: "Curs Obiective SCIM",
+      title: "Control intern managerial,",
+      titleEm: "de la obiective la indicatori, în 8 ore.",
+      date: "18-19 iunie 2026"
+    },
+    price: {
+      amount: "850",
+      currency: "RON",
+      suffixShort: "+ TVA / participant",
+      discounts: [
+        "−15% pentru 3 sau mai mulți participanți din aceeași instituție.",
+        "−10% per curs la înscrierea simultană la ambele cursuri (SCIM + AP)."
+      ]
+    },
+    instructor: {
+      name: "Marilena Manta",
+      role: "Lector certificat INCI · ANC",
+      bio: "Marilena Manta a lucrat cu precădere în mediul public, unde s-a ocupat de documentarea și implementarea sistemelor de management al calității și de auditare internă. Este lector certificat de Institutul Național de Control Intern și de Autoritatea Națională pentru Calificări, iar în prezent livrează cursuri de audit intern, etică și integritate, control financiar preventiv și regimul incompatibilităților și conflictului de interese."
+    },
+    sessions: [
+      { label: "18-19 iunie 2026", status: "open", value: "iunie-2026", seats: "maximum 18" }
+    ],
+    framework: {
+      aria: "Aria 7",
+      ariaLabel: "Management și leadership digital în administrația publică",
+      competencies: [
+        { code: "7.1", name: "Gestionarea performanței și a operațiunilor" }
+      ],
+      note: "Competențele din acest curs se regăsesc în competența 7.1 din Aria 7 a Cadrului de competențe digitale propus pentru funcționarii publici din România. Este o mapare de conținut, nu o certificare."
+    },
+    faq: [
+      ['Cursul este valabil pentru orice tip de instituție publică?',
+       'Da. Conceptele și aplicațiile se potrivesc oricărei instituții care are obligația de a implementa control intern managerial sub OSGG 600/2018: primării, spitale, școli, prefecturi, autorități și agenții. Exemplele se adaptează contextului tău prin formularul de diagnostic completat înainte de curs.'],
+      ['Ce fel de certificat primesc?',
+       'Un certificat de participare. Cursul este formare continuă, livrată de un lector cu dublă certificare, de la Institutul Național de Control Intern și de la Autoritatea Națională pentru Calificări.'],
+      ['Trebuie să plătesc la înscriere?',
+       'Nu. Te înscrii, primești factura proformă, iar instituția o procesează prin transfer bancar sau trezorerie. <span class="ph">[Politica de rezervare a locului · de confirmat]</span>'],
+      ['Cum se desfășoară, fizic sau online?',
+       'Online, live, pe Zoom. Două zile, câte patru ore, între 10:00 și 14:00. Nu este o înregistrare pe care o asculți singur, este lucru efectiv cu trainerul în timp real. <span class="ph">[Acces la înregistrare · de confirmat]</span>'],
+      ['Avem mai mulți colegi de la aceeași instituție. Există o reducere?',
+       'Da. Pentru 3 sau mai mulți participanți din aceeași instituție se aplică o reducere de 15%. Dacă instituția se înscrie și la cursul de Achiziții Publice, se adaugă încă 10% la fiecare curs.'],
+      ['Când are loc următoarea sesiune?',
+       'Următoarea sesiune are loc pe 18-19 iunie 2026. Dacă data afișată nu îți convine, scrie-ne și te anunțăm de seria următoare.']
+    ]
+  };
+
+  // Render any element carrying data-bind="a.b.c" from CONTENT.
+  function applyContent(){
+    document.querySelectorAll('[data-bind]').forEach(function(el){
+      const path = el.getAttribute('data-bind').split('.');
+      let v = CONTENT;
+      for(let i=0;i<path.length;i++){ v = v ? v[path[i]] : undefined; }
+      if(v !== undefined && v !== null && typeof v !== 'object'){ el.textContent = v; }
+    });
+  }
+  applyContent();
+
+  // ---------- Registration Drawer ----------
+  const regOverlay = document.getElementById('regOverlay');
+  const regDrawer = document.getElementById('regDrawer');
+  const regClose = document.getElementById('regClose');
+  const regForm = document.getElementById('regForm');
+  const regBody = document.getElementById('regBody');
+  const regSuccess = document.getElementById('regSuccess');
+  const regFoot = document.getElementById('regFoot');
+  let lastFocus = null;
+
+  function openReg(){
+    lastFocus = document.activeElement;
+    regOverlay.classList.add('open');
+    regDrawer.classList.add('open');
+    regOverlay.setAttribute('aria-hidden','false');
+    regDrawer.setAttribute('aria-hidden','false');
+    document.body.classList.add('reg-open');
+    setTimeout(function(){ const first = regDrawer.querySelector('input,select,textarea,button'); if(first) first.focus(); }, 200);
+  }
+  function closeReg(){
+    regOverlay.classList.remove('open');
+    regDrawer.classList.remove('open');
+    regOverlay.setAttribute('aria-hidden','true');
+    regDrawer.setAttribute('aria-hidden','true');
+    document.body.classList.remove('reg-open');
+    if(lastFocus && lastFocus.focus) lastFocus.focus();
+  }
+  regOverlay.addEventListener('click', closeReg);
+  regClose.addEventListener('click', closeReg);
+  document.addEventListener('keydown', function(e){ if(e.key === 'Escape' && regDrawer.classList.contains('open')) closeReg(); });
+
+  document.querySelectorAll('[data-open-reg]').forEach(function(el){
+    el.addEventListener('click', function(e){ e.preventDefault(); openReg(); });
+  });
+
+  function setError(field, msg){
+    field.classList.toggle('error', !!msg);
+    const m = field.querySelector('.err-msg'); if(m) m.textContent = msg || '';
+  }
+  regForm.addEventListener('input', function(e){
+    const field = e.target.closest('.reg-field');
+    if(field) setError(field, '');
+  });
+  regForm.addEventListener('submit', function(e){
+    e.preventDefault();
+    let ok = true;
+    const fields = regForm.querySelectorAll('.reg-field');
+    fields.forEach(function(field){
+      const input = field.querySelector('input,select,textarea');
+      if(!input || !input.required) return;
+      const val = (input.value || '').trim();
+      if(!val){ setError(field, 'Acest câmp este obligatoriu.'); ok = false; return; }
+      if(input.type === 'email' && !/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(val)){ setError(field, 'Adresă de email invalidă.'); ok = false; return; }
+      if(input.type === 'tel' && val.replace(/\D/g,'').length < 9){ setError(field, 'Număr de telefon prea scurt.'); ok = false; return; }
+      setError(field, '');
+    });
+    const consent = document.getElementById('reg-consent');
+    if(!consent.checked){ consent.closest('.reg-consent').style.color = 'var(--terracotta)'; ok = false; }
+    else { consent.closest('.reg-consent').style.color = ''; }
+    if(!ok) return;
+    const name = (document.getElementById('reg-name').value.trim().split(/\s+/)[0]) || 'Te';
+    document.getElementById('regSuccessName').textContent = name;
+    regBody.style.display = 'none';
+    regFoot.style.display = 'none';
+    regSuccess.classList.add('show');
+  });
+
+  // ---------- FAQ ----------
+  const FAQ = CONTENT.faq;
+  const faqList = document.getElementById('faqList');
+  FAQ.forEach(function(qa, i){
+    const num = String(i + 1).padStart(2, '0');
+    const item = document.createElement('div');
+    item.className = 'faq__item';
+    item.innerHTML = '<button class="faq__btn" aria-expanded="false"><span class="faq__n">' + num + '</span><span class="faq__q">' + qa[0] + '</span><span class="faq__plus" aria-hidden="true"></span></button><div class="faq__a"><div class="faq__a-inner">' + qa[1] + '</div></div>';
+    const btn = item.querySelector('.faq__btn');
+    btn.addEventListener('click', function(){
+      const open = item.classList.toggle('open');
+      btn.setAttribute('aria-expanded', open ? 'true' : 'false');
+    });
+    faqList.appendChild(item);
+  });
+
+  // ---------- NAV ----------
+  const nav = document.getElementById('nav');
+  const progress = document.getElementById('progress');
+  const heroEl = document.querySelector('.hero');
+  function onScroll(){
+    const max = document.body.scrollHeight - window.innerHeight;
+    const p = Math.max(0, Math.min(1, window.scrollY / max));
+    progress.style.setProperty('--p', (p * 100).toFixed(2) + '%');
+    const heroBottom = heroEl.getBoundingClientRect().bottom;
+    nav.classList.toggle('is-light', heroBottom < 30);
+  }
+  window.addEventListener('scroll', onScroll, {passive:true});
+  onScroll();
+
+  // ---------- Reveal ----------
+  const io = new IntersectionObserver(function(entries){
+    entries.forEach(function(e){ if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); } });
+  }, {threshold:.14});
+  document.querySelectorAll('.outcome, .step, .day, .cred__stat, .method__item, .fund-col, .cs-card, .program-materials, .trainer-solo').forEach(function(el, i){
+    el.classList.add('reveal');
+    el.style.animationDelay = (i % 4) * 60 + 'ms';
+    io.observe(el);
+  });
+</script>
+
+</body>
+</html>
